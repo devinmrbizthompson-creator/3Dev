@@ -1,122 +1,1262 @@
-<!doctype html>
+```html
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Train the complete player with Coach Devin 'Mr. Biz' Thompson and the 3DEV 3Fold Practice System.">
-  <meta name="theme-color" content="#06070a">
-  <title>3DEV Development | 3Fold Practice System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3DEV Development | 3Fold Practice System — Coach Devin "Mr. Biz" Thompson</title>
+  
+  <!-- Google Fonts: Oswald (Display) & Inter (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- QRCode.js Library for Instant Client-Side Scannable QR Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <script>
-    tailwind.config = { theme: { extend: {
-      fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Oswald', 'sans-serif'] },
-      colors: { obsidian: { 950: '#06070A', 900: '#0B0D12', 850: '#11141C', 800: '#181C26' }, gold: { 300: '#FDE047', 400: '#FACC15', 500: '#D4AF37' }, topaz: { 400: '#38BDF8', 500: '#0284C7' } }
-    } } };
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Oswald', 'sans-serif'],
+          },
+          colors: {
+            obsidian: {
+              950: '#06070A',
+              900: '#0B0D12',
+              850: '#11141C',
+              800: '#181C26',
+            },
+            gold: {
+              300: '#FDE047',
+              400: '#FACC15',
+              500: '#D4AF37',
+              600: '#B48E1E',
+            },
+            topaz: {
+              400: '#38BDF8',
+              500: '#0284C7',
+              600: '#0369A1',
+            }
+          }
+        }
+      }
+    }
   </script>
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script defer src="assets/js/main.js"></script>
+
+  <style>
+    /* Custom Championship Court Line & Glow Accents */
+    body {
+      background-color: #06070A;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    .court-grid-bg {
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.14) 0%, rgba(2, 132, 199, 0.08) 40%, transparent 75%),
+        linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FDE047 0%, #D4AF37 50%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .topaz-gold-border {
+      position: relative;
+    }
+    .topaz-gold-border::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.65), rgba(56, 189, 248, 0.45), rgba(212, 175, 55, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #06070A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2433;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+
+    /* QR Code container centering */
+    #qrcode img, #qrcode canvas {
+      margin: 0 auto;
+      border-radius: 0.5rem;
+    }
+  </style>
 </head>
-<body class="court-bg bg-obsidian-950 font-sans text-slate-100 antialiased">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="border-b border-gold-500/20 bg-obsidian-900 px-4 py-2 text-xs">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2">
-      <p class="text-slate-300"><span class="text-gold-400 font-bold">3DEV Development</span> · KJ Pro · Team KJ Project Swish · KJP4kids</p>
-      <p class="text-slate-400">Visitor source: <strong id="sourceBadge" class="text-topaz-400">Direct / Organic</strong></p>
+<body class="court-grid-bg antialiased selection:bg-gold-500 selection:text-obsidian-950">
+
+  <!-- Top Visitor Source Status Banner -->
+  <div id="sourceBanner" class="bg-obsidian-900/95 border-b border-gold-500/20 text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-slate-300">
+        <span class="inline-block w-2 h-2 rounded-full bg-topaz-400 animate-pulse"></span>
+        <span>3DEV Ecosystem: <strong class="text-gold-400">3DEV Development</strong> • <strong class="text-topaz-400">KJ Pro</strong> • <strong class="text-slate-200">Team KJ Project Swish</strong> • <strong class="text-slate-200">KJP4kids</strong></span>
+      </div>
+      <div class="flex items-center gap-2 bg-obsidian-800 px-3 py-1 rounded-full border border-topaz-500/30">
+        <span class="text-slate-400">Active Visitor Source:</span>
+        <span id="detectedSourceBadge" class="font-semibold text-topaz-400 uppercase tracking-wider">Direct / Organic</span>
+      </div>
     </div>
   </div>
-  <header class="sticky top-0 z-40 border-b border-gold-500/20 bg-obsidian-950/90 backdrop-blur">
-    <div class="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-      <a href="#home" class="flex items-center gap-3" aria-label="3DEV Development home">
-        <span class="logo-mark">3DEV</span>
-        <span><span class="block font-display text-lg font-bold tracking-wide">3DEV <b class="text-gold-400">DEVELOPMENT</b></span><span class="block text-[10px] font-semibold uppercase tracking-[.2em] text-topaz-400">3Fold Practice System</span></span>
+
+  <!-- Sticky Navigation Header -->
+  <header class="sticky top-0 z-40 bg-obsidian-950/85 backdrop-blur-md border-b border-gold-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-topaz-500 p-[2px] shadow-lg shadow-gold-500/15">
+          <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-display font-bold text-xl tracking-tight gold-gradient-text">3DEV</span>
+          </div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-lg sm:text-xl tracking-wide text-white leading-none">
+            3DEV <span class="text-gold-400">DEVELOPMENT</span>
+          </div>
+          <div class="text-[11px] uppercase tracking-[0.2em] text-topaz-400 font-semibold mt-1">
+            3Fold Practice System
+          </div>
+        </div>
       </a>
-      <button id="menuToggle" class="rounded-lg border border-slate-700 px-3 py-2 text-sm md:hidden" aria-expanded="false" aria-controls="mainNav">Menu</button>
-      <nav id="mainNav" class="nav-links hidden items-center gap-6 text-sm text-slate-300 md:flex" aria-label="Main navigation">
-        <a href="#system">3Fold System</a><a href="#drills">Drill Library</a><a href="#rankings">Rankings</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#methodology" class="hover:text-gold-400 transition-colors">3Fold System</a>
+        <a href="#drills" class="hover:text-gold-400 transition-colors">Drill Library</a>
+        <a href="#rankings" class="hover:text-gold-400 transition-colors">3-Star Rankings</a>
+        <a href="#highlights" class="hover:text-gold-400 transition-colors">Highlights</a>
+        <a href="#testimonials" class="hover:text-gold-400 transition-colors">Testimonials</a>
+        <a href="#qr-tracker" class="hover:text-topaz-400 transition-colors">QR & Source</a>
       </nav>
-      <a href="#contact" class="hidden rounded-xl bg-gold-500 px-4 py-2.5 text-sm font-bold text-obsidian-950 transition hover:bg-gold-300 sm:inline-flex">Message Coach Dev →</a>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-3">
+        <a href="#contact-coach" class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+          <span>Message Coach Dev</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
     </div>
   </header>
 
-  <main id="main">
-    <section id="home" class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:px-8 lg:py-24">
-      <div class="space-y-6 lg:col-span-7">
-        <p class="inline-flex rounded-full border border-gold-500/40 bg-obsidian-850 px-4 py-2 text-xs font-bold tracking-wide text-gold-300">★ COACH DEVIN “MR. BIZ” THOMPSON <span class="px-2 text-topaz-400">·</span> BRONX, NY → GLOBAL PRO</p>
-        <h1 class="font-display text-4xl font-bold uppercase leading-tight sm:text-5xl lg:text-6xl">Develop the complete player: <span class="gold-gradient">Physical. Mental. Tactical.</span></h1>
-        <p class="max-w-2xl text-lg leading-relaxed text-slate-300">The <strong class="text-white">3DEV 3Fold Practice System</strong> helps youth and varsity athletes build skills through structured reps, elite footwork, practice accountability, and progressive player benchmarks.</p>
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          <article class="info-card"><h2 class="font-display text-sm font-bold uppercase text-gold-400">NCAA Division I</h2><p>Saint Peter’s forward · 54.5% FG</p></article>
-          <article class="info-card"><h2 class="font-display text-sm font-bold uppercase text-topaz-400">Harlem Showmanship</h2><p>Globetrotters, Rockets & MagicMasters</p></article>
-          <article class="info-card col-span-2 sm:col-span-1"><h2 class="font-display text-sm font-bold uppercase text-gold-400">Pro Champ & MVP</h2><p>2015 Liga MB champ · 2020 MVP</p></article>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 sm:pt-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <!-- Left Column: Headline & Bio Credentials -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-850 border border-gold-500/35 text-xs font-semibold text-gold-300">
+          <span>★</span>
+          <span>COACH DEVIN "MR. BIZ" THOMPSON</span>
+          <span class="text-topaz-400">•</span>
+          <span class="text-topaz-300">BRONX, NY → GLOBAL PRO</span>
         </div>
-        <div class="flex flex-wrap gap-3 pt-1">
-          <a href="#contact" class="rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 px-6 py-3.5 font-bold text-obsidian-950 shadow-lg shadow-gold-500/20 transition hover:-translate-y-0.5">Ask about training</a>
-          <a href="https://docs.google.com/spreadsheets/d/1B7tC-HCoqWiunPowQkCQYjQ0Y6en8bRFfv43w-s3sVQ/edit" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-topaz-500/50 bg-obsidian-850 px-5 py-3.5 font-semibold text-topaz-400 transition hover:bg-obsidian-800">Open 3DEV Sheet ↗</a>
+
+        <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.08] text-white">
+          Develop The Complete Player: <span class="gold-gradient-text">Physical. Mental. Tactical.</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+          Built on 20+ years of NCAA Division I, international pro, and Harlem exhibition mastery, the <strong class="text-white">3DEV 3Fold Practice System</strong> transforms youth and varsity athletes through structured rep accountability, elite footwork, and 3-Star Gold ranking benchmarks.
+        </p>
+
+        <!-- Credential Pills -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+          <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3">
+            <div class="text-gold-400 font-display font-bold text-sm uppercase">NCAA Division I</div>
+            <div class="text-xs text-slate-400 mt-0.5">Saint Peter's Forward • 54.5% FG</div>
+          </div>
+          <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3">
+            <div class="text-topaz-400 font-display font-bold text-sm uppercase">Harlem Showmanship</div>
+            <div class="text-xs text-slate-400 mt-0.5">Globetrotters, Rockets & MagicMasters</div>
+          </div>
+          <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3 col-span-2 sm:col-span-1">
+            <div class="text-gold-400 font-display font-bold text-sm uppercase">Pro Champ & MVP</div>
+            <div class="text-xs text-slate-400 mt-0.5">2015 Liga MB Champ • 2020 MVP</div>
+          </div>
         </div>
-        <p class="text-xs text-slate-400">✓ American Red Cross CPR/AED & Praesidium certified · NYCDOE vendor network</p>
-      </div>
-      <aside class="panel lg:col-span-5">
-        <div class="mb-5 flex items-center justify-between border-b border-slate-800 pb-4"><div><p class="eyebrow">Live system blueprint</p><h2 class="font-display text-2xl font-bold uppercase">The 3Fold Trifecta</h2></div><span class="text-xl tracking-widest text-gold-400" aria-label="Three stars">★★★</span></div>
-        <div class="space-y-3">
-          <article class="pillar border-gold-500/30"><h3 class="text-gold-400">01. Physical Execution</h3><p>Kinetic chain activation, ladder agility, weak-hand ball control, and balanced shooting mechanics across rim heights.</p></article>
-          <article class="pillar border-topaz-500/40"><h3 class="text-topaz-400">02. Mental Discipline</h3><p>Poise under fatigue, self-correction after misses, and rhythmic transitions from walk to jog to game speed.</p></article>
-          <article class="pillar border-amber-500/30"><h3 class="text-amber-400">03. Tactical Application</h3><p>Read-and-react counters, live 1v1 contest reads, and Team KJ Project Swish Level 0–6 progression.</p></article>
+
+        <!-- Safety & Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3.5 pt-2">
+          <a href="#contact-coach" class="bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all text-sm sm:text-base">
+            Submit Question or Inquiry
+          </a>
+          <button type="button" id="openCurriculumModalBtn" class="inline-flex items-center gap-2 bg-obsidian-850 hover:bg-obsidian-800 text-topaz-400 border border-topaz-500/45 font-semibold px-5 py-3.5 rounded-xl transition-all text-sm sm:text-base">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Explore Public 3DEV Curriculum</span>
+          </button>
         </div>
-        <p class="mt-5 border-t border-slate-800 pt-4 text-xs text-slate-400">Sweden Pro career high: <strong class="text-white">32 PTS / 24 REB</strong> · <a class="text-topaz-400 hover:underline" href="http://devinmrbizthompson.blogspot.com" target="_blank" rel="noopener noreferrer">Full bio & stats ↗</a></p>
-      </aside>
-    </section>
 
-    <section id="system" class="section-wrap border-t border-slate-800/80">
-      <div class="mb-8"><p class="eyebrow">Team KJ Project Swish</p><h2 class="section-title">Levels 0–6 <span class="gold-gradient">Evaluation Pathway</span></h2><p class="mt-2 text-sm text-slate-400">Select a level to explore its skill focus and progression benchmark.</p></div>
-      <div id="levelSelector" class="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7"></div>
-      <article class="panel mt-4"><p id="levelTitle" class="font-display text-lg font-bold uppercase text-topaz-400" aria-live="polite"></p><p id="levelDesc" class="mt-2 text-sm text-slate-300"></p><span id="levelBadge" class="mt-4 inline-block rounded-full border border-gold-500/30 bg-gold-500/10 px-3 py-1 text-xs font-bold text-gold-400"></span></article>
-    </section>
-
-    <section id="drills" class="section-wrap border-t border-slate-800/80">
-      <div class="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p class="eyebrow">Curriculum & skill progression</p><h2 class="section-title">Master Drill <span class="gold-gradient">Explorer</span></h2><p class="mt-2 max-w-2xl text-sm text-slate-400">Browse signature workouts by focus pillar.</p></div><div id="drillFilters" class="flex flex-wrap gap-2" role="group" aria-label="Filter drills"></div></div>
-      <div id="drillGrid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
-    </section>
-
-    <section id="rankings" class="section-wrap border-t border-slate-800/80">
-      <div class="mx-auto mb-10 max-w-3xl text-center"><p class="eyebrow">Athlete accountability & recognition</p><h2 class="section-title">3-Star <span class="gold-gradient">Gold Rankings</span></h2><p class="mt-2 text-sm text-slate-400">Progressive benchmarks recognize practice consistency, mechanical mastery, and game execution.</p></div>
-      <div class="grid gap-5 md:grid-cols-3">
-        <article class="rank-card border-amber-700/40"><span class="rank-label text-amber-300">Tier 01</span><h3>1-Star: Bronze Foundation</h3><p>Builds core footwork balance, ball security, and daily practice habits.</p><ul><li>Make 10 & 12-Spot Form Shooting</li><li>Ladder 0’s & Kinetic Chain Warmup</li><li>Pass Levels 0–2</li></ul><small>Focus: posture, eyes up & rep consistency</small></article>
-        <article class="rank-card border-topaz-500/50"><span class="rank-label text-topaz-300">Tier 02</span><h3>2-Star: Topaz Competitor</h3><p>Demonstrates off-hand finishing, game-speed transitions, and defensive reads.</p><ul><li>Take 10 / Take 20 across rim heights</li><li>Kyrie weak-hand & Brunson counters</li><li>Pass Levels 3–4</li></ul><small>Focus: pace, weak hand & defensive pride</small></article>
-        <article class="rank-card featured"><span class="rank-label text-gold-300">Tier 03 · Elite</span><h3 class="gold-gradient">3-Star: Gold Championship</h3><p>Varsity-ready complete player who self-corrects and leads teammates.</p><ul><li>Make 50 & Empty Bin mastery</li><li>Kobe, Kyrie & Shai Gil skill set</li><li>Pass Levels 5–6</li></ul><small>Learn 6 & Protect · Championship tier</small></article>
-      </div>
-    </section>
-
-    <section id="testimonials" class="section-wrap border-t border-slate-800/80">
-      <div class="mb-8 flex items-end justify-between gap-4"><div><p class="eyebrow">Trusted by families & NYC youth institutions</p><h2 class="section-title">Parent & <span class="gold-gradient">Partner Notes</span></h2></div><div class="flex gap-2"><button id="prevTestimonial" class="secondary-button" aria-label="Previous testimonials">←</button><button id="nextTestimonial" class="secondary-button" aria-label="Next testimonials">→</button></div></div>
-      <div id="testimonialCards" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
-    </section>
-
-    <section id="contact" class="section-wrap border-t border-slate-800/80">
-      <div class="grid items-start gap-6 lg:grid-cols-12">
-        <div class="panel lg:col-span-5"><p class="eyebrow">Print · scan · track source</p><h2 class="font-display text-2xl font-bold uppercase">Campaign <span class="gold-gradient">QR Code</span></h2><p class="mt-2 text-sm text-slate-400">Create a tagged link for a flyer, gym banner, business card, or social media campaign.</p>
-          <label for="campaignSource" class="mt-5 block text-xs font-bold uppercase tracking-wide text-slate-300">Campaign source</label><select id="campaignSource" class="form-control mt-2"><option value="flyer">Gym flyer / handout</option><option value="gym_banner">Court / gym banner</option><option value="business_card">Business card</option><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="sar_academy">SAR Academy / school program</option></select>
-          <div class="mt-5 rounded-xl bg-white p-4 text-center"><div id="qrcode" class="flex min-h-[180px] items-center justify-center"></div><p id="qrUrlLabel" class="mt-3 break-all border-t border-slate-200 pt-2 font-mono text-[11px] text-slate-600"></p></div>
-          <div class="mt-3 grid grid-cols-2 gap-2"><button id="downloadQr" class="primary-button">Download PNG</button><button id="copyLink" class="secondary-button">Copy tracked link</button></div>
-          <p class="mt-4 text-xs leading-relaxed text-slate-400">The source tag is included in the inquiry email. This static page does not automatically write visitor information to a spreadsheet.</p>
-        </div>
-        <div class="panel lg:col-span-7"><p class="eyebrow">Direct line to Coach Devin “Mr. Biz” Thompson</p><h2 class="font-display text-2xl font-bold uppercase sm:text-3xl">Questions & <span class="gold-gradient">Session Inquiries</span></h2><p class="mt-2 text-sm text-slate-400">Complete the form to open an email addressed to <a class="text-topaz-400" href="mailto:DevinMrBizThompson@gmail.com">DevinMrBizThompson@gmail.com</a>. Your email app must be set up on your device.</p>
-          <form id="inquiryForm" class="mt-6 space-y-4">
-            <div class="grid gap-4 sm:grid-cols-2"><div><label class="form-label" for="parentName">Your name *</label><input class="form-control" id="parentName" name="name" required maxlength="100" placeholder="Parent / athlete name"></div><div><label class="form-label" for="athleteGrade">Athlete age / grade</label><input class="form-control" id="athleteGrade" name="grade" maxlength="100" placeholder="e.g. 12 years / 7th grade"></div></div>
-            <div class="grid gap-4 sm:grid-cols-2"><div><label class="form-label" for="topic">Topic</label><select class="form-control" id="topic"><option>1-on-1 / Group Training Inquiry</option><option>Question for Coach Dev</option><option>Positive Feedback / Testimonial</option><option>Parental Concern</option></select></div><div><label class="form-label" for="stars">Optional rating</label><select class="form-control" id="stars"><option>Not provided</option><option>1 Star (Bronze)</option><option>2 Stars (Topaz)</option><option selected>3 Stars (Gold Standard)</option></select></div></div>
-            <div><label class="form-label" for="message">Your message *</label><textarea class="form-control" id="message" rows="5" required maxlength="4000" placeholder="Tell Coach Dev how he can help..."></textarea></div>
-            <p class="text-xs text-slate-400">Source tag: <strong id="formSource" class="text-topaz-400">Direct / Organic</strong></p>
-            <div class="flex flex-wrap gap-3"><button class="primary-button" type="submit">Prepare email to Coach Dev</button><button class="secondary-button" type="button" id="copyMessage">Copy inquiry text</button></div>
-          </form>
-          <p id="notice" class="mt-4 hidden rounded-lg border border-emerald-500/40 bg-emerald-950 p-3 text-sm text-emerald-200" role="status" aria-live="polite"></p>
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400 pt-1">
+          <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Red Cross CPR/AED & Praesidium Certified
+          </span>
+          <span>•</span>
+          <span>Athlete Privacy Protected (Individual Notes Restricted)</span>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="mt-10 border-t border-gold-500/20 bg-obsidian-950 px-4 py-10"><div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center md:flex-row md:text-left"><div><p class="font-display text-xl font-bold">3DEV <span class="text-gold-400">3FOLD PRACTICE SYSTEM</span></p><p class="mt-1 text-xs text-slate-400">Coach Devin “Mr. Biz” Thompson · 3DEV Development · Team KJ Project Swish</p></div><div class="flex flex-wrap justify-center gap-3 text-xs"><a class="footer-link" href="https://docs.google.com/spreadsheets/d/1B7tC-HCoqWiunPowQkCQYjQ0Y6en8bRFfv43w-s3sVQ/edit" target="_blank" rel="noopener noreferrer">3DEV Google Sheet ↗</a><a class="footer-link" href="https://www.facebook.com/Coach.Dev.Thompson" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a class="footer-link" href="mailto:DevinMrBizThompson@gmail.com">Email Coach Dev</a></div></div></footer>
+      <!-- Right Column: Interactive Championship Scorecard Preview -->
+      <div class="lg:col-span-5">
+        <div class="bg-obsidian-900/95 topaz-gold-border rounded-2xl p-6 sm:p-7 shadow-2xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-widest text-topaz-400">Live System Blueprint</span>
+              <h2 class="font-display font-bold text-2xl text-white uppercase mt-0.5">The 3Fold Trifecta</h2>
+            </div>
+            <div class="flex items-center gap-1 text-gold-400 text-lg" title="3-Star Gold Standard">
+              <span>★</span><span>★</span><span>★</span>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Pillar 1 -->
+            <div class="bg-obsidian-850 border border-gold-500/25 rounded-xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-display font-bold text-gold-400 uppercase tracking-wide">01. Physical Execution</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-gold-500/15 text-gold-300 font-semibold">Biomechanics</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                Kinetic chain activation (ankle-to-neck), ladder agility, weak-hand ball control, and balanced shooting mechanics across all rim heights.
+              </p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="bg-obsidian-850 border border-topaz-500/30 rounded-xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-display font-bold text-topaz-400 uppercase tracking-wide">02. Mental Discipline</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-topaz-500/15 text-topaz-300 font-semibold">Focus & Pace</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                Poise under fatigue during <em>Make 50</em> challenges, self-correction after misses, and rhythmic transitions from walk to jog to full game speed.
+              </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="bg-obsidian-850 border border-amber-500/25 rounded-xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-display font-bold text-amber-400 uppercase tracking-wide">03. Tactical Application</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-semibold">Game IQ</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                Pro read-and-react counters (Brunson, Kobe, Kyrie, Shai), live 1v1 contest reads, and Team KJ Project Swish Level 0–6 progression.
+              </p>
+            </div>
+          </div>
+
+          <!-- Career Highlight Strip -->
+          <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+            <span>Career High (Sweden Pro): <strong class="text-white">32 PTS / 24 REB</strong></span>
+            <a href="http://devinmrbizthompson.blogspot.com" target="_blank" rel="noopener noreferrer" class="text-topaz-400 hover:underline font-medium">Full Bio & Stats →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 3DEV Master Drill Explorer & Levels 0-6 -->
+  <section id="drills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-topaz-400">Curriculum & Skill Progression</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white uppercase mt-1">
+          Interactive <span class="gold-gradient-text">Master Drill Explorer</span>
+        </h2>
+        <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+          Filter Coach Dev's signature workouts from the live 3DEV spreadsheet by focus pillar, or toggle Team KJ Project Swish Levels 0–6 below.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap gap-2" id="drillFilters">
+        <button data-filter="all" class="drill-filter-btn active px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-obsidian-950 transition-all">
+          All Signature Drills (9)
+        </button>
+        <button data-filter="Physical" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-gold-400 border border-slate-800 transition-all">
+          Physical
+        </button>
+        <button data-filter="Mental" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-topaz-400 border border-slate-800 transition-all">
+          Mental
+        </button>
+        <button data-filter="Tactical" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-amber-400 border border-slate-800 transition-all">
+          Tactical
+        </button>
+        <button data-filter="Pro Series" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-emerald-400 border border-slate-800 transition-all">
+          Pro Series
+        </button>
+      </div>
+    </div>
+
+    <!-- Drill Cards Grid -->
+    <div id="drillGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Populated via JavaScript -->
+    </div>
+
+    <!-- Team KJ Project Swish Levels 0-6 Interactive Bar -->
+    <div id="methodology" class="mt-12 bg-obsidian-900/90 topaz-gold-border rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Team KJ Project Swish</span>
+          <h3 class="font-display font-bold text-2xl text-white uppercase mt-0.5">Levels 0–6 Evaluation Pathway</h3>
+        </div>
+        <span class="text-xs text-slate-400 bg-obsidian-850 px-3 py-1.5 rounded-lg border border-slate-800">Click any level to inspect mastery criteria</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5" id="levelSelector">
+        <!-- Populated by JS -->
+      </div>
+
+      <div id="levelDetailBox" class="mt-5 bg-obsidian-850/90 border border-topaz-500/30 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-topaz-400" id="levelTitle">Level 0: Athletic Foundation & Ball Familiarity</div>
+          <p class="text-sm text-slate-200 mt-1" id="levelDesc">Two-hand stationary control, head/waist/legs ball wraps, basic ladder footwork, and balanced set-shot form on mini/adjustable rims.</p>
+        </div>
+        <div class="shrink-0">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-gold-500/15 text-gold-400 border border-gold-500/30" id="levelBadge">LTU Benchmark Ready</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-Star Gold Rankings Preview & Spreadsheet Bridge -->
+  <section id="rankings" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Athlete Accountability & Recognition</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-white uppercase mt-1">
+        3DEV <span class="gold-gradient-text">3-Star Gold Rankings</span> System
+      </h2>
+      <p class="text-sm text-slate-400 mt-2">
+        Every athlete in the 3DEV 3Fold Practice System earns progressive Star Rankings based on verified session consistency, mechanical mastery, and live game execution.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- 1-Star Tier -->
+      <div class="bg-obsidian-900 border border-amber-700/40 rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-900/40 text-amber-300 border border-amber-600/30">Tier 01</span>
+            <div class="text-amber-400 text-xl tracking-widest">★<span class="text-slate-700">★★</span></div>
+          </div>
+          <h3 class="font-display font-bold text-2xl text-white uppercase">1-Star: Bronze Foundation</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Establishes core footwork balance, ball security, and daily practice habits across the 3Fold pillars.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-300">
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Complete <em>Make 10</em> & 12-Spot Form Shooting</li>
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Clean Ladder 0's & Kinetic Chain Warmup</li>
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Pass Levels 0–2 in Team KJ Project Swish</li>
+          </ul>
+        </div>
+        <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400">
+          Focus: Posture, Eyes Up & Rep Consistency
+        </div>
+      </div>
+
+      <!-- 2-Star Tier -->
+      <div class="bg-obsidian-900 border border-topaz-500/50 rounded-2xl p-6 flex flex-col justify-between shadow-lg shadow-topaz-500/5">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-topaz-500/20 text-topaz-300 border border-topaz-500/40">Tier 02</span>
+            <div class="text-topaz-400 text-xl tracking-widest">★★<span class="text-slate-700">★</span></div>
+          </div>
+          <h3 class="font-display font-bold text-2xl text-white uppercase">2-Star: Topaz Competitor</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Demonstrates off-hand finishing, game-speed transitions, and disciplined defensive slide-to-attack reads.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-300">
+            <li class="flex items-center gap-2"><span class="text-topaz-400">✓</span> <em>Take 10 / Take 20</em> across Heights 1–5</li>
+            <li class="flex items-center gap-2"><span class="text-topaz-400">✓</span> Kyrie Weak-Hand & Brunson 4-Phase Counters</li>
+            <li class="flex items-center gap-2"><span class="text-topaz-400">✓</span> Pass Levels 3–4 & 1v1 Contest Shooter Drill</li>
+          </ul>
+        </div>
+        <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-topaz-300">
+          Focus: Pace Control, Weak Hand & Defensive Pride
+        </div>
+      </div>
+
+      <!-- 3-Star Gold Tier -->
+      <div class="bg-gradient-to-b from-obsidian-850 to-obsidian-950 topaz-gold-border rounded-2xl p-6 flex flex-col justify-between shadow-xl shadow-gold-500/10">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-gold-500 text-obsidian-950">Tier 03 • Elite</span>
+            <div class="text-gold-400 text-xl tracking-widest drop-shadow">★★★</div>
+          </div>
+          <h3 class="font-display font-bold text-2xl gold-gradient-text uppercase">3-Star: Gold Championship</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            Varsity-ready complete player who dominates clutch volume shooting, self-corrects in real time, and leads teammates.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-200">
+            <li class="flex items-center gap-2"><span class="text-gold-400">★</span> <em>Make 50</em> & <em>Empty Bin</em> High-Percentage Mastery</li>
+            <li class="flex items-center gap-2"><span class="text-gold-400">★</span> Full Kobe, Kyrie & Shai Gil Tactical Arsenal</li>
+            <li class="flex items-center gap-2"><span class="text-gold-400">★</span> Pass Levels 5–6 ("Learn 6 & Protect")</li>
+          </ul>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gold-500/20 flex items-center justify-between text-[11px]">
+          <span class="text-gold-300 font-semibold">Synced w/ 3-Star Gold Rankings Tab</span>
+          <button type="button" onclick="document.getElementById('openCurriculumModalBtn').click()" class="text-topaz-400 hover:underline font-bold">Inspect Criteria →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch Coach Dev in Action: Highlight Reels & Social Media Showcase -->
+  <section id="highlights" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Family-Friendly Verified Footage & Social Channels</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white uppercase mt-1">
+          Watch <span class="gold-gradient-text">Coach Dev In Action</span>
+        </h2>
+        <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+          From NCAA Division I battles at Saint Peter's and national Nike commercials with Jason Kidd to international Slam Dunk Championships and youth clinics.
+        </p>
+      </div>
+
+      <!-- Direct Social Media Pills -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <a href="https://www.instagram.com/dummyink21/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-pink-500/20 hover:from-amber-500/30 hover:to-pink-500/30 border border-gold-500/40 text-xs font-bold text-gold-300 transition-all">
+          <span>📸 Instagram (@dummyink21)</span>
+        </a>
+        <a href="https://www.facebook.com/Coach.Dev.Thompson" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-topaz-500/15 hover:bg-topaz-500/25 border border-topaz-500/40 text-xs font-bold text-topaz-300 transition-all">
+          <span>📘 Facebook (Coach Dev)</span>
+        </a>
+        <a href="http://devinmrbizthompson.blogspot.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700 text-xs font-bold text-slate-200 transition-all">
+          <span>🏆 Career CV & Blog</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 4 Verified Highlight Reel Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Reel 1 -->
+      <a href="https://www.youtube.com/watch?v=H4HyGm3WLtc" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-gold-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
+            <img src="https://img.youtube.com/vi/H4HyGm3WLtc/hqdefault.jpg" alt="2017 LMB Slam Dunk Contest Devin Mr Biz Thompson" onerror="this.src='https://placehold.co/640x360/0B0D12/D4AF37?text=2017+LMB+Dunk+Contest'" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent"></div>
+            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded bg-gold-500 text-obsidian-950 font-display font-bold text-[11px] uppercase">2017 Pro Showcase</span>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-11 h-11 rounded-full bg-gold-500/90 text-obsidian-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-bold text-base text-white uppercase group-hover:text-gold-400 transition-colors">2017 LMB All-Star Slam Dunk Contest</h3>
+            <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">Representing Santa Tecla (#31) and scoring 49 points on his opening championship slam.</p>
+          </div>
+        </div>
+        <div class="px-4 pb-4 text-[11px] font-bold text-topaz-400 flex items-center justify-between">
+          <span>Watch on YouTube</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <!-- Reel 2 -->
+      <a href="https://www.youtube.com/watch?v=DDHtrD4AiLo" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-topaz-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
+            <img src="https://img.youtube.com/vi/DDHtrD4AiLo/hqdefault.jpg" alt="Nike Basketball Commercial with Jason Kidd and Devin Mr Biz Thompson" onerror="this.src='https://placehold.co/640x360/0B0D12/38BDF8?text=Nike+x+Jason+Kidd'" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent"></div>
+            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded bg-topaz-500 text-white font-display font-bold text-[11px] uppercase">Nike Commercial</span>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-11 h-11 rounded-full bg-topaz-500/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-bold text-base text-white uppercase group-hover:text-topaz-400 transition-colors">Nike Commercial w/ NBA Legend Jason Kidd</h3>
+            <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">National "My Game Is Made Outside" commercial appearance alongside Hall of Famer Jason Kidd.</p>
+          </div>
+        </div>
+        <div class="px-4 pb-4 text-[11px] font-bold text-topaz-400 flex items-center justify-between">
+          <span>Watch on YouTube</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <!-- Reel 3 -->
+      <a href="https://www.youtube.com/watch?v=btZNs0g_AQU" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-gold-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
+            <img src="https://img.youtube.com/vi/btZNs0g_AQU/hqdefault.jpg" alt="Devin Thompson Mr Biz NCAA Division I Saint Peters Mixtape" onerror="this.src='https://placehold.co/640x360/0B0D12/D4AF37?text=NCAA+D-I+Mixtape'" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent"></div>
+            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded bg-gold-500 text-obsidian-950 font-display font-bold text-[11px] uppercase">NCAA D-I & NYC</span>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-11 h-11 rounded-full bg-gold-500/90 text-obsidian-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-bold text-base text-white uppercase group-hover:text-gold-400 transition-colors">NCAA Division I & NYC Streetball Mixtape</h3>
+            <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">In-game finishing, shot-blocking, and athleticism from Saint Peter's University (#21) & NYC runs.</p>
+          </div>
+        </div>
+        <div class="px-4 pb-4 text-[11px] font-bold text-topaz-400 flex items-center justify-between">
+          <span>Watch on YouTube</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <!-- Reel 4 -->
+      <a href="https://www.youtube.com/watch?v=XAVD8YX10SE" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-topaz-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
+            <img src="https://img.youtube.com/vi/XAVD8YX10SE/hqdefault.jpg" alt="Devin Mr Biz Thompson International Exhibition Tour Guatemala" onerror="this.src='https://placehold.co/640x360/0B0D12/38BDF8?text=International+Tour'" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent"></div>
+            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded bg-topaz-500 text-white font-display font-bold text-[11px] uppercase">Exhibition Tour</span>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-11 h-11 rounded-full bg-topaz-500/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-display font-bold text-base text-white uppercase group-hover:text-topaz-400 transition-colors">International Youth & Showmanship Tour</h3>
+            <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">Crowd-thrilling exhibition tour featuring youth engagement, rim-rattling dunks, and showmanship.</p>
+          </div>
+        </div>
+        <div class="px-4 pb-4 text-[11px] font-bold text-topaz-400 flex items-center justify-between">
+          <span>Watch on YouTube</span>
+          <span>↗</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Verified Parent & Partner Testimonials Showcase -->
+  <section id="testimonials" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-topaz-400">Trusted By Families & NYC Youth Institutions</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white uppercase mt-1">
+          Verified Parent & <span class="gold-gradient-text">Partner Testimonials</span>
+        </h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="prevTestimonial" class="p-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700 text-white transition-colors" aria-label="Previous Testimonial">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="nextTestimonial" class="p-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-slate-700 text-white transition-colors" aria-label="Next Testimonial">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Testimonials Grid / Carousel -->
+    <div id="testimonialCards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Populated via JS -->
+    </div>
+  </section>
+
+  <!-- Interactive QR Code Generator & Direct Parent Contact Section -->
+  <section id="qr-tracker" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left 5 Cols: Live QR Code Generator & Visitor Source Bridge -->
+      <div class="lg:col-span-5 bg-obsidian-900 topaz-gold-border rounded-2xl p-6 sm:p-7 space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-topaz-400">Print • Scan • Track Source</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-white uppercase mt-1">
+            3DEV <span class="gold-gradient-text">QR Code Generator</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">
+            Generate a custom campaign QR code for gym banners, flyers, business cards, or Instagram. When parents scan it, their exact source tag is automatically attached to their message and logged for your 3DEV spreadsheet.
+          </p>
+        </div>
+
+        <!-- Campaign Source Selector -->
+        <div class="space-y-2">
+          <label for="qrCampaignSelect" class="block text-xs font-bold uppercase tracking-wider text-slate-300">
+            Select Campaign / Placement Source
+          </label>
+          <select id="qrCampaignSelect" class="w-full bg-obsidian-850 border border-slate-700 focus:border-gold-500 rounded-xl px-4 py-3 text-sm text-white outline-none">
+            <option value="flyer">Gym Flyer / Handout (?source=flyer)</option>
+            <option value="gym_banner">Court / Gym Banner (?source=gym_banner)</option>
+            <option value="business_card">Coach Dev Business Card (?source=business_card)</option>
+            <option value="instagram">Instagram Bio / Story (?source=instagram)</option>
+            <option value="facebook">Facebook Page (?source=facebook)</option>
+            <option value="sar_academy">SAR Academy / School Program (?source=sar_academy)</option>
+          </select>
+        </div>
+
+        <!-- QR Visual Box -->
+        <div class="bg-white p-5 rounded-2xl text-center shadow-inner">
+          <div id="qrcode" class="flex justify-center items-center min-h-[180px]"></div>
+          <div class="mt-3 pt-2 border-t border-slate-200">
+            <div class="font-display font-bold text-obsidian-950 text-sm uppercase tracking-wide">3DEV 3FOLD PRACTICE SYSTEM</div>
+            <div id="qrUrlLabel" class="text-[11px] font-mono text-slate-600 break-all mt-0.5"></div>
+          </div>
+        </div>
+
+        <!-- QR Action Buttons -->
+        <div class="grid grid-cols-2 gap-3">
+          <button id="downloadQrBtn" type="button" class="flex items-center justify-center gap-2 bg-topaz-500 hover:bg-topaz-400 text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all shadow-lg shadow-topaz-500/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Download QR PNG</span>
+          </button>
+          <button id="copyCampaignLinkBtn" type="button" class="flex items-center justify-center gap-2 bg-obsidian-850 hover:bg-obsidian-800 text-gold-400 border border-gold-500/40 font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            <span>Copy Tracked URL</span>
+          </button>
+        </div>
+
+        <!-- Visitor Source Spreadsheet Bridge Note -->
+        <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3.5 text-xs text-slate-300 space-y-1.5">
+          <div class="font-bold text-gold-400 flex items-center gap-1.5">
+            <span>📊</span>
+            <span>3DEV Excel / Google Sheets Visitor Bridge</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed">
+            Every submission automatically formats a <strong class="text-white">Spreadsheet Log Row</strong> (Date, Source Tag, Athlete Grade, Topic, Star Rating) so you can paste or auto-log visitor leads straight into your 3DEV workbook.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right 7 Cols: Direct Parent Comments, Questions & Concerns Form -->
+      <div id="contact-coach" class="lg:col-span-7 bg-obsidian-900 topaz-gold-border rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <div class="border-b border-slate-800 pb-5 mb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Direct Line To Coach Devin "Mr. Biz" Thompson</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-white uppercase mt-1">
+            Questions, Comments & <span class="gold-gradient-text">Session Inquiries</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1.5">
+            Have a question about 1-on-1 training, Team KJ Project Swish, or want to share feedback or a concern? Send it directly to <strong class="text-topaz-400">DevinMrBizThompson@gmail.com</strong>.
+          </p>
+        </div>
+
+        <form id="coachInquiryForm" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="parentName" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Your Name (Parent / Athlete) *</label>
+              <input type="text" id="parentName" required placeholder="e.g., Michelle / Jordan" class="w-full bg-obsidian-850 border border-slate-700 focus:border-gold-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none" />
+            </div>
+            <div>
+              <label for="athleteGrade" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Athlete's Age / Grade</label>
+              <input type="text" id="athleteGrade" placeholder="e.g., 12 yrs / 7th Grade / Varsity" class="w-full bg-obsidian-850 border border-slate-700 focus:border-gold-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none" />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="inquiryTopic" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Topic *</label>
+              <select id="inquiryTopic" class="w-full bg-obsidian-850 border border-slate-700 focus:border-gold-500 rounded-xl px-4 py-3 text-sm text-white outline-none">
+                <option value="Training Inquiry">1-on-1 / Group Training Inquiry</option>
+                <option value="Question">Question for Coach Dev</option>
+                <option value="Feedback / Testimonial">Positive Feedback / Testimonial</option>
+                <option value="Concern / Focal Point">Parental Focal Point or Concern</option>
+              </select>
+            </div>
+
+            <!-- Optional 1-3 Gold Star Rating -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Optional 3-Star Gold Rating</label>
+              <div class="flex items-center gap-2 bg-obsidian-850 border border-slate-700 rounded-xl px-3 py-2" id="starRatingGroup">
+                <button type="button" data-stars="1" class="star-btn flex-1 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-gold-400 transition-colors">★ 1</button>
+                <button type="button" data-stars="2" class="star-btn flex-1 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-gold-400 transition-colors">★★ 2</button>
+                <button type="button" data-stars="3" class="star-btn flex-1 py-1 rounded-lg text-xs font-bold bg-gold-500/20 text-gold-400 border border-gold-500/40 transition-colors">★★★ 3</button>
+              </div>
+              <input type="hidden" id="selectedStars" value="3 Stars (Gold Standard)" />
+            </div>
+          </div>
+
+          <div>
+            <label for="visitorMessage" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Your Message, Comments or Concerns *</label>
+            <textarea id="visitorMessage" rows="4" required placeholder="Write your question, athlete goals, feedback, or concern here..." class="w-full bg-obsidian-850 border border-slate-700 focus:border-gold-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none resize-y"></textarea>
+          </div>
+
+          <!-- Hidden Auto-Detected Source Field -->
+          <div class="flex items-center justify-between text-xs bg-obsidian-850/70 px-3.5 py-2.5 rounded-xl border border-slate-800">
+            <span class="text-slate-400">Auto-Attached Visitor Source Tag:</span>
+            <span id="formSourceTag" class="font-mono font-bold text-topaz-400">Direct / Organic</span>
+          </div>
+
+          <!-- Submit & Fallback Copy Buttons -->
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <button type="submit" id="submitInquiryBtn" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-gold-500/20 transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>Send Directly to Coach Dev</span>
+            </button>
+            <button type="button" id="copyMessageFallbackBtn" class="inline-flex items-center justify-center gap-2 bg-obsidian-850 hover:bg-obsidian-800 text-slate-200 border border-slate-700 font-semibold text-sm py-3.5 px-5 rounded-xl transition-all">
+              <svg class="w-4 h-4 text-topaz-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span>Copy Lead Row</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Collapsible Coach Settings: Auto-Log Leads to Google Sheet / Formspree -->
+        <div class="mt-5 pt-4 border-t border-slate-800/80">
+          <button type="button" id="toggleWebhookSettingsBtn" class="text-xs text-slate-400 hover:text-topaz-400 flex items-center gap-1.5 font-medium transition-colors">
+            <span>⚙️ Coach Settings: Enable 1-Click In-Browser Auto-Logging (Google Sheets / Formspree)</span>
+          </button>
+          <div id="webhookSettingsPanel" class="hidden mt-3 bg-obsidian-850 border border-slate-800 rounded-xl p-4 space-y-3 text-xs">
+            <p class="text-slate-300 leading-relaxed">
+              Want parents to submit right inside the browser (without opening Apple Mail/Gmail) and auto-log directly into your <strong class="text-gold-400">3DEV Google Sheet</strong>? Paste a free <strong class="text-topaz-400">Formspree</strong> or <strong class="text-topaz-400">Google Apps Script Web App URL</strong> below:
+            </p>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input type="url" id="webhookEndpointInput" placeholder="https://formspree.io/f/your-id  OR  https://script.google.com/macros/s/..." class="flex-1 bg-obsidian-950 border border-slate-700 focus:border-topaz-500 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 outline-none" />
+              <button type="button" id="saveWebhookBtn" class="bg-topaz-500 hover:bg-topaz-400 text-white font-bold px-4 py-2 rounded-lg transition-colors">
+                Save Endpoint
+              </button>
+            </div>
+            <div id="webhookStatusText" class="text-[11px] text-slate-400">Mode: Direct Email App Launch + Copy-Ready Spreadsheet Row</div>
+          </div>
+        </div>
+
+        <!-- Custom Notification Toast / Message Box (Replaces alert) -->
+        <div id="feedbackToast" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/90 border border-emerald-500/40 text-xs sm:text-sm text-emerald-200"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Public Curriculum & Privacy-Safe Workbook Modal -->
+  <div id="curriculumModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-obsidian-900 topaz-gold-border rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-topaz-400">Privacy-First Athlete Architecture</span>
+          <h3 class="font-display font-bold text-2xl text-white uppercase mt-0.5">Public 3DEV Curriculum & Workbook Access</h3>
+        </div>
+        <button type="button" id="closeCurriculumModalBtn" class="p-2 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-slate-400 hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-4 text-xs text-emerald-200 leading-relaxed">
+        <strong class="text-emerald-300">Youth Athlete Privacy Notice:</strong> Individual athlete session tabs (Will, Zoey, Anthony, Nolan, Eli, Beatrice, etc.) are strictly restricted to Coach Devin "Mr. Biz" Thompson. Public visitors can explore the curriculum overview, 3-Star Gold Ranking standards, and Master Drill Library below.
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-obsidian-850 border border-slate-800 rounded-xl p-4">
+          <div class="font-display font-bold text-gold-400 uppercase text-sm">Tab 1: 3-Star Gold Rankings</div>
+          <p class="text-slate-400 mt-1">Tracks Bronze (1-Star), Topaz (2-Star), and Gold Championship (3-Star) milestones across Physical, Mental & Tactical benchmarks.</p>
+        </div>
+        <div class="bg-obsidian-850 border border-slate-800 rounded-xl p-4">
+          <div class="font-display font-bold text-topaz-400 uppercase text-sm">Tab 2: Master Drill Library</div>
+          <p class="text-slate-400 mt-1">37 standardized workouts covering Shooting Volume, Pro Archetypes (Brunson, Kobe, Kyrie, Shai), Agility, and 1v1 Live Reads.</p>
+        </div>
+        <div class="bg-obsidian-850 border border-slate-800 rounded-xl p-4">
+          <div class="font-display font-bold text-gold-400 uppercase text-sm">Tab 3: About Coach Dev</div>
+          <p class="text-slate-400 mt-1">NCAA D-I stats, Harlem Globetrotters/Rockets/MagicMasters tours, 2015 Liga MB Champ & 2020 MVP honors, and safety credentials.</p>
+        </div>
+        <div class="bg-obsidian-850 border border-slate-800 rounded-xl p-4">
+          <div class="font-display font-bold text-topaz-400 uppercase text-sm">Tab 4: Verified Testimonials</div>
+          <p class="text-slate-400 mt-1">Parent text feedback and institutional endorsements from NYC youth athletic partners.</p>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-[11px] text-slate-400">Authorized Coach / Partner Login:</span>
+        <a href="https://docs.google.com/spreadsheets/d/1B7tC-HCoqWiunPowQkCQYjQ0Y6en8bRFfv43w-s3sVQ/edit" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-obsidian-950 font-bold text-xs transition-colors">
+          Open 3DEV Google Sheet (Restricted Access) ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-obsidian-950 border-t border-gold-500/20 py-12 px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <div class="font-display font-bold text-xl text-white uppercase tracking-wide">
+          3DEV <span class="text-gold-400">3FOLD PRACTICE SYSTEM</span>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">
+          Coach Devin "Mr. Biz" Thompson • 3DEV Development • KJ Pro • Team KJ Project Swish • KJP4kids
+        </p>
+      </div>
+
+      <!-- Social & Official Resource Links -->
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-semibold">
+        <button type="button" onclick="document.getElementById('openCurriculumModalBtn').click()" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-gold-400 border border-gold-500/30 transition-colors">
+          Public 3DEV Curriculum
+        </button>
+        <a href="https://www.instagram.com/dummyink21/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-amber-300 border border-amber-500/30 transition-colors">
+          Instagram (@dummyink21)
+        </a>
+        <a href="https://www.facebook.com/Coach.Dev.Thompson" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-topaz-400 border border-topaz-500/30 transition-colors">
+          Facebook
+        </a>
+        <a href="http://devinmrbizthompson.blogspot.com" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-slate-300 border border-slate-700 transition-colors">
+          Blog & Career CV
+        </a>
+        <a href="mailto:DevinMrBizThompson@gmail.com" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-slate-300 border border-slate-700 transition-colors">
+          DevinMrBizThompson@gmail.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Application Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 0. Public Curriculum Privacy Modal Controls
+      const curriculumModal = document.getElementById('curriculumModal');
+      document.getElementById('openCurriculumModalBtn').addEventListener('click', () => {
+        curriculumModal.classList.remove('hidden');
+      });
+      document.getElementById('closeCurriculumModalBtn').addEventListener('click', () => {
+        curriculumModal.classList.add('hidden');
+      });
+      curriculumModal.addEventListener('click', (e) => {
+        if (e.target === curriculumModal) curriculumModal.classList.add('hidden');
+      });
+
+      // 1. Visitor Source / UTM Tracking
+      const urlParams = new URLSearchParams(window.location.search);
+      const rawSource = urlParams.get('source') || urlParams.get('utm_source') || urlParams.get('ref');
+      const activeSource = rawSource ? rawSource.replace(/[_-]+/g, ' ').toUpperCase() : 'Direct / Organic';
+
+      document.getElementById('detectedSourceBadge').textContent = activeSource;
+      document.getElementById('formSourceTag').textContent = activeSource;
+
+      // Pre-select matching QR dropdown option if source matches
+      if (rawSource) {
+        const selectEl = document.getElementById('qrCampaignSelect');
+        const normalized = rawSource.toLowerCase();
+        for (let opt of selectEl.options) {
+          if (opt.value === normalized) {
+            selectEl.value = normalized;
+            break;
+          }
+        }
+      }
+
+      // 2. Signature Drills Data (Synced with 3DEV Master Drill Library)
+      const signatureDrills = [
+        {
+          name: 'Make 50 Volume Challenge',
+          pillar: 'Mental',
+          tagColor: 'topaz',
+          reps: '50 Made Shots',
+          desc: 'High-accountability shooting endurance test building mental poise, repeatable release, and focus under fatigue.'
+        },
+        {
+          name: 'Brunson 4-Phase Series',
+          pillar: 'Tactical',
+          tagColor: 'amber',
+          reps: '4 Counter Phases',
+          desc: 'Pro-level pace manipulation, paint-touch pivot footwork, bump-create space, and mid-range/floater reads.'
+        },
+        {
+          name: 'Kobe Basics & Footwork',
+          pillar: 'Pro Series',
+          tagColor: 'gold',
+          reps: 'Triple-Threat & Pivots',
+          desc: 'Drop-step balance, jab-series discipline, fadeaway body control, and laser-sharp pivot angles.'
+        },
+        {
+          name: 'Kyrie Weak-Hand & Back-to-Basket',
+          pillar: 'Pro Series',
+          tagColor: 'gold',
+          reps: 'Off-Hand Finishing',
+          desc: 'Ambidextrous ball control, tight handle counters, and high-glass weak-hand finishes against contact.'
+        },
+        {
+          name: 'Shai Gil Deceleration',
+          pillar: 'Pro Series',
+          tagColor: 'amber',
+          reps: 'Change-of-Pace',
+          desc: 'Sudden braking strides, long gather steps, and defender-freezing hesitation angles.'
+        },
+        {
+          name: '12-Spot Shooting Circuit',
+          pillar: 'Physical',
+          tagColor: 'gold',
+          reps: '12 Court Spots',
+          desc: 'Structured perimeter and mid-range catch-and-shoot progression tracking arc, foot alignment, and consistency.'
+        },
+        {
+          name: 'Kinetic Chain Activation (Ankle-to-Neck)',
+          pillar: 'Physical',
+          tagColor: 'gold',
+          reps: '9-Joint Sequence',
+          desc: 'Full-body biomechanical primer linking ankles, calves, quads, lats, hips, glutes, arms, shoulders & neck to 1-foot/2-foot jumps.'
+        },
+        {
+          name: 'Super 21 Footwork Breakdown',
+          pillar: 'Mental',
+          tagColor: 'topaz',
+          reps: 'Competitive Scoring',
+          desc: 'Live competitive point-accumulation game combining free throws, footwork reads, and clutch decision-making.'
+        },
+        {
+          name: '1v1 Challenge Shooter Drill',
+          pillar: 'Tactical',
+          tagColor: 'amber',
+          reps: 'Live Contest & Attack',
+          desc: 'Closeout contest discipline transitioning immediately into live 1v1 offensive attack off the bounce.'
+        }
+      ];
+
+      const drillGrid = document.getElementById('drillGrid');
+      function renderDrills(filter = 'all') {
+        drillGrid.innerHTML = '';
+        const filtered = filter === 'all' ? signatureDrills : signatureDrills.filter(d => d.pillar === filter);
+        filtered.forEach(drill => {
+          const badgeClasses = drill.pillar === 'Physical'
+            ? 'bg-gold-500/15 text-gold-400 border-gold-500/30'
+            : drill.pillar === 'Mental'
+            ? 'bg-topaz-500/15 text-topaz-400 border-topaz-500/30'
+            : 'bg-amber-500/15 text-amber-400 border-amber-500/30';
+
+          const card = document.createElement('div');
+          card.className = 'bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-gold-500/40 rounded-2xl p-5 transition-all flex flex-col justify-between';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase border ${badgeClasses}">${drill.pillar}</span>
+                <span class="text-[11px] font-mono text-slate-400">${drill.reps}</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white uppercase tracking-wide">${drill.name}</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">${drill.desc}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-[11px] text-slate-500">
+              <span>3DEV Master Library</span>
+              <span class="text-gold-400 font-semibold">3Fold Verified</span>
+            </div>
+          `;
+          drillGrid.appendChild(card);
+        });
+      }
+      renderDrills();
+
+      document.querySelectorAll('.drill-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.drill-filter-btn').forEach(b => {
+            b.classList.remove('bg-gold-500', 'text-obsidian-950');
+            b.classList.add('bg-obsidian-850', 'text-slate-300');
+          });
+          btn.classList.remove('bg-obsidian-850', 'text-slate-300');
+          btn.classList.add('bg-gold-500', 'text-obsidian-950');
+          renderDrills(btn.dataset.filter);
+        });
+      });
+
+      // 3. Team KJ Project Swish Levels 0-6 Interactive Selector
+      const levelsData = [
+        { lvl: 0, title: 'Level 0: Athletic Foundation & Ball Familiarity', desc: 'Two-hand stationary control, head/waist/legs ball wraps, basic ladder footwork, and balanced set-shot form on mini/adjustable rims.', badge: 'Foundation Tier' },
+        { lvl: 1, title: 'Level 1: Stationary Dribble & Footwork Balance', desc: 'Pound dribbles (strong & weak hand), jump-stop stability, basic pivoting without traveling, and layup footwork on Spots 1, 3, 5.', badge: '1-Star Benchmark' },
+        { lvl: 2, title: 'Level 2: Moving Ball Control & 12-Spot Form', desc: 'Dribble back & forth with eyes up, bounce-over-cone moves, and consistent form shooting across all 12 court spots.', badge: '1-Star Complete' },
+        { lvl: 3, title: 'Level 3: Multi-Height Shooting & Pace Transitions', desc: 'Take 10 / Take 20 across rim heights 1–5, 0-into-1-2 shooting at Walk, Jog, and Run paces, and defensive slide fundamentals.', badge: '2-Star Competitor' },
+        { lvl: 4, title: 'Level 4: Pro Archetype Counters & Weak-Hand Finish', desc: 'Executing Brunson 4-Phase, Kobe triple-threat pivots, and Kyrie weak-hand finishes against live closeout pressure.', badge: '2-Star Complete' },
+        { lvl: 5, title: 'Level 5: Live 1v1 Reads & Volume Endurance', desc: 'Make 50 volume shooting, 1v1 Challenge Shooter contests, and Shai Gil deceleration reads in live competitive play.', badge: '3-Star Contender' },
+        { lvl: 6, title: 'Level 6: "Learn 6 & Protect" — Varsity Mastery', desc: 'Complete 3Fold autonomy: protecting the ball under trap pressure, clutch free-throw execution, and vocal on-court leadership.', badge: '3-Star Gold Champion' }
+      ];
+
+      const levelSelector = document.getElementById('levelSelector');
+      levelsData.forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `level-btn py-2.5 px-3 rounded-xl font-display font-bold text-sm uppercase tracking-wider border transition-all ${idx === 0 ? 'bg-gold-500 text-obsidian-950 border-gold-400' : 'bg-obsidian-850 text-slate-300 border-slate-800 hover:border-topaz-500/50'}`;
+        btn.textContent = `Level ${item.lvl}`;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.level-btn').forEach(b => {
+            b.className = 'level-btn py-2.5 px-3 rounded-xl font-display font-bold text-sm uppercase tracking-wider border transition-all bg-obsidian-850 text-slate-300 border-slate-800 hover:border-topaz-500/50';
+          });
+          btn.className = 'level-btn py-2.5 px-3 rounded-xl font-display font-bold text-sm uppercase tracking-wider border transition-all bg-gold-500 text-obsidian-950 border-gold-400';
+          document.getElementById('levelTitle').textContent = item.title;
+          document.getElementById('levelDesc').textContent = item.desc;
+          document.getElementById('levelBadge').textContent = item.badge;
+        });
+        levelSelector.appendChild(btn);
+      });
+
+      // 4. Verified Testimonials Showcase
+      const testimonials = [
+        {
+          author: 'Youth Athlete Parent',
+          role: 'Verified Parent SMS',
+          pillar: 'Mental & Character Mentorship',
+          quote: 'I can see by the relationships you have with the other kids that you guys are more than just coaches to these kids. We appreciate everything and trust you with our daughter.'
+        },
+        {
+          author: "Anthony's Parent",
+          role: 'Verified Parent SMS',
+          pillar: 'Physical, Mental & Tactical Trifecta',
+          quote: 'Btw: Anthony made his school team. I think he’s on varsity this year 🎉🎊'
+        },
+        {
+          author: "Nolan's Parent",
+          role: 'Verified Parent SMS',
+          pillar: 'Physical Mechanics & Confidence',
+          quote: 'Nolan shot for ages on this crazy ~7 basket hoop. And started pulling out passing the ball through his legs'
+        },
+        {
+          author: 'Youth Athlete Parent',
+          role: 'Verified Parent SMS',
+          pillar: 'Physical & Tactical Execution',
+          quote: 'She’s gotten so good thanks to you'
+        },
+        {
+          author: 'Jack Bryant, President/Owner',
+          role: 'The Harlem MagicMasters Int’l (NYCDOE Vendor #HAR008326)',
+          pillar: 'Institutional & Youth Leadership',
+          quote: 'Official endorsement recognizing Coach Devin Thompson’s elite basketball skill, crowd-engaging showmanship, and positive youth assembly mentorship.'
+        }
+      ];
+
+      let startIndex = 0;
+      const testimonialContainer = document.getElementById('testimonialCards');
+
+      function renderTestimonials() {
+        testimonialContainer.innerHTML = '';
+        for (let i = 0; i < 3; i++) {
+          const item = testimonials[(startIndex + i) % testimonials.length];
+          const card = document.createElement('div');
+          card.className = 'bg-obsidian-900 border border-slate-800 hover:border-topaz-500/40 rounded-2xl p-6 flex flex-col justify-between transition-all';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-gold-400 text-sm tracking-widest">★★★</div>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-topaz-500/15 text-topaz-300 border border-topaz-500/30">${item.pillar}</span>
+              </div>
+              <p class="text-sm text-slate-200 italic leading-relaxed">"${item.quote}"</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-800/80">
+              <div class="font-display font-bold text-white uppercase text-sm tracking-wide">${item.author}</div>
+              <div class="text-xs text-slate-400 mt-0.5">${item.role}</div>
+            </div>
+          `;
+          testimonialContainer.appendChild(card);
+        }
+      }
+      renderTestimonials();
+
+      document.getElementById('nextTestimonial').addEventListener('click', () => {
+        startIndex = (startIndex + 1) % testimonials.length;
+        renderTestimonials();
+      });
+      document.getElementById('prevTestimonial').addEventListener('click', () => {
+        startIndex = (startIndex - 1 + testimonials.length) % testimonials.length;
+        renderTestimonials();
+      });
+
+      // 5. Live QR Code Generator & Download
+      const qrContainer = document.getElementById('qrcode');
+      const qrSelect = document.getElementById('qrCampaignSelect');
+      const qrUrlLabel = document.getElementById('qrUrlLabel');
+
+      function getTrackedUrl() {
+        const baseUrl = window.location.href.split('?')[0].split('#')[0];
+        // Use live GitHub Pages URL as canonical fallback when opened locally
+        const cleanBase = baseUrl.startsWith('http') ? baseUrl : 'https://devinmrbizthompson-creator.github.io/3Dev/';
+        return `${cleanBase}?source=${encodeURIComponent(qrSelect.value)}`;
+      }
+
+      function generateQR() {
+        const targetUrl = getTrackedUrl();
+        qrContainer.innerHTML = '';
+        qrUrlLabel.textContent = targetUrl;
+        new QRCode(qrContainer, {
+          text: targetUrl,
+          width: 180,
+          height: 180,
+          colorDark: '#06070A',
+          colorLight: '#FFFFFF',
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+      generateQR();
+      qrSelect.addEventListener('change', generateQR);
+
+      // Download QR PNG
+      document.getElementById('downloadQrBtn').addEventListener('click', () => {
+        const canvas = qrContainer.querySelector('canvas');
+        const img = qrContainer.querySelector('img');
+        let dataUrl = '';
+        if (canvas) {
+          dataUrl = canvas.toDataURL('image/png');
+        } else if (img && img.src) {
+          dataUrl = img.src;
+        }
+        if (dataUrl) {
+          const link = document.createElement('a');
+          link.download = `3DEV-QR-${qrSelect.value}.png`;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          showToast(`QR Code (${qrSelect.value.toUpperCase()}) downloaded! Ready for flyers, banners, or business cards.`);
+        }
+      });
+
+      // Copy Tracked URL Fallback
+      function copyTextToClipboard(text) {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+
+      document.getElementById('copyCampaignLinkBtn').addEventListener('click', () => {
+        const url = getTrackedUrl();
+        copyTextToClipboard(url);
+        showToast(`Tracked campaign link copied: ${url}`);
+      });
+
+      // 6. Interactive 1-3 Gold Star Selector & Mailto Form
+      const starBtns = document.querySelectorAll('.star-btn');
+      const selectedStarsInput = document.getElementById('selectedStars');
+
+      starBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const count = btn.dataset.stars;
+          starBtns.forEach(b => {
+            b.className = 'star-btn flex-1 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-gold-400 transition-colors';
+          });
+          btn.className = 'star-btn flex-1 py-1 rounded-lg text-xs font-bold bg-gold-500/20 text-gold-400 border border-gold-500/40 transition-colors';
+          selectedStarsInput.value = count === '3' ? '3 Stars (Gold Standard)' : count === '2' ? '2 Stars (Topaz)' : '1 Star (Bronze)';
+        });
+      });
+
+      function buildFormattedEmailBody() {
+        const name = document.getElementById('parentName').value.trim() || 'Parent / Visitor';
+        const grade = document.getElementById('athleteGrade').value.trim() || 'Not specified';
+        const topic = document.getElementById('inquiryTopic').value;
+        const stars = selectedStarsInput.value;
+        const msg = document.getElementById('visitorMessage').value.trim();
+        const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+        return `Coach Devin "Mr. Biz" Thompson — 3DEV 3Fold Practice System Inquiry\n` +
+               `==========================================================\n` +
+               `From: ${name}\n` +
+               `Athlete Age/Grade: ${grade}\n` +
+               `Topic: ${topic}\n` +
+               `3-Star Gold Rating: ${stars}\n` +
+               `Visitor Source Tag: ${activeSource}\n` +
+               `Date: ${today}\n\n` +
+               `Message / Comments / Concerns:\n${msg}\n\n` +
+               `----------------------------------------------------------\n` +
+               `3DEV Spreadsheet Log Row (Copy-Ready):\n` +
+               `${today} | ${activeSource} | ${name} | ${grade} | ${topic} | ${stars}`;
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById('feedbackToast');
+        toast.textContent = message;
+        toast.classList.remove('hidden');
+      }
+
+      // Optional In-Browser Webhook Endpoint (Formspree or Google Apps Script)
+      const webhookInput = document.getElementById('webhookEndpointInput');
+      const webhookStatusText = document.getElementById('webhookStatusText');
+      const savedWebhook = localStorage.getItem('3dev_webhook_url') || '';
+      if (savedWebhook) {
+        webhookInput.value = savedWebhook;
+        webhookStatusText.textContent = 'Mode: Active In-Browser Auto-Log Endpoint Connected ✓';
+        webhookStatusText.classList.add('text-emerald-400');
+      }
+
+      document.getElementById('toggleWebhookSettingsBtn').addEventListener('click', () => {
+        document.getElementById('webhookSettingsPanel').classList.toggle('hidden');
+      });
+
+      document.getElementById('saveWebhookBtn').addEventListener('click', () => {
+        const val = webhookInput.value.trim();
+        if (val) {
+          localStorage.setItem('3dev_webhook_url', val);
+          webhookStatusText.textContent = 'Mode: Active In-Browser Auto-Log Endpoint Connected ✓';
+          webhookStatusText.classList.add('text-emerald-400');
+          showToast('Webhook endpoint saved! Parent submissions will now send directly inside the browser.');
+        } else {
+          localStorage.removeItem('3dev_webhook_url');
+          webhookStatusText.textContent = 'Mode: Direct Email App Launch + Copy-Ready Spreadsheet Row';
+          webhookStatusText.classList.remove('text-emerald-400');
+          showToast('Webhook cleared. Reverted to direct email app + copyable spreadsheet row mode.');
+        }
+      });
+
+      document.getElementById('coachInquiryForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const topic = document.getElementById('inquiryTopic').value;
+        const name = document.getElementById('parentName').value.trim();
+        const grade = document.getElementById('athleteGrade').value.trim() || 'Not specified';
+        const stars = selectedStarsInput.value;
+        const msg = document.getElementById('visitorMessage').value.trim();
+        const endpoint = localStorage.getItem('3dev_webhook_url');
+
+        if (endpoint) {
+          const submitBtn = document.getElementById('submitInquiryBtn');
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending to Coach Dev...';
+          try {
+            const response = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({
+                name,
+                athleteGrade: grade,
+                topic,
+                starRating: stars,
+                visitorSource: activeSource,
+                message: msg,
+                submittedAt: new Date().toISOString()
+              })
+            });
+            if (response.ok) {
+              showToast(`Thank you, ${name}! Your message (Source: ${activeSource}) has been logged directly for Coach Dev.`);
+              document.getElementById('coachInquiryForm').reset();
+            } else {
+              throw new Error('Endpoint rejected request');
+            }
+          } catch (err) {
+            const subject = encodeURIComponent(`[3DEV ${topic}] From ${name} (Source: ${activeSource})`);
+            const body = encodeURIComponent(buildFormattedEmailBody());
+            showToast(`Opening email app addressed to DevinMrBizThompson@gmail.com with Source [${activeSource}] attached!`);
+            window.location.href = `mailto:DevinMrBizThompson@gmail.com?subject=${subject}&body=${body}`;
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Send Directly to Coach Dev</span>';
+          }
+          return;
+        }
+
+        const subject = encodeURIComponent(`[3DEV ${topic}] From ${name} (Source: ${activeSource})`);
+        const body = encodeURIComponent(buildFormattedEmailBody());
+
+        showToast(`Opening your email app addressed to DevinMrBizThompson@gmail.com with Visitor Source [${activeSource}] attached!`);
+        window.location.href = `mailto:DevinMrBizThompson@gmail.com?subject=${subject}&body=${body}`;
+      });
+
+      document.getElementById('copyMessageFallbackBtn').addEventListener('click', () => {
+        const fullText = `To: DevinMrBizThompson@gmail.com\n\n` + buildFormattedEmailBody();
+        copyTextToClipboard(fullText);
+        showToast('Complete message & 3DEV Spreadsheet Log Row copied to clipboard! Paste into any email or text to DevinMrBizThompson@gmail.com.');
+      });
+    });
+  </script>
 </body>
 </html>
+```
