@@ -1,535 +1,408 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3Dev - TriDev Universe & Manga Reader</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #f59e0b;
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3DEV Development | 3Fold Practice System — Coach Devin "Mr. Biz" Thompson</title>
+  
+  <!-- Google Fonts: Oswald (Display) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- QRCode.js Library for Instant Client-Side Scannable QR Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Oswald', 'sans-serif'],
+          },
+          colors: {
+            obsidian: {
+              950: '#06070A',
+              900: '#0B0D12',
+              850: '#11141C',
+              800: '#181C26',
+            },
+            gold: {
+              300: '#FDE047',
+              400: '#FACC15',
+              500: '#D4AF37',
+              600: '#B48E1E',
+            },
+            topaz: {
+              400: '#38BDF8',
+              500: '#0284C7',
+              600: '#0369A1',
+            }
+          }
         }
+      }
+    }
+  </script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-        }
+  <style>
+    /* Custom Championship Court Line & Glow Accents */
+    body {
+      background-color: #06070A;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+    .court-grid-bg {
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.14) 0%, rgba(2, 132, 199, 0.08) 40%, transparent 75%),
+        linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
 
-        header h1 {
-            font-family: 'Bangers', cursive;
-            font-size: 3rem;
-            letter-spacing: 2px;
-            color: var(--primary);
-            text-shadow: 2px 2px 0px #000;
-        }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FDE047 0%, #D4AF37 50%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
+    .topaz-gold-border {
+      position: relative;
+    }
+    .topaz-gold-border::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.65), rgba(56, 189, 248, 0.45), rgba(212, 175, 55, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
 
-        /* Landing Page Styles */
-        #landingPage {
-            width: 100%;
-            max-width: 900px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            padding: 40px 30px;
-            text-align: center;
-            border: 2px solid #334155;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #06070A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2433;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
 
-        #landingPage h2 {
-            font-family: 'Bangers', cursive;
-            font-size: 2.2rem;
-            color: #fff;
-            letter-spacing: 1px;
-        }
-
-        #landingPage p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        .landing-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            margin: 20px 0;
-        }
-
-        .feature-card {
-            background: #0f172a;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            text-align: left;
-        }
-
-        .feature-card h3 {
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            font-family: 'Bangers', cursive;
-            letter-spacing: 1px;
-        }
-
-        .feature-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .chapter-select-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .voice-settings {
-            margin-top: 10px;
-            background: #0f172a;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .voice-settings label {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .voice-settings select {
-            background: #1e293b;
-            color: #fff;
-            border: 1px solid #475569;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #E1306C;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: background 0.2s;
-        }
-
-        .social-link:hover {
-            background: #c13584;
-        }
-
-        /* Reader Container Styles */
-        .reader-container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            overflow: hidden;
-            display: none;
-            flex-direction: column;
-            border: 2px solid #334155;
-        }
-
-        .manga-screen {
-            position: relative;
-            width: 100%;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 450px;
-            max-height: 65vh;
-        }
-
-        .manga-screen img {
-            max-width: 100%;
-            max-height: 65vh;
-            object-fit: contain;
-            display: block;
-        }
-
-        .subtitle-box {
-            background: rgba(15, 23, 42, 0.95);
-            border-top: 3px solid var(--primary);
-            padding: 16px 24px;
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .subtitle-en {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-
-        .subtitle-jp {
-            font-size: 0.95rem;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .controls-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 20px;
-            background: #0f172a;
-            border-top: 1px solid #334155;
-        }
-
-        .btn {
-            background: var(--primary);
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            font-weight: 800;
-            font-family: 'Bangers', cursive;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.1s ease, background 0.2s;
-            box-shadow: 0 4px 0 #b45309;
-        }
-
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #b45309;
-        }
-
-        .btn:hover {
-            background: #fbbf24;
-        }
-
-        .btn:disabled {
-            background: #475569;
-            color: #94a3b8;
-            box-shadow: 0 4px 0 #1e293b;
-            cursor: not-allowed;
-        }
-
-        .audio-btn {
-            background: #3b82f6;
-            color: #fff;
-            box-shadow: 0 4px 0 #1d4ed8;
-        }
-        .audio-btn:hover {
-            background: #60a5fa;
-        }
-        .audio-btn:active {
-            box-shadow: 0 2px 0 #1d4ed8;
-        }
-
-        .page-indicator {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-
-        footer {
-            margin-top: 15px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-    </style>
+    /* QR Code container centering */
+    #qrcode img, #qrcode canvas {
+      margin: 0 auto;
+      border-radius: 0.5rem;
+    }
+  </style>
 </head>
-<body>
+<body class="court-grid-bg antialiased selection:bg-gold-500 selection:text-obsidian-950">
 
-    <header>
-        <h1>3DEV UNIVERSE</h1>
-        <p>Official Manga Series & Interactive Experience</p>
-    </header>
+  <!-- Top Visitor Source Status Banner -->
+  <div id="sourceBanner" class="bg-obsidian-900/95 border-b border-gold-500/20 text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-slate-300">
+        <span class="inline-block w-2 h-2 rounded-full bg-topaz-400 animate-pulse"></span>
+        <span>3DEV Ecosystem: <strong class="text-gold-400">3DEV Development</strong> • <strong class="text-topaz-400">KJ Pro</strong> • <strong class="text-slate-200">Team KJ Project Swish</strong> • <strong class="text-slate-200">KJP4kids</strong></span>
+      </div>
+      <div class="flex items-center gap-2 bg-obsidian-800 px-3 py-1 rounded-full border border-topaz-500/30">
+        <span class="text-slate-400">Active Visitor Source:</span>
+        <span id="detectedSourceBadge" class="font-semibold text-topaz-400 uppercase tracking-wider">Direct / Organic</span>
+      </div>
+    </div>
+  </div>
 
-    <!-- LANDING PAGE -->
-    <div id="landingPage">
-        <h2>Welcome to 3Dev Manga</h2>
-        <p>An e-bike accident, 16-month recovery, and living tattoos awakening with divine and demonic power. Explore Chapter 1 and Chapter 2 of the 3Dev / TriDev saga featuring interactive bilingual subtitles and voice narration.</p>
-        
-        <div class="landing-features">
-            <div class="feature-card">
-                <h3>Bilingual Subtitles</h3>
-                <p>Immersive storytelling with simultaneous English translation and Japanese kanji dialogue.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Voice Narration</h3>
-                <p>Built-in text-to-speech audio reader with customizable narrator voice options.</p>
-            </div>
-            <div class="feature-card">
-                <h3>The 3Dev Trifecta</h3>
-                <p>Explore Physical, Mental, and Tactical dimensions forged through intense training trials.</p>
-            </div>
+  <!-- Sticky Navigation Header -->
+  <header class="sticky top-0 z-40 bg-obsidian-950/85 backdrop-blur-md border-b border-gold-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-topaz-500 p-[2px] shadow-lg shadow-gold-500/15">
+          <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-display font-bold text-xl tracking-tight gold-gradient-text">3DEV</span>
+          </div>
         </div>
-
-        <!-- Voice Selector Option -->
-        <div class="voice-settings">
-            <label for="narratorVoiceSelect"><i class="fas fa-microphone-alt"></i> Narrator Voice:</label>
-            <select id="narratorVoiceSelect">
-                <option value="male">Masculine Far Eastern / Deep Narrator</option>
-                <option value="standard">Standard English Reader</option>
-            </select>
-        </div>
-
-        <div class="chapter-select-container">
-            <button class="btn" style="font-size: 1.3rem; padding: 12px 25px;" onclick="startChapter(1)">📖 READ CHAPTER 1</button>
-            <button class="btn" style="font-size: 1.3rem; padding: 12px 25px; background: #10b981; box-shadow: 0 4px 0 #047857;" onclick="startChapter(2)">🔥 READ CHAPTER 2</button>
-        </div>
-
         <div>
-            <a href="https://instagram.com/devinmrbizthompson" target="_blank" class="social-link">
-                <i class="fab fa-instagram"></i> Follow on Instagram
-            </a>
+          <div class="font-display font-bold text-lg sm:text-xl tracking-wide text-white leading-none">
+            3DEV <span class="text-gold-400">DEVELOPMENT</span>
+          </div>
+          <div class="text-[11px] uppercase tracking-[0.2em] text-topaz-400 font-semibold mt-1">
+            3Fold Practice System
+          </div>
         </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#methodology" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">3Fold System</a>
+        <a href="#drills" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">Drill Library</a>
+        <a href="#rankings" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">3-Star Rankings</a>
+        <a href="#highlights" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">Highlights</a>
+        <a href="#testimonials" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">Testimonials</a>
+        <a href="#qr-tracker" data-nav-target="coaching" class="nav-coaching-link hover:text-topaz-400 transition-colors">QR & Source</a>
+        <button type="button" id="navMangaBtnDesktop" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-gold-500/45 text-gold-300 font-display font-bold uppercase tracking-wider text-xs transition-all shadow-md shadow-gold-500/10">
+          <span>⚔️ 3Dev Manga</span>
+          <span class="px-1.5 py-0.2 rounded bg-topaz-500/20 text-topaz-300 text-[10px]">Ch.1</span>
+        </button>
+      </nav>
+
+      <!-- CTA & Mobile Manga Switcher -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" id="navMangaBtnMobile" class="md:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-obsidian-850 border border-gold-500/45 text-gold-300 font-display font-bold uppercase tracking-wider text-xs">
+          <span>⚔️ 3Dev Manga</span>
+        </button>
+        <a href="#contact-coach" id="headerContactCta" class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+          <span class="hidden sm:inline">Message Coach Dev</span>
+          <span class="sm:hidden">Message</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
     </div>
 
-    <!-- READER CONTAINER (Initially Hidden) -->
-    <div class="reader-container" id="readerContainer">
-        <div class="manga-screen">
-            <img id="mangaImage" src="" alt="Manga Page">
+    <!-- Mobile Quick-Switch Strip -->
+    <div class="md:hidden bg-obsidian-900/95 border-t border-slate-800/80 px-4 py-2 flex items-center justify-between gap-2 overflow-x-auto text-[11px] font-semibold">
+      <button type="button" id="mobileSwitchCoaching" class="px-3 py-1 rounded-lg bg-gold-500 text-obsidian-950 font-bold shrink-0">
+        🏀 3Fold System
+      </button>
+      <button type="button" id="mobileSwitchManga" class="px-3 py-1 rounded-lg bg-obsidian-850 text-topaz-300 border border-topaz-500/40 shrink-0">
+        ⚔️ 3Dev Manga (Pages 1–14)
+      </button>
+      <a href="#drills" class="nav-coaching-link text-slate-300 hover:text-gold-400 shrink-0">Drills</a>
+      <a href="#rankings" class="nav-coaching-link text-slate-300 hover:text-gold-400 shrink-0">Rankings</a>
+      <a href="#qr-tracker" class="nav-coaching-link text-slate-300 hover:text-topaz-400 shrink-0">QR Code</a>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 1: MAIN 3FOLD PRACTICE SYSTEM COACHING LANDING PAGE              -->
+  <!-- ===================================================================== -->
+  <main id="coachingView">
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 sm:pt-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <!-- Left Column: Headline & Bio Credentials -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-850 border border-gold-500/35 text-xs font-semibold text-gold-300">
+          <span>★</span>
+          <span>COACH DEVIN "MR. BIZ" THOMPSON</span>
+          <span class="text-topaz-400">•</span>
+          <span class="text-topaz-300">BRONX, NY → GLOBAL PRO</span>
         </div>
 
-        <div class="subtitle-box">
-            <div id="subEn" class="subtitle-en">Loading reader...</div>
-            <div id="subJp" class="subtitle-jp">読み込み中...</div>
+        <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.08] text-white">
+          Develop The Complete Player: <span class="gold-gradient-text">Physical. Mental. Tactical.</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+          Built on 20+ years of NCAA Division I, international pro, and Harlem exhibition mastery, the <strong class="text-white">3DEV 3Fold Practice System</strong> transforms youth and varsity athletes through structured rep accountability, elite footwork, and 3-Star Gold ranking benchmarks.
+        </p>
+
+        <!-- Credential Pills -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+          <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3">
+            <div class="text-gold-400 font-display font-bold text-sm uppercase">NCAA Division I</div>
+            <div class="text-xs text-slate-400 mt-0.5">Saint Peter's Forward • 54.5% FG</div>
+          </div>
+          <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3">
+            <div class="text-topaz-400 font-display font-bold text-sm uppercase">Harlem Showmanship</div>
+            <div class="text-xs text-slate-400 mt-0.5">Globetrotters, Rockets & MagicMasters</div>
+          </div>
+          <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3 col-span-2 sm:col-span-1">
+            <div class="text-gold-400 font-display font-bold text-sm uppercase">Pro Champ & MVP</div>
+            <div class="text-xs text-slate-400 mt-0.5">2015 Liga MB Champ • 2020 MVP</div>
+          </div>
         </div>
 
-        <div class="controls-bar">
-            <button id="prevBtn" class="btn" onclick="changePage(-1)">PREV</button>
-            <button id="audioBtn" class="btn audio-btn" onclick="speakDialogue()">🔊 PLAY AUDIO</button>
-            <div id="pageIndicator" class="page-indicator">Page 1 / 8</div>
-            <button id="nextBtn" class="btn" onclick="changePage(1)">NEXT</button>
+        <!-- Safety & Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3.5 pt-2">
+          <a href="#contact-coach" class="bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all text-sm sm:text-base">
+            Submit Question or Inquiry
+          </a>
+          <button type="button" id="openCurriculumModalBtn" class="inline-flex items-center gap-2 bg-obsidian-850 hover:bg-obsidian-800 text-topaz-400 border border-topaz-500/45 font-semibold px-5 py-3.5 rounded-xl transition-all text-sm sm:text-base">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Explore Public 3DEV Curriculum</span>
+          </button>
         </div>
-        
-        <div style="background: #0f172a; padding: 10px; text-align: center; border-top: 1px solid #334155;">
-            <button class="btn" style="background: #ef4444; box-shadow: 0 4px 0 #991b1b; font-size: 1rem; padding: 6px 15px;" onclick="returnToLanding()">🏠 BACK TO HOME</button>
+
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400 pt-1">
+          <span class="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Red Cross CPR/AED & Praesidium Certified
+          </span>
+          <span>•</span>
+          <span>Athlete Privacy Protected (Individual Notes Restricted)</span>
         </div>
+      </div>
+
+      <!-- Right Column: Interactive Championship Scorecard Preview -->
+      <div class="lg:col-span-5">
+        <div class="bg-obsidian-900/95 topaz-gold-border rounded-2xl p-6 sm:p-7 shadow-2xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-widest text-topaz-400">Live System Blueprint</span>
+              <h2 class="font-display font-bold text-2xl text-white uppercase mt-0.5">The 3Fold Trifecta</h2>
+            </div>
+            <div class="flex items-center gap-1 text-gold-400 text-lg" title="3-Star Gold Standard">
+              <span>★</span><span>★</span><span>★</span>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Pillar 1 -->
+            <div class="bg-obsidian-850 border border-gold-500/25 rounded-xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-display font-bold text-gold-400 uppercase tracking-wide">01. Physical Execution</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-gold-500/15 text-gold-300 font-semibold">Biomechanics</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                Kinetic chain activation (ankle-to-neck), ladder agility, weak-hand ball control, and balanced shooting mechanics across all rim heights.
+              </p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="bg-obsidian-850 border border-topaz-500/30 rounded-xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-display font-bold text-topaz-400 uppercase tracking-wide">02. Mental Discipline</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-topaz-500/15 text-topaz-300 font-semibold">Focus & Pace</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                Poise under fatigue during <em>Make 50</em> challenges, self-correction after misses, and rhythmic transitions from walk to jog to full game speed.
+              </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="bg-obsidian-850 border border-amber-500/25 rounded-xl p-4">
+              <div class="flex items-center justify-between">
+                <span class="font-display font-bold text-amber-400 uppercase tracking-wide">03. Tactical Application</span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 font-semibold">Game IQ</span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                Pro read-and-react counters (Brunson, Kobe, Kyrie, Shai), live 1v1 contest reads, and Team KJ Project Swish Level 0–6 progression.
+              </p>
+            </div>
+          </div>
+
+          <!-- Career Highlight Strip -->
+          <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+            <span>Career High (Sweden Pro): <strong class="text-white">32 PTS / 24 REB</strong></span>
+            <button type="button" onclick="switchView('manga')" class="text-gold-400 hover:underline font-bold">Read 3Dev Manga (Ch. 1) ⚔️ →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 3DEV Master Drill Explorer & Levels 0-6 -->
+  <section id="drills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-topaz-400">Curriculum & Skill Progression</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white uppercase mt-1">
+          Interactive <span class="gold-gradient-text">Master Drill Explorer</span>
+        </h2>
+        <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+          Filter Coach Dev's signature workouts from the live 3DEV spreadsheet by focus pillar, or toggle Team KJ Project Swish Levels 0–6 below.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap gap-2" id="drillFilters">
+        <button data-filter="all" class="drill-filter-btn active px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-obsidian-950 transition-all">
+          All Signature Drills (9)
+        </button>
+        <button data-filter="Physical" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-gold-400 border border-slate-800 transition-all">
+          Physical
+        </button>
+        <button data-filter="Mental" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-topaz-400 border border-slate-800 transition-all">
+          Mental
+        </button>
+        <button data-filter="Tactical" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-amber-400 border border-slate-800 transition-all">
+          Tactical
+        </button>
+        <button data-filter="Pro Series" class="drill-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-obsidian-850 text-slate-300 hover:text-emerald-400 border border-slate-800 transition-all">
+          Pro Series
+        </button>
+      </div>
     </div>
 
-    <footer>
-        Created by Devin "Coach Dev" Thompson | KJ Pro Basketball & 3Dev Universe
-    </footer>
+    <!-- Drill Cards Grid -->
+    <div id="drillGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Populated via JavaScript -->
+    </div>
 
-    <script>
-        const chapters = {
-            1: [
-                {
-                    img: "1000050531.jpg",
-                    en: "An e-bike accident, a 16-month recovery... and tattoos that came alive with divine and demonic power.",
-                    jp: "電動自転車の事故、16ヶ月のリハビリ……そして神と悪魔の力が宿ったタトゥー。"
-                },
-                {
-                    img: "1000050534.jpg",
-                    en: "The Back Canvas: The dragon leaps from his arm into his back tattoo to fight alongside the angel and defeat the demon.",
-                    jp: "背中のキャンバス：ドラゴンが腕から飛び出し、天使と共に悪魔を討つ！"
-                },
-                {
-                    img: "1000050537.jpg",
-                    en: "Dimension 1 (Physical - Bleach Form): 16 months of indomitable will forge the skeletal fusion and spiritual pressure!",
-                    jp: "次元1（物理・死神形態）：16ヶ月の不屈の意志が骨格と霊圧を覚醒させる！"
-                },
-                {
-                    img: "1000050540.jpg",
-                    en: "Return to Reality: Thinking it was just a wild dream, Dev returns to coaching basketball—until he walks past the crash site.",
-                    jp: "現実への帰還：夢だと思っていたが、コーチ業に戻ったデヴの身に再び異変が起きる。"
-                },
-                {
-                    img: "1000050543.jpg",
-                    en: "The Intersection: Walking past the exact spot of the crash, both tattoos ignite violently. It wasn't a dream!",
-                    jp: "交差点にて：事故現場を通った瞬間、両方のタトゥーが激しく燃え盛る！夢ではなかった！"
-                },
-                {
-                    img: "1000050546.jpg",
-                    en: "A Targeted Spiritual Ambush: Through borrowed spirit eyes, Dev witnesses the dark demonic spirit that intentionally shattered his arm.",
-                    jp: "仕組まれた霊的急襲：霊眼を借りて、意図的に腕を粉砕した悪霊の真相を目撃する。"
-                },
-                {
-                    img: "1000050549.jpg",
-                    en: "The 16-Month Seal: The dragon and angel sacrificed their energy to block the fatal blow during the crash.",
-                    jp: "16ヶ月の封印：ドラゴンと天使が致命傷を防ぎ、16ヶ月間デヴの体内で修復を続けていた。"
-                },
-                {
-                    img: "1000050552.jpg",
-                    en: "Choosing a Teacher: Realizing he needs training, Dev asks the Dragon and Angel who is best suited to train him for D1 mastery.",
-                    jp: "師の選択：次元1を極めるため、ドラゴンと天使のどちらの教えを受けるべきか問いかける。"
-                }
-            ],
-            2: [
-                {
-                    img: "chapter2_page1.jpg",
-                    en: "Chapter 2: The Rebirth. Dev merges three dimensions, mastering physical, mental, and tactical paths.",
-                    jp: "第2章：再生。デヴは三つの次元を融合させ、肉体・精神・戦術の道を極める。"
-                },
-                {
-                    img: "chapter2_page2.jpg",
-                    en: "The Merged Harmony: Balancing the fierce dragon's power with the angel's precise spiritual discipline.",
-                    jp: "融合の調和：荒々しいドラゴンの力と、天使の緻密な精神的規律の均衡を保つ。"
-                },
-                {
-                    img: "chapter2_page3.jpg",
-                    en: "The Shadow Returns: The demonic spirit reappears from the spiritual realm to challenge Dev's newfound strength.",
-                    jp: "影の帰還：デヴの新たな力を試すべく、霊界から悪霊が再び姿を現す。"
-                },
-                {
-                    img: "chapter2_page4.jpg",
-                    en: "The Rematch Begins: Dev steps forward with absolute clarity, ready to settle the score at the intersection.",
-                    jp: "再戦の始まり：絶対的な明晰さを持って一歩を踏み出し、交差点での決着に挑む。"
-                },
-                {
-                    img: "chapter2_page5.jpg",
-                    en: "The Severing Strike: Unleashing Dimension 1 and 3 combined, Dev cuts through the shadow's dark barrier.",
-                    jp: "断ち切る一撃：次元1と3を合わせ技で、影の闇の結界を両断する。"
-                },
-                {
-                    img: "chapter2_page6.jpg",
-                    en: "Silence After the Storm: The spiritual pressure clears as the shadow dissolves into light and mist.",
-                    jp: "嵐の後の静けさ：影が光と霧に溶け込み、霊圧の荒波が静まり返る。"
-                },
-                {
-                    img: "chapter2_page7.jpg",
-                    en: "The Domain of Clarity: Dev unlocks his inner mental domain, mastering full control over his spirit tattoos.",
-                    jp: "明晰の領域：内なる精神領域を開放し、精神タトゥーの完全制御をマスターする。"
-                },
-                {
-                    img: "chapter2_page8.jpg",
-                    en: "The Tactical Edge: With body, mind, and tactics united, Dev stands ready as the true master of TriDev.",
-                    jp: "戦術的優位：肉体・精神・戦術が一つに結ばれ、真のトライデヴマスターとして立ち上がる。"
-                }
-            ]
-        };
+    <!-- Team KJ Project Swish Levels 0-6 Interactive Bar -->
+    <div id="methodology" class="mt-12 bg-obsidian-900/90 topaz-gold-border rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Team KJ Project Swish</span>
+          <h3 class="font-display font-bold text-2xl text-white uppercase mt-0.5">Levels 0–6 Evaluation Pathway</h3>
+        </div>
+        <span class="text-xs text-slate-400 bg-obsidian-850 px-3 py-1.5 rounded-lg border border-slate-800">Click any level to inspect mastery criteria</span>
+      </div>
 
-        let currentChapter = 1;
-        let currentIndex = 0;
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5" id="levelSelector">
+        <!-- Populated by JS -->
+      </div>
 
-        function startChapter(chapterNum) {
-            currentChapter = chapterNum;
-            currentIndex = 0;
-            document.getElementById("landingPage").style.display = "none";
-            document.getElementById("readerContainer").style.display = "flex";
-            updateReader();
-        }
+      <div id="levelDetailBox" class="mt-5 bg-obsidian-850/90 border border-topaz-500/30 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider text-topaz-400" id="levelTitle">Level 0: Athletic Foundation & Ball Familiarity</div>
+          <p class="text-sm text-slate-200 mt-1" id="levelDesc">Two-hand stationary control, head/waist/legs ball wraps, basic ladder footwork, and balanced set-shot form on mini/adjustable rims.</p>
+        </div>
+        <div class="shrink-0">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-gold-500/15 text-gold-400 border border-gold-500/30" id="levelBadge">LTU Benchmark Ready</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function returnToLanding() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-            }
-            document.getElementById("readerContainer").style.display = "none";
-            document.getElementById("landingPage").style.display = "flex";
-        }
+  <!-- 3-Star Gold Rankings Preview & Spreadsheet Bridge -->
+  <section id="rankings" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Athlete Accountability & Recognition</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-white uppercase mt-1">
+        3DEV <span class="gold-gradient-text">3-Star Gold Rankings</span> System
+      </h2>
+      <p class="text-sm text-slate-400 mt-2">
+        Every athlete in the 3DEV 3Fold Practice System earns progressive Star Rankings based on verified session consistency, mechanical mastery, and live game execution.
+      </p>
+    </div>
 
-        function updateReader() {
-            const pages = chapters[currentChapter];
-            const current = pages[currentIndex];
-            document.getElementById("mangaImage").src = current.img;
-            document.getElementById("subEn").textContent = current.en;
-            document.getElementById("subJp").textContent = current.jp;
-            document.getElementById("pageIndicator").textContent = `Ch ${currentChapter} - Page ${currentIndex + 1} / ${pages.length}`;
-            
-            document.getElementById("prevBtn").disabled = currentIndex === 0;
-            document.getElementById("nextBtn").disabled = currentIndex === pages.length - 1;
-            
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-            }
-        }
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- 1-Star Tier -->
+      <div class="bg-obsidian-900 border border-amber-700/40 rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-900/40 text-amber-300 border border-amber-600/30">Tier 01</span>
+            <div class="text-amber-400 text-xl tracking-widest">★<span class="text-slate-700">★★</span></div>
+          </div>
+          <h3 class="font-display font-bold text-2xl text-white uppercase">1-Star: Bronze Foundation</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Establishes core footwork balance, ball security, and daily practice habits across the 3Fold pillars.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-300">
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Complete <em>Make 10</em> & 12-Spot Form Shooting</li>
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Clean Ladder 0's & Kinetic Chain Warmup</li>
+            <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Pass Levels 0–2 in Team KJ Project Swish</li>
+          </ul>
+        </div>
+        <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400">
+          Focus: Posture, Eyes Up & Rep Consistency
+        </div>
+      </div>
 
-        function changePage(direction) {
-            const pages = chapters[currentChapter];
-            currentIndex += direction;
-            if (currentIndex < 0) currentIndex = 0;
-            if (currentIndex >= pages.length) currentIndex = pages.length - 1;
-            updateReader();
-        }
-
-        function speakDialogue() {
-            if (!('speechSynthesis' in window)) {
-                alert("Text-to-speech is not supported in your browser.");
-                return;
-            }
-
-            window.speechSynthesis.cancel();
-            const pages = chapters[currentChapter];
-            const current = pages[currentIndex];
-            const utterance = new SpeechSynthesisUtterance(current.en);
-            
-            // Voice preference handling
-            const voiceType = document.getElementById("narratorVoiceSelect").value;
-            const voices = window.speechSynthesis.getVoices();
-            
-            if (voiceType === 'male') {
-                // Look for a deeper or male-sounding English voice if available
-                const maleVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Male') || v.name.includes('David') || v.name.includes('Mark') || v.name.includes('George') || v.name.includes('UK English Male')));
-                if (maleVoice) {
-                    utterance.voice = maleVoice;
-                }
-                utterance.pitch = 0.75; // Deeper pitch for narrator effect
-                utterance.rate = 0.90;  // Measured, epic pace
-            } else {
-                const standardVoice = voices.find(v => v.lang.startsWith('en-'));
-                if (standardVoice) {
-                    utterance.voice = standardVoice;
-                }
-                utterance.pitch = 1.0;
-                utterance.rate = 0.95;
-            }
-
-            window.speechSynthesis.speak(utterance);
-        }
-
-        window.onload = () => {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.onvoiceschanged = () => {};
-            }
-        };
-    </script>
-</body>
-</html>
+      <!-- 2-Star Tier -->
+      <div class="bg-obsidian-900 border border-topaz-500/5
