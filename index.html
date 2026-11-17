@@ -110,6 +110,42 @@
             color: var(--text-muted);
         }
 
+        .chapter-select-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .voice-settings {
+            margin-top: 10px;
+            background: #0f172a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .voice-settings label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .voice-settings select {
+            background: #1e293b;
+            color: #fff;
+            border: 1px solid #475569;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
         .social-link {
             display: inline-flex;
             align-items: center;
@@ -120,7 +156,7 @@
             padding: 10px 20px;
             border-radius: 8px;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: background 0.2s;
         }
 
@@ -258,7 +294,7 @@
     <!-- LANDING PAGE -->
     <div id="landingPage">
         <h2>Welcome to 3Dev Manga</h2>
-        <p>An e-bike accident, a 16-month recovery, and living tattoos awakening with divine and demonic power. Step into Chapter 1 of the 3Dev / TriDev saga featuring interactive bilingual subtitles and voice narration.</p>
+        <p>An e-bike accident, 16-month recovery, and living tattoos awakening with divine and demonic power. Explore Chapter 1 and Chapter 2 of the 3Dev / TriDev saga featuring interactive bilingual subtitles and voice narration.</p>
         
         <div class="landing-features">
             <div class="feature-card">
@@ -267,7 +303,7 @@
             </div>
             <div class="feature-card">
                 <h3>Voice Narration</h3>
-                <p>Built-in text-to-speech audio reader bringing every page and dialogue to life.</p>
+                <p>Built-in text-to-speech audio reader with customizable narrator voice options.</p>
             </div>
             <div class="feature-card">
                 <h3>The 3Dev Trifecta</h3>
@@ -275,9 +311,21 @@
             </div>
         </div>
 
+        <!-- Voice Selector Option -->
+        <div class="voice-settings">
+            <label for="narratorVoiceSelect"><i class="fas fa-microphone-alt"></i> Narrator Voice:</label>
+            <select id="narratorVoiceSelect">
+                <option value="male">Masculine Far Eastern / Deep Narrator</option>
+                <option value="standard">Standard English Reader</option>
+            </select>
+        </div>
+
+        <div class="chapter-select-container">
+            <button class="btn" style="font-size: 1.3rem; padding: 12px 25px;" onclick="startChapter(1)">📖 READ CHAPTER 1</button>
+            <button class="btn" style="font-size: 1.3rem; padding: 12px 25px; background: #10b981; box-shadow: 0 4px 0 #047857;" onclick="startChapter(2)">🔥 READ CHAPTER 2</button>
+        </div>
+
         <div>
-            <button class="btn" style="font-size: 1.5rem; padding: 14px 35px;" onclick="startReading()">🚀 READ CHAPTER 1</button>
-            <br>
             <a href="https://instagram.com/devinmrbizthompson" target="_blank" class="social-link">
                 <i class="fab fa-instagram"></i> Follow on Instagram
             </a>
@@ -312,52 +360,99 @@
     </footer>
 
     <script>
-        const pages = [
-            {
-                img: "1000050531.jpg",
-                en: "An e-bike accident, a 16-month recovery... and tattoos that came alive with divine and demonic power.",
-                jp: "電動自転車の事故、16ヶ月のリハビリ……そして神と悪魔の力が宿ったタトゥー。"
-            },
-            {
-                img: "1000050534.jpg",
-                en: "The Back Canvas: The dragon leaps from his arm into his back tattoo to fight alongside the angel and defeat the demon.",
-                jp: "背中のキャンバス：ドラゴンが腕から飛び出し、天使と共に悪魔を討つ！"
-            },
-            {
-                img: "1000050537.jpg",
-                en: "Dimension 1 (Physical - Bleach Form): 16 months of indomitable will forge the skeletal fusion and spiritual pressure!",
-                jp: "次元1（物理・死神形態）：16ヶ月の不屈の意志が骨格と霊圧を覚醒させる！"
-            },
-            {
-                img: "1000050540.jpg",
-                en: "Return to Reality: Thinking it was just a wild dream, Dev returns to coaching basketball—until he walks past the crash site.",
-                jp: "現実への帰還：夢だと思っていたが、コーチ業に戻ったデヴの身に再び異変が起きる。"
-            },
-            {
-                img: "1000050543.jpg",
-                en: "The Intersection: Walking past the exact spot of the crash, both tattoos ignite violently. It wasn't a dream!",
-                jp: "交差点にて：事故現場を通った瞬間、両方のタトゥーが激しく燃え盛る！夢ではなかった！"
-            },
-            {
-                img: "1000050546.jpg",
-                en: "A Targeted Spiritual Ambush: Through borrowed spirit eyes, Dev witnesses the dark demonic spirit that intentionally shattered his arm.",
-                jp: "仕組まれた霊的急襲：霊眼を借りて、意図的に腕を粉砕した悪霊の真相を目撃する。"
-            },
-            {
-                img: "1000050549.jpg",
-                en: "The 16-Month Seal: The dragon and angel sacrificed their energy to block the fatal blow during the crash.",
-                jp: "16ヶ月の封印：ドラゴンと天使が致命傷を防ぎ、16ヶ月間デヴの体内で修復を続けていた。"
-            },
-            {
-                img: "1000050552.jpg",
-                en: "Choosing a Teacher: Realizing he needs training, Dev asks the Dragon and Angel who is best suited to train him for D1 mastery.",
-                jp: "師の選択：次元1を極めるため、ドラゴンと天使のどちらの教えを受けるべきか問いかける。"
-            }
-        ];
+        const chapters = {
+            1: [
+                {
+                    img: "1000050531.jpg",
+                    en: "An e-bike accident, a 16-month recovery... and tattoos that came alive with divine and demonic power.",
+                    jp: "電動自転車の事故、16ヶ月のリハビリ……そして神と悪魔の力が宿ったタトゥー。"
+                },
+                {
+                    img: "1000050534.jpg",
+                    en: "The Back Canvas: The dragon leaps from his arm into his back tattoo to fight alongside the angel and defeat the demon.",
+                    jp: "背中のキャンバス：ドラゴンが腕から飛び出し、天使と共に悪魔を討つ！"
+                },
+                {
+                    img: "1000050537.jpg",
+                    en: "Dimension 1 (Physical - Bleach Form): 16 months of indomitable will forge the skeletal fusion and spiritual pressure!",
+                    jp: "次元1（物理・死神形態）：16ヶ月の不屈の意志が骨格と霊圧を覚醒させる！"
+                },
+                {
+                    img: "1000050540.jpg",
+                    en: "Return to Reality: Thinking it was just a wild dream, Dev returns to coaching basketball—until he walks past the crash site.",
+                    jp: "現実への帰還：夢だと思っていたが、コーチ業に戻ったデヴの身に再び異変が起きる。"
+                },
+                {
+                    img: "1000050543.jpg",
+                    en: "The Intersection: Walking past the exact spot of the crash, both tattoos ignite violently. It wasn't a dream!",
+                    jp: "交差点にて：事故現場を通った瞬間、両方のタトゥーが激しく燃え盛る！夢ではなかった！"
+                },
+                {
+                    img: "1000050546.jpg",
+                    en: "A Targeted Spiritual Ambush: Through borrowed spirit eyes, Dev witnesses the dark demonic spirit that intentionally shattered his arm.",
+                    jp: "仕組まれた霊的急襲：霊眼を借りて、意図的に腕を粉砕した悪霊の真相を目撃する。"
+                },
+                {
+                    img: "1000050549.jpg",
+                    en: "The 16-Month Seal: The dragon and angel sacrificed their energy to block the fatal blow during the crash.",
+                    jp: "16ヶ月の封印：ドラゴンと天使が致命傷を防ぎ、16ヶ月間デヴの体内で修復を続けていた。"
+                },
+                {
+                    img: "1000050552.jpg",
+                    en: "Choosing a Teacher: Realizing he needs training, Dev asks the Dragon and Angel who is best suited to train him for D1 mastery.",
+                    jp: "師の選択：次元1を極めるため、ドラゴンと天使のどちらの教えを受けるべきか問いかける。"
+                }
+            ],
+            2: [
+                {
+                    img: "chapter2_page1.jpg",
+                    en: "Chapter 2: The Rebirth. Dev merges three dimensions, mastering physical, mental, and tactical paths.",
+                    jp: "第2章：再生。デヴは三つの次元を融合させ、肉体・精神・戦術の道を極める。"
+                },
+                {
+                    img: "chapter2_page2.jpg",
+                    en: "The Merged Harmony: Balancing the fierce dragon's power with the angel's precise spiritual discipline.",
+                    jp: "融合の調和：荒々しいドラゴンの力と、天使の緻密な精神的規律の均衡を保つ。"
+                },
+                {
+                    img: "chapter2_page3.jpg",
+                    en: "The Shadow Returns: The demonic spirit reappears from the spiritual realm to challenge Dev's newfound strength.",
+                    jp: "影の帰還：デヴの新たな力を試すべく、霊界から悪霊が再び姿を現す。"
+                },
+                {
+                    img: "chapter2_page4.jpg",
+                    en: "The Rematch Begins: Dev steps forward with absolute clarity, ready to settle the score at the intersection.",
+                    jp: "再戦の始まり：絶対的な明晰さを持って一歩を踏み出し、交差点での決着に挑む。"
+                },
+                {
+                    img: "chapter2_page5.jpg",
+                    en: "The Severing Strike: Unleashing Dimension 1 and 3 combined, Dev cuts through the shadow's dark barrier.",
+                    jp: "断ち切る一撃：次元1と3を合わせ技で、影の闇の結界を両断する。"
+                },
+                {
+                    img: "chapter2_page6.jpg",
+                    en: "Silence After the Storm: The spiritual pressure clears as the shadow dissolves into light and mist.",
+                    jp: "嵐の後の静けさ：影が光と霧に溶け込み、霊圧の荒波が静まり返る。"
+                },
+                {
+                    img: "chapter2_page7.jpg",
+                    en: "The Domain of Clarity: Dev unlocks his inner mental domain, mastering full control over his spirit tattoos.",
+                    jp: "明晰の領域：内なる精神領域を開放し、精神タトゥーの完全制御をマスターする。"
+                },
+                {
+                    img: "chapter2_page8.jpg",
+                    en: "The Tactical Edge: With body, mind, and tactics united, Dev stands ready as the true master of TriDev.",
+                    jp: "戦術的優位：肉体・精神・戦術が一つに結ばれ、真のトライデヴマスターとして立ち上がる。"
+                }
+            ]
+        };
 
+        let currentChapter = 1;
         let currentIndex = 0;
 
-        function startReading() {
+        function startChapter(chapterNum) {
+            currentChapter = chapterNum;
+            currentIndex = 0;
             document.getElementById("landingPage").style.display = "none";
             document.getElementById("readerContainer").style.display = "flex";
             updateReader();
@@ -372,11 +467,12 @@
         }
 
         function updateReader() {
+            const pages = chapters[currentChapter];
             const current = pages[currentIndex];
             document.getElementById("mangaImage").src = current.img;
             document.getElementById("subEn").textContent = current.en;
             document.getElementById("subJp").textContent = current.jp;
-            document.getElementById("pageIndicator").textContent = `Page ${currentIndex + 1} / ${pages.length}`;
+            document.getElementById("pageIndicator").textContent = `Ch ${currentChapter} - Page ${currentIndex + 1} / ${pages.length}`;
             
             document.getElementById("prevBtn").disabled = currentIndex === 0;
             document.getElementById("nextBtn").disabled = currentIndex === pages.length - 1;
@@ -387,6 +483,7 @@
         }
 
         function changePage(direction) {
+            const pages = chapters[currentChapter];
             currentIndex += direction;
             if (currentIndex < 0) currentIndex = 0;
             if (currentIndex >= pages.length) currentIndex = pages.length - 1;
@@ -400,15 +497,29 @@
             }
 
             window.speechSynthesis.cancel();
+            const pages = chapters[currentChapter];
             const current = pages[currentIndex];
             const utterance = new SpeechSynthesisUtterance(current.en);
-            utterance.rate = 0.95;
-            utterance.pitch = 1.0;
             
+            // Voice preference handling
+            const voiceType = document.getElementById("narratorVoiceSelect").value;
             const voices = window.speechSynthesis.getVoices();
-            const englishVoice = voices.find(v => v.lang.startsWith('en-'));
-            if (englishVoice) {
-                utterance.voice = englishVoice;
+            
+            if (voiceType === 'male') {
+                // Look for a deeper or male-sounding English voice if available
+                const maleVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Male') || v.name.includes('David') || v.name.includes('Mark') || v.name.includes('George') || v.name.includes('UK English Male')));
+                if (maleVoice) {
+                    utterance.voice = maleVoice;
+                }
+                utterance.pitch = 0.75; // Deeper pitch for narrator effect
+                utterance.rate = 0.90;  // Measured, epic pace
+            } else {
+                const standardVoice = voices.find(v => v.lang.startsWith('en-'));
+                if (standardVoice) {
+                    utterance.voice = standardVoice;
+                }
+                utterance.pitch = 1.0;
+                utterance.rate = 0.95;
             }
 
             window.speechSynthesis.speak(utterance);
