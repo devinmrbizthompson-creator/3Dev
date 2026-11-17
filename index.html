@@ -1,507 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3DEV Development &amp; TriDev Manga Portal</title>
-  <style>
-    :root {
-      --bg-dark: #090d1a;
-      --bg-card: #11182c;
-      --cyan: #00f0ff;
-      --emerald: #10b981;
-      --gold: #f59e0b;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --border: rgba(0, 240, 255, 0.25);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: radial-gradient(circle at top, #131d3b 0%, var(--bg-dark) 65%);
-      color: var(--text-main);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(9, 13, 26, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0.9rem 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .badge {
-      background: linear-gradient(135deg, var(--cyan), var(--emerald));
-      color: #050811;
-      font-weight: 800;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .brand h1 {
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
-    }
-    .nav-tabs {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .btn {
-      background: var(--bg-card);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .btn:hover, .btn.active {
-      background: rgba(0, 240, 255, 0.16);
-      border-color: var(--cyan);
-      color: var(--cyan);
-    }
-    .container {
-      max-width: 1080px;
-      margin: 2rem auto;
-      padding: 0 1.25rem;
-    }
-    .section-view { display: none; }
-    .section-view.active { display: block; }
-    
-    /* Portal Styles */
-    .hero-portal {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .hero-portal h2 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      background: linear-gradient(90deg, #ffffff, var(--cyan), var(--emerald));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.75rem;
-    }
-    .hero-portal p {
-      color: var(--text-muted);
-      max-width: 750px;
-      margin: 0 auto 1.5rem;
-      font-size: 1.05rem;
-    }
-    .portal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    .portal-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.75rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .portal-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--cyan);
-    }
-    .portal-card h3 {
-      color: var(--cyan);
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-    }
-    .portal-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.25rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3Dev - TriDev Universe & Manga Reader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-    /* Manga Reader Styles */
-    .manga-hero {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .manga-hero h2 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      background: linear-gradient(90deg, #ffffff, var(--cyan), var(--emerald));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-    .manga-hero p {
-      color: var(--text-muted);
-      max-width: 720px;
-      margin: 0 auto 1.25rem;
-      font-size: 0.98rem;
-    }
-    .page-pills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 1.5rem;
-    }
-    .reader-container {
-      max-width: 920px;
-      margin: 0 auto 4rem;
-    }
-    .manga-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-    }
-    .manga-card-header {
-      padding: 1rem 1.4rem;
-      background: rgba(0, 240, 255, 0.06);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .manga-card-header h3 {
-      font-size: 1.15rem;
-      color: var(--cyan);
-    }
-    .manga-page-img {
-      width: 100%;
-      display: block;
-      background: #060913;
-    }
-    .manga-story-box {
-      padding: 1.25rem 1.4rem;
-      border-top: 1px solid var(--border);
-    }
-    .subtitles {
-      background: rgba(5, 8, 17, 0.7);
-      border-left: 3px solid var(--emerald);
-      padding: 0.85rem 1rem;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 1rem;
-    }
-    .sub-en { font-weight: 600; margin-bottom: 0.3rem; }
-    .sub-jp { color: var(--cyan); font-size: 0.92rem; }
-    .panel-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.75rem;
-      margin-top: 0.75rem;
-    }
-    .panel-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 0.7rem 0.85rem;
-      font-size: 0.88rem;
-    }
-    .panel-item strong { color: var(--gold); display: block; margin-bottom: 0.2rem; }
-    .hidden { display: none; }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      font-size: 0.85rem;
-      margin-top: 3rem;
-    }
-  </style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Landing Page Styles */
+        #landingPage {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #landingPage h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        #landingPage p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .landing-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            text-align: left;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .chapter-select-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #E1306C;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+
+        .social-link:hover {
+            background: #c13584;
+        }
+
+        /* Reader Container Styles */
+        .reader-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            border: 2px solid #334155;
+        }
+
+        .manga-screen {
+            position: relative;
+            width: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 450px;
+            max-height: 65vh;
+        }
+
+        .manga-screen img {
+            max-width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .subtitle-box {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 3px solid var(--primary);
+            padding: 16px 24px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .subtitle-en {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .subtitle-jp {
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: #0f172a;
+            border-top: 1px solid #334155;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: 800;
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s ease, background 0.2s;
+            box-shadow: 0 4px 0 #b45309;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b45309;
+        }
+
+        .btn:hover {
+            background: #fbbf24;
+        }
+
+        .btn:disabled {
+            background: #475569;
+            color: #94a3b8;
+            box-shadow: 0 4px 0 #1e293b;
+            cursor: not-allowed;
+        }
+
+        .audio-btn {
+            background: #3b82f6;
+            color: #fff;
+            box-shadow: 0 4px 0 #1d4ed8;
+        }
+        .audio-btn:hover {
+            background: #60a5fa;
+        }
+        .audio-btn:active {
+            box-shadow: 0 2px 0 #1d4ed8;
+        }
+
+        .page-indicator {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <span class="badge">3DEV System</span>
-      <h1>Coach Dev Portal &amp; TriDev Manga</h1>
-    </div>
-    <div class="nav-tabs">
-      <button class="btn active" onclick="switchTab('portal')">🏠 3DEV Training Portal</button>
-      <button class="btn" onclick="switchTab('manga')">📖 TriDev Manga Chapter 2 (Full Color)</button>
-    </div>
-  </header>
 
-  <div class="container">
-    <!-- VIEW 1: 3DEV PRACTICE PORTAL -->
-    <div id="portalView" class="section-view active">
-      <div class="hero-portal">
-        <h2>3DEV 3FOLD PRACTICE SYSTEM</h2>
-        <p>Welcome to Coach Dev's central practice portal. Engineered in partnership with KJ Pro and Team KJ Project Swish, tracking training across Mechanical Execution (Physical), Focus &amp; Rhythm (Mental), and Game Application (Tactical).</p>
-      </div>
-      <div class="portal-grid">
-        <div class="portal-card">
-          <h3>🏀 Athlete Training Rosters</h3>
-          <p>Access individual session breakdowns for Teddy, Taha, Max, Zoey, and Ana Stella across the 3-Fold System architecture.</p>
-          <button class="btn" onclick="switchTab('manga')">Explore Manga Chapter 2 →</button>
-        </div>
-        <div class="portal-card">
-          <h3>📖 TriDev Manga Series</h3>
-          <p>Read Chapter 2: The Rebirth &amp; Tridimensional Synthesis in vibrant full color with interactive panel scripts and bilingual EN/JP subtitles.</p>
-          <button class="btn active" onclick="switchTab('manga')">Open Manga Reader →</button>
-        </div>
-      </div>
-    </div>
+    <header>
+        <h1>3DEV UNIVERSE</h1>
+        <p>Official Manga Series & Interactive Experience</p>
+    </header>
 
-    <!-- VIEW 2: MANGA READER -->
-    <div id="mangaView" class="section-view">
-      <div class="manga-hero">
-        <h2>Chapter 2: The Rebirth &amp; Tridimensional Synthesis</h2>
-        <p>Retreating from the NYC rooftop after the Dragon and Angel presented two opposing philosophies, Dev steps under a scalding shower—only for the overwhelming pressure of Dimensions 1, 2, and 3 to fuse into a single full-color rebirth.</p>
-        <div style="margin-bottom: 1.25rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap;">
-          <button id="modeScrollBtn" class="btn active" onclick="setMode('scroll')">Vertical Webtoon Scroll</button>
-          <button id="modeSingleBtn" class="btn" onclick="setMode('single')">Single Page Reader</button>
-          <button id="toggleScriptBtn" class="btn active" onclick="toggleScripts()">Story &amp; Subtitles: ON</button>
-        </div>
-        <div id="pagePills" class="page-pills"></div>
-      </div>
-
-      <main id="readerContainer" class="reader-container"></main>
-    </div>
-  </div>
-
-  <footer>
-    3DEV Development • Coach Dev • KJ Pro / Team KJ Project Swish
-  </footer>
-
-  <script>
-    window.TRIDEV_CHAPTER_2 = {
-  "chapter": 2,
-  "title": "Chapter 2: The Rebirth & Tridimensional Synthesis",
-  "subtitle": "From Fractured Paths to Unified Mastery (Full-Color Edition)",
-  "colorMode": "full-color",
-  "storyBridge": "Retreating from the NYC rooftop after the Dragon and Angel presented two opposing philosophies, Dev steps under a scalding shower to wash away the noise—only for the overwhelming pressure of Dimensions 1, 2, and 3 to fuse into a single full-color rebirth.",
-  "pages": [
-    {
-      "page": 1,
-      "title": "The Rebirth",
-      "image": "TriDev Manga Chapter 2 - Page 1 (The Rebirth).jpg",
-      "alt": "Chapter 2 Page 1: The Rebirth colored manga page",
-      "captionEn": "Three lives, three paths—instead of choosing one, the pressure fuses them into a single rebirth: I am all of them.",
-      "captionJp": "「三つの人生、三つの道……選ぶのではない。圧倒的な重圧がすべてを一つに融合させる――俺が、そのすべてだ。」",
-      "panels": [
-        { "panel": 1, "sfx": "STEAM...", "text": "Dev needed a release. Just a shower to wash away the noise... But the dimensions wouldn't quiet down." },
-        { "panel": 2, "sfx": "", "text": "Three lives. Three paths... all demanding to be lived. It's too much..." },
-        { "panel": 3, "sfx": "BZZZ!", "text": "The overwhelm... it's forcing them together. Crashing into one!" },
-        { "panel": 4, "sfx": "FWHOOM! / KRA-KOOM! / THE REBIRTH!", "text": "No more choosing. I am all of them. I am... Dev." }
-      ]
-    },
-    {
-      "page": 2,
-      "title": "The Merged Harmony",
-      "image": "TriDev Manga Chapter 2 - Page 2 (The Merged Harmony).jpg",
-      "alt": "Chapter 2 Page 2: The Merged Harmony colored manga page",
-      "captionEn": "Instead of choosing between raw power and inner stillness, Dev fuses all three dimensions into a single, balanced pulse.",
-      "captionJp": "「荒々しい力と内なる静寂のどちらかを選ぶのではなく、デヴは三つの次元をひとつの調和した鼓動へと融合させた。」",
-      "panels": [
-        { "panel": 1, "sfx": "", "text": "For the first time, the three dimensions aren't tearing him apart... The weight is gone. Physical, mental, tactical—they're moving as one pulse." },
-        { "panel": 2, "sfx": "GRRR-ROAR!", "text": "Dragon: You didn't pick a path, kid—you forged a crucible! Your body can finally survive my fire!" },
-        { "panel": 3, "sfx": "", "text": "Angel: And your breath anchors the storm. Stillness and power are no longer opposites." },
-        { "panel": 4, "sfx": "SHING-BOOM!", "text": "No overshooting. No wasted motion. Now... let's test what TriDev can really do." }
-      ]
-    },
-    {
-      "page": 3,
-      "title": "The Shadow Returns",
-      "image": "TriDev Manga Chapter 2 - Page 3 (The Shadow Returns).jpg",
-      "alt": "Chapter 2 Page 3: The Shadow Returns colored manga page",
-      "captionEn": "Landing with total precision, Dev detects the demonic ambusher returning to the crash site—and prepares to settle a 16-month score.",
-      "captionJp": "「完璧な着地を決めたデヴは、事故現場に再び現れた悪霊の気配を察知し、16ヶ月越しの決着をつけるべく立ち上がる。」",
-      "panels": [
-        { "panel": 1, "sfx": "TAP...", "text": "Unlike before, there is no crash. Every ounce of force is under his command." },
-        { "panel": 2, "sfx": "PING!", "text": "Wait... that dark energy signature. Down at the intersection!" },
-        { "panel": 3, "sfx": "CRACK-RUMBLE!", "text": "Shadow Demon: That merged spiritual pressure... impossible! The human survived the ambush?!" },
-        { "panel": 4, "sfx": "FWOOSH! / TO BE CONTINUED...", "text": "Sixteen months ago, you broke my arm in the dark. Tonight, you face all three dimensions!" }
-      ]
-    },
-    {
-      "page": 4,
-      "title": "The Rematch Begins",
-      "image": "TriDev Manga Chapter 2 - Page 4 (The Rematch Begins).jpg",
-      "alt": "Chapter 2 Page 4: The Rematch Begins colored manga page",
-      "captionEn": "Rocketing down like a meteor with three dimensions united, Dev slams into the NYC intersection to ignite the rematch.",
-      "captionJp": "「三つの次元をひとつに束ね、流星のごとく舞い降りたデヴが交差点に激突し、因縁の再戦の幕が上がる！」",
-      "panels": [
-        { "panel": 1, "sfx": "WHOOOSH!", "text": "Hold on... I'm coming down!" },
-        { "panel": 2, "sfx": "SHHHH!", "text": "Shadow Demon: Impossible... He's falling like a meteor!" },
-        { "panel": 3, "sfx": "CRACKLE!", "text": "You won't catch me off-guard this time!" },
-        { "panel": 4, "sfx": "KRA-KOOM!", "text": "This is for sixteen months ago! With the force of three dimensions united, the rematch begins." }
-      ]
-    },
-    {
-      "page": 5,
-      "title": "The Severing Strike",
-      "image": "TriDev Manga Chapter 2 - Page 5 (The Severing Strike).jpg",
-      "alt": "Chapter 2 Page 5: The Severing Strike colored manga page",
-      "captionEn": "Locking onto the demon's core with Dimension 2's sightlines, Dev fuses dragon-bone blade and spiritual pressure to sever its head—releasing the trapped negative energy.",
-      "captionJp": "「次元2の霊眼で悪霊の核を捉えたデヴは、竜骨の刃と霊圧を融合させて首を断ち切り、封じ込められた負のエネルギーを夜空へと解放する！」",
-      "panels": [
-        { "panel": 1, "sfx": "RE-FORM!", "text": "Shadow Demon: Fool! Physical blows cannot kill a shadow!" },
-        { "panel": 2, "sfx": "LOCK!", "text": "Then I won't scatter your body—I'll sever the core!" },
-        { "panel": 3, "sfx": "SLASH-CRACK!", "text": "Dimension 3 dragon-bone blade infused with Dimension 1 spiritual pressure slices through the demon's neck." },
-        { "panel": 4, "sfx": "KRA-BOOM! / PURGED!", "text": "The negative energy is released. Dimension One... is mastered." }
-      ]
-    },
-    {
-      "page": 6,
-      "title": "Silence After the Storm",
-      "image": "TriDev Manga Chapter 2 - Page 6 (Silence After the Storm).jpg",
-      "alt": "Chapter 2 Page 6: Silence After the Storm colored manga page",
-      "captionEn": "With the shadow demon vanquished and Dimension One mastered, Dev unlocks Dimension Two—unfolding the Domain of Mental Clarity across the quiet NYC street.",
-      "captionJp": "「悪霊を打ち破り次元1を極めたデヴは、静まり返ったニューヨークの交差点に精神の領域を展開し、次元2の扉を開く！」",
-      "panels": [
-        { "panel": 1, "sfx": "SHIMMER...", "text": "The shadow demon is gone. Sixteen months of pain and doubt vanish with the smoke." },
-        { "panel": 2, "sfx": "", "text": "Physical mastery was only the first step. Now... the mind awakens." },
-        { "panel": 3, "sfx": "", "text": "Angel & Dragon: Dimension One is yours, Dev. Next lies Dimension Two: the Domain of Mental Clarity." },
-        { "panel": 4, "sfx": "DIMENSION TWO AWAKENS!", "text": "One dimension down. Two to go. Let the real training begin." }
-      ]
-    },
-    {
-      "page": 7,
-      "title": "The Domain of Clarity",
-      "image": "TriDev Manga Chapter 2 - Page 7 (The Domain of Clarity).jpg",
-      "alt": "Chapter 2 Page 7: The Domain of Clarity colored manga page",
-      "captionEn": "Inside Dimension Two's geometric Domain, Dev steadies his breath, channels the Dragon's fire through pure mental clarity, and locks in mastery of the mind.",
-      "captionJp": "「次元2の幾何学領域の中で呼吸を整えたデヴは、ドラゴンの業火さえも明晰な集中力で制御し、精神の極意を完全に掌握する！」",
-      "panels": [
-        { "panel": 1, "sfx": "HUMMM...", "text": "Inside Dimension Two, every movement, heartbeat, and intention across the city becomes visible data." },
-        { "panel": 2, "sfx": "", "text": "Steady the breath. Quiet the noise. See the entire board at once." },
-        { "panel": 3, "sfx": "SHING!", "text": "Dragon: Even my fire bends to your focus now!" },
-        { "panel": 4, "sfx": "MIND MASTERED!", "text": "Two dimensions locked in. Only the tactical path remains." }
-      ]
-    },
-    {
-      "page": 8,
-      "title": "The Tactical Edge",
-      "image": "TriDev Manga Chapter 2 - Page 8 (The Tactical Edge).jpg",
-      "alt": "Chapter 2 Page 8: The Tactical Edge colored manga page",
-      "captionEn": "Unleashing Dimension Three's autonomous dragon-bone blades and angelic wing-tendrils in 3Fold harmony, Dev completes his TriDev awakening over New York City at dawn.",
-      "captionJp": "「次元3の自律型竜骨ブレードと天使の羽触手を三位一体（3Fold）の調和で解放したデヴは、夜明けのニューヨークの上空でトライデヴの覚醒を完成させる！」",
-      "panels": [
-        { "panel": 1, "sfx": "RIIIIIP!", "text": "With mind and body aligned, Dev turns toward the final frontier: Dimension Three—Tactical Mastery." },
-        { "panel": 2, "sfx": "SHING-SNAP!!", "text": "No hesitation. Offense and defense acting as living instinct." },
-        { "panel": 3, "sfx": "CLANG-SLASH!", "text": "Every angle covered! Physical, mental, tactical—working 3Fold!" },
-        { "panel": 4, "sfx": "TRIDEV COMPLETE!", "text": "Three dimensions. One path. Whoever sent that shadow... I'm ready." }
-      ]
-    }
-  ]
-};
-
-    function switchTab(tab) {
-      document.querySelectorAll('.section-view').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('header .nav-tabs .btn').forEach(el => el.classList.remove('active'));
-      if (tab === 'portal') {
-        document.getElementById('portalView').classList.add('active');
-        document.querySelectorAll('header .nav-tabs .btn')[0].classList.add('active');
-      } else {
-        document.getElementById('mangaView').classList.add('active');
-        document.querySelectorAll('header .nav-tabs .btn')[1].classList.add('active');
-      }
-    }
-
-    let viewMode = 'scroll';
-    let currentPage = 1;
-    let showScripts = true;
-
-    const data = window.TRIDEV_CHAPTER_2;
-    const pillsEl = document.getElementById('pagePills');
-    const containerEl = document.getElementById('readerContainer');
-
-    function renderPills() {
-      pillsEl.innerHTML = data.pages.map(p => `
-        <button class="btn ${viewMode === 'single' && currentPage === p.page ? 'active' : ''}"
-                onclick="jumpToPage(${p.page})">
-          Page ${p.page}: ${p.title}
-        </button>
-      `).join('');
-    }
-
-    function renderPages() {
-      const pagesToRender = viewMode === 'single'
-        ? data.pages.filter(p => p.page === currentPage)
-        : data.pages;
-
-      containerEl.innerHTML = pagesToRender.map(p => `
-        <article id="page-${p.page}" class="manga-card">
-          <div class="manga-card-header">
-            <h3>Page ${p.page} — ${p.title}</h3>
-            <span class="badge">Full Color</span>
-          </div>
-          <img class="manga-page-img" src="${encodeURI(p.image)}" alt="${p.alt}" loading="lazy" />
-          <div class="manga-story-box ${showScripts ? '' : 'hidden'}">
-            <div class="subtitles">
-              <div class="sub-en">${p.captionEn}</div>
-              <div class="sub-jp">${p.captionJp}</div>
+    <!-- LANDING PAGE -->
+    <div id="landingPage">
+        <h2>Welcome to 3Dev Manga</h2>
+        <p>An e-bike accident, 16-month recovery, and living tattoos awakening with divine and demonic power. Explore Chapter 1 and Chapter 2 of the 3Dev / TriDev saga featuring interactive bilingual subtitles and voice narration.</p>
+        
+        <div class="landing-features">
+            <div class="feature-card">
+                <h3>Bilingual Subtitles</h3>
+                <p>Immersive storytelling with simultaneous English translation and Japanese kanji dialogue.</p>
             </div>
-            <div class="panel-list">
-              ${p.panels.map(pan => `
-                <div class="panel-item">
-                  <strong>Panel ${pan.panel}${pan.sfx ? ' • ' + pan.sfx : ''}</strong>
-                  <span>${pan.text}</span>
-                </div>
-              `).join('')}
+            <div class="feature-card">
+                <h3>Voice Narration</h3>
+                <p>Built-in text-to-speech audio reader bringing every page and dialogue to life.</p>
             </div>
-          </div>
-        </article>
-      `).join('');
+            <div class="feature-card">
+                <h3>The 3Dev Trifecta</h3>
+                <p>Explore Physical, Mental, and Tactical dimensions forged through intense training trials.</p>
+            </div>
+        </div>
 
-      if (viewMode === 'single') {
-        containerEl.innerHTML += `
-          <div style="display:flex; justify-content:space-between; gap:1rem; margin-top:1rem;">
-            <button class="btn" ${currentPage <= 1 ? 'disabled style="opacity:0.4"' : ''} onclick="jumpToPage(${currentPage - 1})">← Previous Page</button>
-            <span style="color:var(--text-muted); align-self:center;">Page ${currentPage} of ${data.pages.length}</span>
-            <button class="btn" ${currentPage >= data.pages.length ? 'disabled style="opacity:0.4"' : ''} onclick="jumpToPage(${currentPage + 1})">Next Page →</button>
-          </div>
-        `;
-      }
-      renderPills();
-    }
+        <div class="chapter-select-container">
+            <button class="btn" style="font-size: 1.3rem; padding: 12px 25px;" onclick="startChapter(1)">📖 READ CHAPTER 1</button>
+            <button class="btn" style="font-size: 1.3rem; padding: 12px 25px; background: #10b981; box-shadow: 0 4px 0 #047857;" onclick="startChapter(2)">🔥 READ CHAPTER 2</button>
+        </div>
 
-    function setMode(mode) {
-      viewMode = mode;
-      document.getElementById('modeScrollBtn').classList.toggle('active', mode === 'scroll');
-      document.getElementById('modeSingleBtn').classList.toggle('active', mode === 'single');
-      renderPages();
-    }
+        <div>
+            <a href="https://instagram.com/devinmrbizthompson" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i> Follow on Instagram
+            </a>
+        </div>
+    </div>
 
-    function jumpToPage(pageNum) {
-      if (pageNum < 1 || pageNum > data.pages.length) return;
-      currentPage = pageNum;
-      if (viewMode === 'single') {
-        renderPages();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const el = document.getElementById('page-' + pageNum);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    <!-- READER CONTAINER (Initially Hidden) -->
+    <div class="reader-container" id="readerContainer">
+        <div class="manga-screen">
+            <img id="mangaImage" src="" alt="Manga Page">
+        </div>
 
-    function toggleScripts() {
-      showScripts = !showScripts;
-      const btn = document.getElementById('toggleScriptBtn');
-      btn.textContent = 'Story & Subtitles: ' + (showScripts ? 'ON' : 'OFF');
-      btn.classList.toggle('active', showScripts);
-      renderPages();
-    }
+        <div class="subtitle-box">
+            <div id="subEn" class="subtitle-en">Loading reader...</div>
+            <div id="subJp" class="subtitle-jp">読み込み中...</div>
+        </div>
 
-    renderPages();
-  </script>
+        <div class="controls-bar">
+            <button id="prevBtn" class="btn" onclick="changePage(-1)">PREV</button>
+            <button id="audioBtn" class="btn audio-btn" onclick="speakDialogue()">🔊 PLAY AUDIO</button>
+            <div id="pageIndicator" class="page-indicator">Page 1 / 8</div>
+            <button id="nextBtn" class="btn" onclick="changePage(1)">NEXT</button>
+        </div>
+        
+        <div style="background: #0f172a; padding: 10px; text-align: center; border-top: 1px solid #334155;">
+            <button class="btn" style="background: #ef4444; box-shadow: 0 4px 0 #991b1b; font-size: 1rem; padding: 6px 15px;" onclick="returnToLanding()">🏠 BACK TO HOME</button>
+        </div>
+    </div>
+
+    <footer>
+        Created by Devin "Coach Dev" Thompson | KJ Pro Basketball & 3Dev Universe
+    </footer>
+
+    <script>
+        // Chapter Datasets
+        const chapters = {
+            1: [
+                {
+                    img: "1000050531.jpg",
+                    en: "An e-bike accident, a 16-month recovery... and tattoos that came alive with divine and demonic power.",
+                    jp: "電動自転車の事故、16ヶ月のリハビリ……そして神と悪魔の力が宿ったタトゥー。"
+                },
+                {
+                    img: "1000050534.jpg",
+                    en: "The Back Canvas: The dragon leaps from his arm into his back tattoo to fight alongside the angel and defeat the demon.",
+                    jp: "背中のキャンバス：ドラゴンが腕から飛び出し、天使と共に悪魔を討つ！"
+                },
+                {
+                    img: "1000050537.jpg",
+                    en: "Dimension 1 (Physical - Bleach Form): 16 months of indomitable will forge the skeletal fusion and spiritual pressure!",
+                    jp: "次元1（物理・死神形態）：16ヶ月の不屈の意志が骨格と霊圧を覚醒させる！"
+                },
+                {
+                    img: "1000050540.jpg",
+                    en: "Return to Reality: Thinking it was just a wild dream, Dev returns to coaching basketball—until he walks past the crash site.",
+                    jp: "現実への帰還：夢だと思っていたが、コーチ業に戻ったデヴの身に再び異変が起きる。"
+                },
+                {
+                    img: "1000050543.jpg",
+                    en: "The Intersection: Walking past the exact spot of the crash, both tattoos ignite violently. It wasn't a dream!",
+                    jp: "交差点にて：事故現場を通った瞬間、両方のタトゥーが激しく燃え盛る！夢ではなかった！"
+                },
+                {
+                    img: "1000050546.jpg",
+                    en: "A Targeted Spiritual Ambush: Through borrowed spirit eyes, Dev witnesses the dark demonic spirit that intentionally shattered his arm.",
+                    jp: "仕組まれた霊的急襲：霊眼を借りて、意図的に腕を粉砕した悪霊の真相を目撃する。"
+                },
+                {
+                    img: "1000050549.jpg",
+                    en: "The 16-Month Seal: The dragon and angel sacrificed their energy to block the fatal blow during the crash.",
+                    jp: "16ヶ月の封印：ドラゴンと天使が致命傷を防ぎ、16ヶ月間デヴの体内で修復を続けていた。"
+                },
+                {
+                    img: "1000050552.jpg",
+                    en: "Choosing a Teacher: Realizing he needs training, Dev asks the Dragon and Angel who is best suited to train him for D1 mastery.",
+                    jp: "師の選択：次元1を極めるため、ドラゴンと天使のどちらの教えを受けるべきか問いかける。"
+                }
+            ],
+            2: [
+                {
+                    img: "chapter2_page1.jpg",
+                    en: "Chapter 2: The Rebirth. Dev merges three dimensions, mastering physical, mental, and tactical paths.",
+                    jp: "第2章：再生。デヴは三つの次元を融合させ、肉体・精神・戦術の道を極める。"
+                },
+                {
+                    img: "chapter2_page2.jpg",
+                    en: "The Merged Harmony: Balancing the fierce dragon's power with the angel's precise spiritual discipline.",
+                    jp: "融合の調和：荒々しいドラゴンの力と、天使の緻密な精神的規律の均衡を保つ。"
+                },
+                {
+                    img: "chapter2_page3.jpg",
+                    en: "The Shadow Returns: The demonic spirit reappears from the spiritual realm to challenge Dev's newfound strength.",
+                    jp: "影の帰還：デヴの新たな力を試すべく、霊界から悪霊が再び姿を現す。"
+                },
+                {
+                    img: "chapter2_page4.jpg",
+                    en: "The Rematch Begins: Dev steps forward with absolute clarity, ready to settle the score at the intersection.",
+                    jp: "再戦の始まり：絶対的な明晰さを持って一歩を踏み出し、交差点での決着に挑む。"
+                },
+                {
+                    img: "chapter2_page5.jpg",
+                    en: "The Severing Strike: Unleashing Dimension 1 and 3 combined, Dev cuts through the shadow's dark barrier.",
+                    jp: "断ち切る一撃：次元1と3を合わせ技で、影の闇の結界を両断する。"
+                },
+                {
+                    img: "chapter2_page6.jpg",
+                    en: "Silence After the Storm: The spiritual pressure clears as the shadow dissolves into light and mist.",
+                    jp: "嵐の後の静けさ：影が光と霧に溶け込み、霊圧の荒波が静まり返る。"
+                },
+                {
+                    img: "chapter2_page7.jpg",
+                    en: "The Domain of Clarity: Dev unlocks his inner mental domain, mastering full control over his spirit tattoos.",
+                    jp: "明晰の領域：内なる精神領域を開放し、精神タトゥーの完全制御をマスターする。"
+                },
+                {
+                    img: "chapter2_page8.jpg",
+                    en: "The Tactical Edge: With body, mind, and tactics united, Dev stands ready as the true master of TriDev.",
+                    jp: "戦術的優位：肉体・精神・戦術が一つに結ばれ、真のトライデヴマスターとして立ち上がる。"
+                }
+            ]
+        };
+
+        let currentChapter = 1;
+        let currentIndex = 0;
+
+        function startChapter(chapterNum) {
+            currentChapter = chapterNum;
+            currentIndex = 0;
+            document.getElementById("landingPage").style.display = "none";
+            document.getElementById("readerContainer").style.display = "flex";
+            updateReader();
+        }
+
+        function returnToLanding() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            document.getElementById("readerContainer").style.display = "none";
+            document.getElementById("landingPage").style.display = "flex";
+        }
+
+        function updateReader() {
+            const pages = chapters[currentChapter];
+            const current = pages[currentIndex];
+            document.getElementById("mangaImage").src = current.img;
+            document.getElementById("subEn").textContent = current.en;
+            document.getElementById("subJp").textContent = current.jp;
+            document.getElementById("pageIndicator").textContent = `Ch ${currentChapter} - Page ${currentIndex + 1} / ${pages.length}`;
+            
+            document.getElementById("prevBtn").disabled = currentIndex === 0;
+            document.getElementById("nextBtn").disabled = currentIndex === pages.length - 1;
+            
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function changePage(direction) {
+            const pages = chapters[currentChapter];
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex >= pages.length) currentIndex = pages.length - 1;
+            updateReader();
+        }
+
+        function speakDialogue() {
+            if (!('speechSynthesis' in window)) {
+                alert("Text-to-speech is not supported in your browser.");
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+            const pages = chapters[currentChapter];
+            const current = pages[currentIndex];
+            const utterance = new SpeechSynthesisUtterance(current.en);
+            utterance.rate = 0.95;
+            utterance.pitch = 1.0;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(v => v.lang.startsWith('en-'));
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        window.onload = () => {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = () => {};
+            }
+        };
+    </script>
 </body>
 </html>
+
