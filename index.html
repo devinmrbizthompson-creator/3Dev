@@ -154,7 +154,7 @@
         <a href="#qr-tracker" data-nav-target="coaching" class="nav-coaching-link hover:text-topaz-400 transition-colors">QR & Source</a>
         <button type="button" id="navMangaBtnDesktop" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-gold-500/45 text-gold-300 font-display font-bold uppercase tracking-wider text-xs transition-all shadow-md shadow-gold-500/10">
           <span>⚔️ 3Dev Manga</span>
-          <span class="px-1.5 py-0.2 rounded bg-topaz-500/20 text-topaz-300 text-[10px]">Ch.1</span>
+          <span class="px-1.5 py-0.2 rounded bg-topaz-500/20 text-topaz-300 text-[10px]">Ch.1–2</span>
         </button>
       </nav>
 
@@ -177,7 +177,7 @@
         🏀 3Fold System
       </button>
       <button type="button" id="mobileSwitchManga" class="px-3 py-1 rounded-lg bg-obsidian-850 text-topaz-300 border border-topaz-500/40 shrink-0">
-        ⚔️ 3Dev Manga (Pages 1–14)
+        ⚔️ 3Dev Manga (Ch. 1 & 2)
       </button>
       <a href="#drills" class="nav-coaching-link text-slate-300 hover:text-gold-400 shrink-0">Drills</a>
       <a href="#rankings" class="nav-coaching-link text-slate-300 hover:text-gold-400 shrink-0">Rankings</a>
@@ -298,7 +298,7 @@
           <!-- Career Highlight Strip -->
           <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
             <span>Career High (Sweden Pro): <strong class="text-white">32 PTS / 24 REB</strong></span>
-            <button type="button" onclick="switchView('manga')" class="text-gold-400 hover:underline font-bold">Read 3Dev Manga (Ch. 1) ⚔️ →</button>
+            <button type="button" onclick="switchView('manga')" class="text-gold-400 hover:underline font-bold">Read 3Dev Manga (Ch. 1-2) ⚔️ →</button>
           </div>
         </div>
       </div>
@@ -769,22 +769,22 @@
   <!-- ===================================================================== -->
 
   <!-- ===================================================================== -->
-  <!-- VIEW 2: 3DEV MANGA — CHAPTER 1 INTERACTIVE READER (PAGES 1–14)        -->
+  <!-- VIEW 2: 3DEV MANGA — CHAPTERS 1 & 2 INTERACTIVE READER (PAGES 1–28)     -->
   <!-- ===================================================================== -->
   <section id="mangaView" class="hidden py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     <!-- Manga Top Bar & Back Navigation -->
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-8 border-b border-gold-500/25">
       <div>
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-850 border border-topaz-500/40 text-[11px] font-bold uppercase tracking-widest text-topaz-300 mb-2">
-          <span>⚔️ 3DEV UNIVERSE • ORIGIN STORY</span>
+          <span>⚔️ 3DEV UNIVERSE • CHAPTERS 1 & 2</span>
           <span>•</span>
-          <span>PAGES 1–14 COMPLETE</span>
+          <span>PAGES 1–28 COMPLETE</span>
         </div>
         <h1 class="font-display font-bold text-3xl sm:text-5xl text-white uppercase tracking-tight">
-          3Dev Manga: <span class="gold-gradient-text">Awakening of the 3Fold Dimensions</span>
+          3Dev Manga: <span class="gold-gradient-text">Awakening & The Merged Harmony</span>
         </h1>
         <p class="text-xs sm:text-sm text-slate-400 mt-1.5 max-w-3xl">
-          Follow Coach Devin "Mr. Biz" Thompson from the Bronx intersection crash and 16-month shoulder recovery to the awakening of the <strong class="text-gold-400">Dragon of Brutal Conditioning</strong> and <strong class="text-topaz-400">Angel of Spiritual Discipline</strong>.
+          Follow Coach Devin "Mr. Biz" Thompson through Chapter 1's origin awakening and Chapter 2's <strong class="text-gold-400">Merged Harmony & Domain of Clarity</strong>.
         </p>
       </div>
 
@@ -792,7 +792,7 @@
         <button type="button" id="backToCoachingBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-slate-200 border border-slate-700 hover:border-gold-500/50 text-xs font-bold uppercase tracking-wider transition-all">
           <span>← Back to 3Fold Training</span>
         </button>
-        <label for="localMangaUpload" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-topaz-500/20 hover:bg-topaz-500/30 text-topaz-300 border border-topaz-500/40 text-xs font-bold uppercase tracking-wider transition-all" title="Select your 8 manga spread JPG/PNG files in order to preview locally">
+        <label for="localMangaUpload" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-topaz-500/20 hover:bg-topaz-500/30 text-topaz-300 border border-topaz-500/40 text-xs font-bold uppercase tracking-wider transition-all" title="Select your manga spread JPG/PNG files in order to preview locally">
           <span>📂 Load Local Manga Pages</span>
           <input type="file" id="localMangaUpload" accept="image/*" multiple class="hidden" />
         </label>
@@ -842,7 +842,7 @@
               Spread Reader
             </button>
             <button type="button" id="modeAllPagesBtn" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-bold text-xs uppercase transition-all">
-              All 14 Pages
+              All 28 Pages
             </button>
           </div>
         </div>
@@ -851,14 +851,14 @@
 
     <!-- MODE A: INTERACTIVE SINGLE-SPREAD READER -->
     <div id="mangaSpreadReaderContainer" class="space-y-6">
-      <!-- Spread Selector Pills (Pages 1-14) -->
+      <!-- Spread Selector Pills (Chapters 1 & 2 Spreads 1–12) -->
       <div class="flex flex-wrap items-center justify-between gap-3 bg-obsidian-900/80 border border-slate-800 rounded-2xl p-3">
         <button type="button" id="prevSpreadBtn" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-white border border-slate-700 text-xs font-bold uppercase tracking-wider transition-all">
           <span>← Prev Spread</span>
         </button>
 
         <div id="spreadPagePills" class="flex flex-wrap items-center justify-center gap-1.5">
-          <!-- Populated dynamically via JS for Pages 1–14 -->
+          <!-- Populated dynamically via JS for Chapters 1 & 2 -->
         </div>
 
         <button type="button" id="nextSpreadBtn" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-obsidian-950 text-xs font-bold uppercase tracking-wider transition-all">
@@ -872,20 +872,20 @@
         <div class="lg:col-span-8 bg-obsidian-900 topaz-gold-border rounded-2xl p-3 sm:p-5 shadow-2xl">
           <div class="flex items-center justify-between mb-3 px-1">
             <span id="spreadPageBadge" class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/35 font-display font-bold text-xs uppercase tracking-widest">
-              Pages 1–2 • Spread 1 of 8
+              Pages 1–2 • Spread 1 of 12
             </span>
             <span id="spreadFileBadge" class="text-[11px] font-mono text-slate-400">assets/images/manga-page-01-02.jpg</span>
           </div>
 
           <!-- Artwork Display Frame with Automatic Illustrated Fallback -->
           <div id="mangaArtworkWrapper" class="relative w-full rounded-xl overflow-hidden bg-obsidian-950 border border-slate-800 min-h-[280px] sm:min-h-[420px] flex items-center justify-center">
-            <img id="mangaSpreadImg" src="assets/images/manga-page-01-02.jpg" alt="3Dev Manga Pages 1-2" class="w-full h-auto object-contain block" />
+            <img id="mangaSpreadImg" src="assets/images/manga-page-01-02.jpg" alt="3Dev Manga Spread" class="w-full h-auto object-contain block" />
             <div id="mangaFallbackCanvas" class="hidden w-full p-6 sm:p-8"></div>
           </div>
 
           <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 px-1">
             <span>Tip: Use Left/Right arrow keys or click Next Spread to advance with SFX.</span>
-            <span class="text-topaz-400 font-semibold">3Dev Manga • Illustrated Black & White Edition</span>
+            <span class="text-topaz-400 font-semibold">3Dev Manga • Chapters 1 & 2 Complete Edition</span>
           </div>
         </div>
 
@@ -927,7 +927,7 @@
       </div>
     </div>
 
-    <!-- MODE B: FULL-SCROLL ALL 14 PAGES GALLERY -->
+    <!-- MODE B: FULL-SCROLL ALL 28 PAGES GALLERY -->
     <div id="mangaAllPagesContainer" class="hidden space-y-8">
       <!-- Populated dynamically via JS -->
     </div>
@@ -1026,7 +1026,7 @@
       <!-- Social & Official Resource Links -->
       <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-semibold">
         <button type="button" onclick="switchView('manga')" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-gold-300 border border-gold-500/40 transition-colors">
-          ⚔️ 3Dev Manga (Ch. 1)
+          ⚔️ 3Dev Manga (Ch. 1–2)
         </button>
         <button type="button" onclick="document.getElementById('openCurriculumModalBtn').click()" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-gold-400 border border-gold-500/30 transition-colors">
           Public 3DEV Curriculum
@@ -1299,7 +1299,6 @@
 
       function getTrackedUrl() {
         const baseUrl = window.location.href.split('?')[0].split('#')[0];
-        // Use live GitHub Pages URL as canonical fallback when opened locally
         const cleanBase = baseUrl.startsWith('http') ? baseUrl : 'https://devinmrbizthompson-creator.github.io/3Dev/';
         return `${cleanBase}?source=${encodeURIComponent(qrSelect.value)}`;
       }
@@ -1488,12 +1487,13 @@
       });
 
       // =====================================================================
-      // 7. 3DEV MANGA VIEW SWITCHER, SPREADS 1–14 & HYBRID AUDIO / TTS ENGINE
+      // 7. 3DEV MANGA VIEW SWITCHER, CHAPTERS 1 & 2 SPREADS & AUDIO ENGINE
       // =====================================================================
       const mangaSpreads = [
+        // CHAPTER 1 (Spreads 1–8)
         {
           id: 1,
-          pagesLabel: 'Pages 1–2',
+          pagesLabel: 'Ch.1 • Pages 1–2',
           fileName: 'assets/images/manga-page-01-02.jpg',
           audioFile: 'assets/audio/spread-01.mp3',
           arc: 'Origin Arc • Pages 1–2',
@@ -1510,7 +1510,7 @@
         },
         {
           id: 2,
-          pagesLabel: 'Pages 3–4',
+          pagesLabel: 'Ch.1 • Pages 3–4',
           fileName: 'assets/images/manga-page-03-04.jpg',
           audioFile: 'assets/audio/spread-02.mp3',
           arc: 'Origin Arc • Pages 3–4',
@@ -1527,7 +1527,7 @@
         },
         {
           id: 3,
-          pagesLabel: 'Pages 5–6',
+          pagesLabel: 'Ch.1 • Pages 5–6',
           fileName: 'assets/images/manga-page-05-06.jpg',
           audioFile: 'assets/audio/spread-03.mp3',
           arc: 'Dimension 1 Awakening • Pages 5–6',
@@ -1544,7 +1544,7 @@
         },
         {
           id: 4,
-          pagesLabel: 'Pages 7–8',
+          pagesLabel: 'Ch.1 • Pages 7–8',
           fileName: 'assets/images/manga-page-07-08.jpg',
           audioFile: 'assets/audio/spread-04.mp3',
           arc: 'Reality Shift • Pages 7–8',
@@ -1561,7 +1561,7 @@
         },
         {
           id: 5,
-          pagesLabel: 'Pages 9–10',
+          pagesLabel: 'Ch.1 • Pages 9–10',
           fileName: 'assets/images/manga-page-09-10.jpg',
           audioFile: 'assets/audio/spread-05.mp3',
           arc: 'Turning Point • Pages 9–10',
@@ -1578,7 +1578,7 @@
         },
         {
           id: 6,
-          pagesLabel: 'Pages 11–12',
+          pagesLabel: 'Ch.1 • Pages 11–12',
           fileName: 'assets/images/manga-page-11-12.jpg',
           audioFile: 'assets/audio/spread-06.mp3',
           arc: 'The Truth Revealed • Pages 11–12',
@@ -1595,7 +1595,7 @@
         },
         {
           id: 7,
-          pagesLabel: 'Page 13',
+          pagesLabel: 'Ch.1 • Page 13',
           fileName: 'assets/images/manga-page-13.jpg',
           audioFile: 'assets/audio/spread-07.mp3',
           arc: 'The Sacrifice & Choice • Page 13',
@@ -1612,7 +1612,7 @@
         },
         {
           id: 8,
-          pagesLabel: 'Page 14',
+          pagesLabel: 'Ch.1 • Page 14',
           fileName: 'assets/images/manga-page-14.jpg',
           audioFile: 'assets/audio/spread-08.mp3',
           arc: 'Chapter 1 Climax • Page 14',
@@ -1625,11 +1625,80 @@
             { speaker: 'Guardian Angel', text: 'SHIMMER... — "Seek spiritual discipline and internal balance. Control the flow within."' },
             { speaker: 'Coach Dev (KJ Pro)', text: 'FIST CLENCHES — "To master Dimension One... which path do I choose?" (End of Chapter 1)' }
           ]
+        },
+
+        // CHAPTER 2 (Spreads 9–12 / Pages 15–28)
+        {
+          id: 9,
+          pagesLabel: 'Ch.2 • Pages 1–2',
+          fileName: 'assets/images/chapter2-page-01-02.jpg',
+          audioFile: 'assets/audio/ch2-spread-01.mp3',
+          arc: 'Chapter 2 • The Rebirth & Merged Harmony',
+          title: 'The Rebirth & Merged Harmony',
+          dimensionHeader: 'Chapter 2 Arc 1: Symbiotic Resonance',
+          dimensionNote: 'The transition from dual guardianship to total internal fusion. Mind, body, and tactic lock into absolute harmony.',
+          narration: 'Chapter Two. The Rebirth. As the shadows close in, Dev locks eyes with his inner reflections. The Dragon and Angel dissolve into pure golden light, fusing directly into his heartbeat. A new threshold of power awakens—the merged harmony of all three 3Fold dimensions.',
+          panels: [
+            { speaker: 'Inner Realm', text: 'FLASH!! — "The barriers between soul and vessel are dissolving!"' },
+            { speaker: 'Coach Dev', text: '"I feel... every heartbeat echoing across all three dimensions!"' },
+            { speaker: 'Merged Harmony', text: 'GOLDEN AURA — "Physical strength, mental clarity, and tactical instinct as one unified force!"' },
+            { speaker: 'SFX', text: 'ZOOOM-BOOM! — "The rebirth is complete!"' }
+          ]
+        },
+        {
+          id: 10,
+          pagesLabel: 'Ch.2 • Pages 3–4',
+          fileName: 'assets/images/chapter2-page-03-04.jpg',
+          audioFile: 'assets/audio/ch2-spread-02.mp3',
+          arc: 'Chapter 2 • The Shadow Returns & Rematch',
+          title: 'The Shadow Returns & The Rematch Begins',
+          dimensionHeader: 'Chapter 2 Arc 2: Confronting the Darkness',
+          dimensionNote: 'Testing the new harmony against higher-tier spiritual opposition on the midnight streets of New York.',
+          narration: 'The shadow returns. Emerging from the subway tunnels, elite shadow enforcers block the street, seeking to crush the newly awakened vessel before it reaches full maturity. Without flinching, Dev steps forward. The rematch begins now.',
+          panels: [
+            { speaker: 'Subway Exit', text: 'SCREEECH! — "They tracked my spiritual signature right back to the station!"' },
+            { speaker: 'Shadow Enforcers', text: '"The vessel is unstable... obliterate him before the seal stabilizes!"' },
+            { speaker: 'Coach Dev', text: 'EYES GLOWING — "You picked the wrong coach... and the wrong court."' },
+            { speaker: 'SFX', text: 'CLASH!! — "The rematch begins with a thunderous impact!"' }
+          ]
+        },
+        {
+          id: 11,
+          pagesLabel: 'Ch.2 • Pages 5–6',
+          fileName: 'assets/images/chapter2-page-05-06.jpg',
+          audioFile: 'assets/audio/ch2-spread-03.mp3',
+          arc: 'Chapter 2 • The Severing Strike & Silence',
+          title: 'The Severing Strike & Silence After the Storm',
+          dimensionHeader: 'Chapter 2 Arc 3: Precision Execution',
+          dimensionNote: 'Applying pro-level deceleration and decisive tactical reads to cut through enemy pressure instantly.',
+          narration: 'One clean, decisive motion. Utilizing Shai Gil deceleration combined with Shinigami spatial awareness, Dev unleashes the severing strike—slicing through the enemy formation in a single heartbeat. Complete silence follows as the storm clears over the skyline.',
+          panels: [
+            { speaker: 'Action', text: 'SWISH-SLASH! — "Instant deceleration into a zero-angle pivot!"' },
+            { speaker: 'The Severing Strike', text: 'DO-GONN!! — "A peerless strike cutting straight through shadow energy!"' },
+            { speaker: 'Silence', text: 'WIND BLOWING... — "Absolute silence after the storm settles over the asphalt."' },
+            { speaker: 'Coach Dev', text: '"First wave cleared. But the main court awaits..."' }
+          ]
+        },
+        {
+          id: 12,
+          pagesLabel: 'Ch.2 • Pages 7–8',
+          fileName: 'assets/images/chapter2-page-07-08.jpg',
+          audioFile: 'assets/audio/ch2-spread-04.mp3',
+          arc: 'Chapter 2 • Domain of Clarity & Tactical Edge',
+          title: 'The Domain of Clarity & The Tactical Edge',
+          dimensionHeader: 'Chapter 2 Climax: Varsity Mastery',
+          dimensionNote: 'Entering the Domain of Clarity where every movement is premeditated, every read is absolute, and the 3Fold Practice System reaches peak evolution.',
+          narration: 'Chapter Two Climax. Entering the Domain of Clarity. Time slows to a crawl. Every defender’s footwork, every tactical angle, and every spiritual pulse lies bare before his eyes. With the tactical edge locked in, Coach Dev steps forward into the next trial of the 3Dev universe.',
+          panels: [
+            { speaker: 'Domain of Clarity', text: 'SHING! — "Perception expands. Every opponent moves in slow motion."' },
+            { speaker: 'Tactical Edge', text: '"I see the entire floor. Offense, defense, spirit, and reality."' },
+            { speaker: 'Coach Dev', text: '"This is the true power of the 3Fold System...!" (To be continued in Chapter 3)' }
+          ]
         }
       ];
 
       let currentSpreadIndex = 0;
-      let localCustomImages = {}; // Maps spread index 0..7 to ObjectURL if user loads local files
+      let localCustomImages = {}; // Maps spread index 0..11 to ObjectURL if user loads local files
       let activeView = 'coaching';
 
       // View Switching Logic (Coaching Landing Page <-> 3Dev Manga)
@@ -1682,7 +1751,7 @@
         });
       });
 
-      // Local Manga Image Picker (Lets Coach Dev preview his 8 JPGs immediately)
+      // Local Manga Image Picker (Lets Coach Dev preview all JPGs immediately)
       document.getElementById('localMangaUpload').addEventListener('change', (e) => {
         const files = Array.from(e.target.files || []);
         if (!files.length) return;
@@ -1706,7 +1775,7 @@
         renderAllPagesGallery();
       });
 
-      // Illustrated SVG Storyboard Fallback Renderer (When JPG files are not yet reachable)
+      // Illustrated SVG Storyboard Fallback Renderer
       function buildIllustratedMangaFallback(spread) {
         const panelCardsHtml = spread.panels.map((p, i) => `
           <div class="bg-obsidian-900/95 border border-slate-700/80 rounded-xl p-3.5 text-left relative overflow-hidden">
@@ -1735,7 +1804,7 @@
         `;
       }
 
-      // Render Page Selector Pills (Pages 1–14)
+      // Render Page Selector Pills (Chapters 1 & 2 Spreads)
       const spreadPagePills = document.getElementById('spreadPagePills');
       function renderSpreadPills() {
         spreadPagePills.innerHTML = '';
@@ -1798,7 +1867,7 @@
         }
       }
 
-      // Render Full-Scroll All 14 Pages Gallery
+      // Render Full-Scroll All 28 Pages Gallery
       function renderAllPagesGallery() {
         const container = document.getElementById('mangaAllPagesContainer');
         container.innerHTML = mangaSpreads.map((sp, idx) => {
@@ -1839,7 +1908,7 @@
         renderCurrentSpread(true);
       });
 
-      // Reader Mode Toggle (Single Spread vs All 14 Pages)
+      // Reader Mode Toggle (Single Spread vs All 28 Pages)
       const modeSpreadBtn = document.getElementById('modeSpreadBtn');
       const modeAllPagesBtn = document.getElementById('modeAllPagesBtn');
       const spreadReaderContainer = document.getElementById('mangaSpreadReaderContainer');
@@ -2124,8 +2193,7 @@
         window.speechSynthesis.speak(utterance);
       }
 
-      // Hybrid Narrator: Plays studio MP3 (assets/audio/spread-01.mp3..08.mp3) first,
-      // and falls back seamlessly to browser speech if the MP3 is not yet uploaded.
+      // Hybrid Narrator: Plays studio MP3 first, falls back to browser speech if missing
       function speakSpreadNarration(spread) {
         stopNarration();
         isNarrating = true;
