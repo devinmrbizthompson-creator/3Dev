@@ -870,12 +870,12 @@
             <span id="spreadPageBadge" class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/35 font-display font-bold text-xs uppercase tracking-widest">
               Pages 1–2 • Spread 1 of 8
             </span>
-            <span id="spreadFileBadge" class="text-[11px] font-mono text-slate-400">manga-page-01-02.jpg</span>
+            <span id="spreadFileBadge" class="text-[11px] font-mono text-slate-400">assets/images/manga-page-01-02.jpg</span>
           </div>
 
           <!-- Artwork Display Frame with Automatic Illustrated Fallback -->
           <div id="mangaArtworkWrapper" class="relative w-full rounded-xl overflow-hidden bg-obsidian-950 border border-slate-800 min-h-[280px] sm:min-h-[420px] flex items-center justify-center">
-            <img id="mangaSpreadImg" src="manga-page-01-02.jpg" alt="3Dev Manga Pages 1-2" class="w-full h-auto object-contain block" />
+            <img id="mangaSpreadImg" src="assets/images/manga-page-01-02.jpg" alt="3Dev Manga Pages 1-2" class="w-full h-auto object-contain block" />
             <div id="mangaFallbackCanvas" class="hidden w-full p-6 sm:p-8"></div>
           </div>
 
@@ -1490,7 +1490,7 @@
         {
           id: 1,
           pagesLabel: 'Pages 1–2',
-          fileName: 'manga-page-01-02.jpg',
+          fileName: 'assets/images/manga-page-01-02.jpg',
           arc: 'Origin Arc • Pages 1–2',
           title: 'The Crash & 16 Months of Indomitable Will',
           dimensionHeader: 'Dimension 1 Seed: Rehabilitation & Grit',
@@ -1506,7 +1506,7 @@
         {
           id: 2,
           pagesLabel: 'Pages 3–4',
-          fileName: 'manga-page-03-04.jpg',
+          fileName: 'assets/images/manga-page-03-04.jpg',
           arc: 'Origin Arc • Pages 3–4',
           title: 'The Back Tattoo Portal & Angel Liberation',
           dimensionHeader: 'Dual Guardians: Dragon & Angel',
@@ -1522,7 +1522,7 @@
         {
           id: 3,
           pagesLabel: 'Pages 5–6',
-          fileName: 'manga-page-05-06.jpg',
+          fileName: 'assets/images/manga-page-05-06.jpg',
           arc: 'Dimension 1 Awakening • Pages 5–6',
           title: 'Dimension 1 (Physical): Skeletal & Spiritual Fusion',
           dimensionHeader: 'Dimension 1: Physical Mastery Unlocked',
@@ -1538,7 +1538,7 @@
         {
           id: 4,
           pagesLabel: 'Pages 7–8',
-          fileName: 'manga-page-07-08.jpg',
+          fileName: 'assets/images/manga-page-07-08.jpg',
           arc: 'Reality Shift • Pages 7–8',
           title: 'Waking Up & Back on the KJ Pro Court',
           dimensionHeader: '3Fold Anchor: Grounded Daily Discipline',
@@ -1554,7 +1554,7 @@
         {
           id: 5,
           pagesLabel: 'Pages 9–10',
-          fileName: 'manga-page-09-10.jpg',
+          fileName: 'assets/images/manga-page-09-10.jpg',
           arc: 'Turning Point • Pages 9–10',
           title: 'Return to the Intersection — It Wasn’t a Dream!',
           dimensionHeader: 'Awareness & Court Vision',
@@ -1570,7 +1570,7 @@
         {
           id: 6,
           pagesLabel: 'Pages 11–12',
-          fileName: 'manga-page-11-12.jpg',
+          fileName: 'assets/images/manga-page-11-12.jpg',
           arc: 'The Truth Revealed • Pages 11–12',
           title: 'Vision of the Past: A Targeted Spiritual Ambush',
           dimensionHeader: 'Tactical Intelligence: Reading the Unseen',
@@ -1586,7 +1586,7 @@
         {
           id: 7,
           pagesLabel: 'Page 13',
-          fileName: 'manga-page-13.jpg',
+          fileName: 'assets/images/manga-page-13.jpg',
           arc: 'The Sacrifice & Choice • Page 13',
           title: 'The 16-Month Seal & Choosing the 3Dev Dimension',
           dimensionHeader: 'All 3 Dimensions: Physical • Mental • Tactical',
@@ -1602,7 +1602,7 @@
         {
           id: 8,
           pagesLabel: 'Page 14',
-          fileName: 'manga-page-14.jpg',
+          fileName: 'assets/images/manga-page-14.jpg',
           arc: 'Chapter 1 Climax • Page 14',
           title: 'Two Paths to Master D1: Brutal Conditioning vs. Spiritual Flow',
           dimensionHeader: 'Chapter 1 Finale: The Choice of Champions',
@@ -1675,14 +1675,26 @@
         const files = Array.from(e.target.files || []);
         if (!files.length) return;
         files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-        files.slice(0, 8).forEach((file, idx) => {
-          localCustomImages[idx] = URL.createObjectURL(file);
+
+        files.forEach((file, fallbackIdx) => {
+          const objectUrl = URL.createObjectURL(file);
+          const matchedIdx = mangaSpreads.findIndex((s) => {
+            const baseName = s.fileName.split('/').pop().replace(/\.[^/.]+$/, '').toLowerCase();
+            return file.name.toLowerCase().includes(baseName);
+          });
+
+          if (matchedIdx !== -1) {
+            localCustomImages[matchedIdx] = objectUrl;
+          } else if (fallbackIdx < mangaSpreads.length) {
+            localCustomImages[fallbackIdx] = objectUrl;
+          }
         });
+
         renderCurrentSpread(false);
         renderAllPagesGallery();
       });
 
-      // Illustrated SVG Storyboard Fallback Renderer (When JPG files are not yet uploaded to repo)
+      // Illustrated SVG Storyboard Fallback Renderer (When JPG files are not yet reachable)
       function buildIllustratedMangaFallback(spread) {
         const panelCardsHtml = spread.panels.map((p, i) => `
           <div class="bg-obsidian-900/95 border border-slate-700/80 rounded-xl p-3.5 text-left relative overflow-hidden">
@@ -1702,7 +1714,7 @@
                 <span class="font-display font-bold text-sm sm:text-base text-gold-400 uppercase tracking-wide">3Dev Manga Storyboard Panel — ${spread.pagesLabel}</span>
                 <span class="text-xl">👼</span>
               </div>
-              <span class="text-[11px] text-topaz-400 font-mono">Upload "${spread.fileName}" or use Load Local Manga Pages</span>
+              <span class="text-[11px] text-topaz-400 font-mono">Expected path: "${spread.fileName}" (or use Load Local Manga Pages)</span>
             </div>
             <div class="grid sm:grid-cols-2 gap-3">
               ${panelCardsHtml}
