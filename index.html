@@ -812,12 +812,16 @@
               <span id="audioStatusBadge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-obsidian-800 text-slate-400 border border-slate-700">Standby</span>
             </div>
             <p class="text-xs text-slate-400">
-              Deep Ō-daiko war drum & D2 Hirajoshi bass pulse, page-turn whoosh & dragon/angel SFX, plus stoic shōnen voice narration.
+              Deep Ō-daiko war drum & D2 Hirajoshi bass pulse, page-turn whoosh & dragon/angel SFX, plus studio MP3 / shōnen voice narration.
             </p>
           </div>
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
+          <select id="narratorVoiceSelect" aria-label="Select Fallback Narrator Voice" class="bg-obsidian-950 border border-gold-500/40 text-gold-300 text-xs font-bold rounded-xl px-3 py-2.5 outline-none max-w-[200px]">
+            <option value="">🎙️ Auto Male Voice</option>
+          </select>
+
           <button type="button" id="toggleAmbientAudioBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-gold-400 border border-gold-500/40 text-xs font-bold uppercase tracking-wider transition-all">
             <span id="ambientBtnIcon">🎵</span>
             <span id="ambientBtnLabel">Start Ambient & SFX</span>
@@ -1484,13 +1488,14 @@
       });
 
       // =====================================================================
-      // 7. 3DEV MANGA VIEW SWITCHER, SPREADS 1–14 & WEB AUDIO / VOICE ENGINE
+      // 7. 3DEV MANGA VIEW SWITCHER, SPREADS 1–14 & HYBRID AUDIO / TTS ENGINE
       // =====================================================================
       const mangaSpreads = [
         {
           id: 1,
           pagesLabel: 'Pages 1–2',
           fileName: 'assets/images/manga-page-01-02.jpg',
+          audioFile: 'assets/audio/spread-01.mp3',
           arc: 'Origin Arc • Pages 1–2',
           title: 'Iron Forged in the Crucible',
           dimensionHeader: 'Dimension 1 Seed: Rehabilitation & Grit',
@@ -1507,6 +1512,7 @@
           id: 2,
           pagesLabel: 'Pages 3–4',
           fileName: 'assets/images/manga-page-03-04.jpg',
+          audioFile: 'assets/audio/spread-02.mp3',
           arc: 'Origin Arc • Pages 3–4',
           title: 'The Seal Upon His Back',
           dimensionHeader: 'Dual Guardians: Dragon & Angel',
@@ -1523,6 +1529,7 @@
           id: 3,
           pagesLabel: 'Pages 5–6',
           fileName: 'assets/images/manga-page-05-06.jpg',
+          audioFile: 'assets/audio/spread-03.mp3',
           arc: 'Dimension 1 Awakening • Pages 5–6',
           title: 'Dimension 1: Skeletal & Spiritual Fusion',
           dimensionHeader: 'Dimension 1: Physical Mastery Unlocked',
@@ -1539,6 +1546,7 @@
           id: 4,
           pagesLabel: 'Pages 7–8',
           fileName: 'assets/images/manga-page-07-08.jpg',
+          audioFile: 'assets/audio/spread-04.mp3',
           arc: 'Reality Shift • Pages 7–8',
           title: 'Stillness Before the Storm',
           dimensionHeader: '3Fold Anchor: Grounded Daily Discipline',
@@ -1555,6 +1563,7 @@
           id: 5,
           pagesLabel: 'Pages 9–10',
           fileName: 'assets/images/manga-page-09-10.jpg',
+          audioFile: 'assets/audio/spread-05.mp3',
           arc: 'Turning Point • Pages 9–10',
           title: 'Return to the Crossroads',
           dimensionHeader: 'Awareness & Court Vision',
@@ -1571,6 +1580,7 @@
           id: 6,
           pagesLabel: 'Pages 11–12',
           fileName: 'assets/images/manga-page-11-12.jpg',
+          audioFile: 'assets/audio/spread-06.mp3',
           arc: 'The Truth Revealed • Pages 11–12',
           title: 'The Unseen Ambush',
           dimensionHeader: 'Tactical Intelligence: Reading the Unseen',
@@ -1587,6 +1597,7 @@
           id: 7,
           pagesLabel: 'Page 13',
           fileName: 'assets/images/manga-page-13.jpg',
+          audioFile: 'assets/audio/spread-07.mp3',
           arc: 'The Sacrifice & Choice • Page 13',
           title: 'Sixteen Months of Silent Protection',
           dimensionHeader: 'All 3 Dimensions: Physical • Mental • Tactical',
@@ -1603,6 +1614,7 @@
           id: 8,
           pagesLabel: 'Page 14',
           fileName: 'assets/images/manga-page-14.jpg',
+          audioFile: 'assets/audio/spread-08.mp3',
           arc: 'Chapter 1 Climax • Page 14',
           title: 'Two Paths to Mastery',
           dimensionHeader: 'Chapter 1 Finale: The Choice of Champions',
@@ -1861,12 +1873,13 @@
       });
 
       // =====================================================================
-      // WEB AUDIO API SOUNDTRACK + SFX & MASCULINE SHŌNEN NARRATION ENGINE
+      // WEB AUDIO API SOUNDTRACK + SFX & HYBRID MP3 / SHŌNEN NARRATION ENGINE
       // =====================================================================
       let audioCtx = null;
       let ambientAudioActive = false;
       let ambientLoopTimer = null;
       let isNarrating = false;
+      let currentNarrationAudio = null;
 
       function ensureAudioContext() {
         if (!audioCtx) {
@@ -1882,11 +1895,9 @@
       function playAmbientPhrase() {
         if (!ambientAudioActive || !audioCtx) return;
         const now = audioCtx.currentTime;
-        // D2 Hirajoshi / Minor Pentatonic bass notes (Hz)
         const scale = [73.42, 82.41, 87.31, 110.00, 116.54, 146.83];
         const note = scale[Math.floor(Math.random() * scale.length)];
 
-        // Plucked shamisen-like bass tone
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'triangle';
@@ -1899,7 +1910,6 @@
         osc.start(now);
         osc.stop(now + 1.45);
 
-        // Deep Ō-daiko war drum pulse
         const drumOsc = audioCtx.createOscillator();
         const drumGain = audioCtx.createGain();
         drumOsc.type = 'sine';
@@ -1932,7 +1942,6 @@
       function playSpiritualSurgeSfx() {
         ensureAudioContext();
         const now = audioCtx.currentTime;
-        // Low Dragon Growl Sweep
         const growl = audioCtx.createOscillator();
         const growlGain = audioCtx.createGain();
         growl.type = 'sawtooth';
@@ -1945,7 +1954,6 @@
         growl.start(now);
         growl.stop(now + 0.78);
 
-        // High Angelic Shimmer Chime
         [587.33, 880.00, 1174.66].forEach((freq, i) => {
           const chime = audioCtx.createOscillator();
           const cGain = audioCtx.createGain();
@@ -1981,53 +1989,126 @@
 
       document.getElementById('triggerSfxBtn').addEventListener('click', playSpiritualSurgeSfx);
 
-      // Select Deep, Authoritative Masculine Voice
+      // Known male vs female voice identifiers for SpeechSynthesis fallback
+      const MALE_VOICE_HINTS = [
+        'daniel', 'arthur', 'gordon', 'rishi', 'oliver', 'tom', 'lee', 'fred',
+        'alex', 'aaron', 'albert', 'bruce', 'ralph', 'junior', 'reed', 'eddy',
+        'rocko', 'grandpa', 'guy', 'christopher', 'david', 'mark', 'george',
+        'ryan', 'william', 'liam', 'james', 'male', 'iom', 'iol', 'tpd', 'tpf', 'rjs'
+      ];
+
+      const FEMALE_VOICE_HINTS = [
+        'samantha', 'victoria', 'karen', 'moira', 'tessa', 'fiona', 'veena',
+        'ava', 'allison', 'susan', 'nicky', 'kate', 'serena', 'stephanie',
+        'zira', 'hazel', 'aria', 'jenny', 'michelle', 'monica', 'paulina',
+        'flo', 'shelley', 'sandy', 'grandma', 'kathy', 'princess', 'female',
+        'iob', 'sfg', 'tpc', 'tpe'
+      ];
+
+      function isLikelyMaleVoice(voice) {
+        const name = voice.name.toLowerCase();
+        if (FEMALE_VOICE_HINTS.some(f => name.includes(f))) return false;
+        return MALE_VOICE_HINTS.some(m => name.includes(m));
+      }
+
+      function populateVoiceDropdown() {
+        if (!('speechSynthesis' in window)) return;
+        const select = document.getElementById('narratorVoiceSelect');
+        if (!select) return;
+
+        const voices = window.speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
+        if (!voices.length) return;
+
+        const savedVoiceURI = localStorage.getItem('3dev_narrator_voice') || '';
+        const maleVoices = voices.filter(isLikelyMaleVoice);
+        const otherVoices = voices.filter(v => !isLikelyMaleVoice(v));
+
+        select.innerHTML = '';
+
+        maleVoices.forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v.voiceURI;
+          opt.textContent = `🎙️ ${v.name.replace(/Microsoft |Google |Apple /g, '')}`;
+          if (v.voiceURI === savedVoiceURI) opt.selected = true;
+          select.appendChild(opt);
+        });
+
+        if (!maleVoices.length) {
+          otherVoices.forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v.voiceURI;
+            opt.textContent = `🎙️ ${v.name.replace(/Microsoft |Google |Apple /g, '')}`;
+            if (v.voiceURI === savedVoiceURI) opt.selected = true;
+            select.appendChild(opt);
+          });
+        }
+      }
+
       function getMasculineNarratorVoice() {
         if (!('speechSynthesis' in window)) return null;
         const voices = window.speechSynthesis.getVoices();
         if (!voices.length) return null;
 
-        const preferredNames = [
-          'Daniel',
-          'Arthur',
-          'Google UK English Male',
-          'Microsoft Guy',
-          'Microsoft Christopher',
-          'Alex',
-          'Aaron',
-          'David'
-        ];
-
-        for (const name of preferredNames) {
-          const match = voices.find(v => v.lang.startsWith('en') && v.name.includes(name));
-          if (match) return match;
+        const select = document.getElementById('narratorVoiceSelect');
+        if (select && select.value) {
+          const chosen = voices.find(v => v.voiceURI === select.value);
+          if (chosen) return chosen;
         }
 
-        const maleFallback = voices.find(v => v.lang.startsWith('en') && /male/i.test(v.name));
-        return maleFallback || voices.find(v => v.lang.startsWith('en')) || voices[0];
+        const enVoices = voices.filter(v => v.lang.startsWith('en'));
+        const maleMatch = enVoices.find(isLikelyMaleVoice);
+        if (maleMatch) return maleMatch;
+
+        const nonFemale = enVoices.find(v => !FEMALE_VOICE_HINTS.some(f => v.name.toLowerCase().includes(f)));
+        return nonFemale || enVoices[0] || voices[0];
       }
 
       if ('speechSynthesis' in window) {
-        window.speechSynthesis.onvoiceschanged = () => getMasculineNarratorVoice();
+        populateVoiceDropdown();
+        window.speechSynthesis.onvoiceschanged = populateVoiceDropdown;
       }
 
-      function stopNarration() {
-        if ('speechSynthesis' in window) {
-          window.speechSynthesis.cancel();
-        }
+      const narratorSelectEl = document.getElementById('narratorVoiceSelect');
+      if (narratorSelectEl) {
+        narratorSelectEl.addEventListener('change', () => {
+          localStorage.setItem('3dev_narrator_voice', narratorSelectEl.value);
+          if (isNarrating) {
+            speakSpreadNarration(mangaSpreads[currentSpreadIndex]);
+          }
+        });
+      }
+
+      function resetNarrationUi() {
         isNarrating = false;
         const narrateLabel = document.getElementById('narrateBtnLabel');
         if (narrateLabel) narrateLabel.textContent = 'Narrate Current Spread';
+        const badge = document.getElementById('audioStatusBadge');
+        if (badge) {
+          badge.textContent = ambientAudioActive ? 'Audio Live' : 'Standby';
+          badge.className = ambientAudioActive
+            ? 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+            : 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-obsidian-800 text-slate-400 border border-slate-700';
+        }
       }
 
-      function speakSpreadNarration(spread) {
-        if (!('speechSynthesis' in window)) return;
-        window.speechSynthesis.cancel();
-        isNarrating = true;
-        document.getElementById('narrateBtnLabel').textContent = 'Stop Narration';
-        document.getElementById('audioStatusBadge').textContent = 'Narrating';
-        document.getElementById('audioStatusBadge').className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-gold-500/20 text-gold-300 border border-gold-500/40';
+      function stopNarration() {
+        if (currentNarrationAudio) {
+          currentNarrationAudio.pause();
+          currentNarrationAudio.currentTime = 0;
+          currentNarrationAudio = null;
+        }
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+        resetNarrationUi();
+      }
 
+      function runBrowserSpeechFallback(spread) {
+        if (!('speechSynthesis' in window)) {
+          resetNarrationUi();
+          return;
+        }
+        window.speechSynthesis.cancel();
         const cleanNarration = spread.narration.replace(/^Pages?\s+\d+(\s+and\s+\d+)?(\s*—\s*Chapter\s+\d+\s+Climax)?\.\s*/i, '');
         const utterance = new SpeechSynthesisUtterance(`${spread.title}... ${cleanNarration}`);
 
@@ -2035,15 +2116,41 @@
         if (selectedVoice) utterance.voice = selectedVoice;
 
         utterance.rate = 0.89;
-        utterance.pitch = 0.80;
+        utterance.pitch = 0.72;
         utterance.volume = 1.0;
 
-        utterance.onend = () => {
-          isNarrating = false;
-          document.getElementById('narrateBtnLabel').textContent = 'Narrate Current Spread';
-          document.getElementById('audioStatusBadge').textContent = ambientAudioActive ? 'Audio Live' : 'Standby';
-        };
+        utterance.onend = resetNarrationUi;
+        utterance.onerror = resetNarrationUi;
         window.speechSynthesis.speak(utterance);
+      }
+
+      // Hybrid Narrator: Plays studio MP3 (assets/audio/spread-01.mp3..08.mp3) first,
+      // and falls back seamlessly to browser speech if the MP3 is not yet uploaded.
+      function speakSpreadNarration(spread) {
+        stopNarration();
+        isNarrating = true;
+        document.getElementById('narrateBtnLabel').textContent = 'Stop Narration';
+        document.getElementById('audioStatusBadge').textContent = 'Narrating';
+        document.getElementById('audioStatusBadge').className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-gold-500/20 text-gold-300 border border-gold-500/40';
+
+        if (spread.audioFile) {
+          const audio = new Audio(spread.audioFile);
+          currentNarrationAudio = audio;
+          audio.onended = () => {
+            currentNarrationAudio = null;
+            resetNarrationUi();
+          };
+          audio.onerror = () => {
+            currentNarrationAudio = null;
+            runBrowserSpeechFallback(spread);
+          };
+          audio.play().catch(() => {
+            currentNarrationAudio = null;
+            runBrowserSpeechFallback(spread);
+          });
+        } else {
+          runBrowserSpeechFallback(spread);
+        }
       }
 
       document.getElementById('narrateSpreadBtn').addEventListener('click', () => {
