@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3DEV Manga — Chapter 2: The Rebirth (Full Color)</title>
+  <style>
+    :root {
+      --bg-dark: #090d1a;
+      --bg-card: #11182c;
+      --cyan: #00f0ff;
+      --emerald: #10b981;
+      --gold: #f59e0b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: rgba(0, 240, 255, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at top, #131d3b 0%, var(--bg-dark) 65%);
+      color: var(--text-main);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9, 13, 26, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .badge {
+      background: linear-gradient(135deg, var(--cyan), var(--emerald));
+      color: #050811;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .brand h1 {
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+    }
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover, .btn.active {
+      background: rgba(0, 240, 255, 0.16);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+    .hero {
+      max-width: 960px;
+      margin: 2rem auto 1.5rem;
+      padding: 0 1.25rem;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      background: linear-gradient(90deg, #ffffff, var(--cyan), var(--emerald));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 1.25rem;
+      font-size: 0.98rem;
+    }
+    .page-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.5rem;
+    }
+    .reader-container {
+      max-width: 920px;
+      margin: 0 auto 4rem;
+      padding: 0 1.25rem;
+    }
+    .manga-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+    .manga-card-header {
+      padding: 1rem 1.4rem;
+      background: rgba(0, 240, 255, 0.06);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .manga-card-header h3 {
+      font-size: 1.15rem;
+      color: var(--cyan);
+    }
+    .manga-page-img {
+      width: 100%;
+      display: block;
+      background: #060913;
+    }
+    .manga-story-box {
+      padding: 1.25rem 1.4rem;
+      border-top: 1px solid var(--border);
+    }
+    .subtitles {
+      background: rgba(5, 8, 17, 0.7);
+      border-left: 3px solid var(--emerald);
+      padding: 0.85rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1rem;
+    }
+    .sub-en { font-weight: 600; margin-bottom: 0.3rem; }
+    .sub-jp { color: var(--cyan); font-size: 0.92rem; }
+    .panel-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .panel-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 0.7rem 0.85rem;
+      font-size: 0.88rem;
+    }
+    .panel-item strong { color: var(--gold); display: block; margin-bottom: 0.2rem; }
+    .hidden { display: none; }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <a href="index.html" class="btn">← Back to 3DEV Home</a>
+      <h1>3DEV MANGA</h1>
+      <span class="badge">Chapter 2 • Full Color</span>
+    </div>
+    <div class="nav-controls">
+      <button id="modeScrollBtn" class="btn active" onclick="setMode('scroll')">Vertical Webtoon Scroll</button>
+      <button id="modeSingleBtn" class="btn" onclick="setMode('single')">Single Page Reader</button>
+      <button id="toggleScriptBtn" class="btn active" onclick="toggleScripts()">Story & Subtitles: ON</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Chapter 2: The Rebirth &amp; Tridimensional Synthesis</h2>
+    <p>Retreating from the NYC rooftop after the Dragon and Angel presented two opposing philosophies, Dev steps under a scalding shower—only for the overwhelming pressure of Dimensions 1, 2, and 3 to fuse into a single full-color rebirth.</p>
+    <div id="pagePills" class="page-pills"></div>
+  </section>
+
+  <main id="readerContainer" class="reader-container"></main>
+
+  <footer>
+    3DEV Development • TriDev Manga Series • Chapter 2 (Pages 1–8)
+  </footer>
+
+  <script src="chapter2-data.js"></script>
+  <script>
+    let viewMode = 'scroll';
+    let currentPage = 1;
+    let showScripts = true;
+
+    const data = window.TRIDEV_CHAPTER_2;
+    const pillsEl = document.getElementById('pagePills');
+    const containerEl = document.getElementById('readerContainer');
+
+    function renderPills() {
+      pillsEl.innerHTML = data.pages.map(p => `
+        <button class="btn ${viewMode === 'single' && currentPage === p.page ? 'active' : ''}"
+                onclick="jumpToPage(${p.page})">
+          Page ${p.page}: ${p.title}
+        </button>
+      `).join('');
+    }
+
+    function renderPages() {
+      const pagesToRender = viewMode === 'single'
+        ? data.pages.filter(p => p.page === currentPage)
+        : data.pages;
+
+      containerEl.innerHTML = pagesToRender.map(p => `
+        <article id="page-${p.page}" class="manga-card">
+          <div class="manga-card-header">
+            <h3>Page ${p.page} — ${p.title}</h3>
+            <span class="badge">Full Color</span>
+          </div>
+          <img class="manga-page-img" src="${encodeURI(p.image)}" alt="${p.alt}" loading="lazy" />
+          <div class="manga-story-box ${showScripts ? '' : 'hidden'}">
+            <div class="subtitles">
+              <div class="sub-en">${p.captionEn}</div>
+              <div class="sub-jp">${p.captionJp}</div>
+            </div>
+            <div class="panel-list">
+              ${p.panels.map(pan => `
+                <div class="panel-item">
+                  <strong>Panel ${pan.panel}${pan.sfx ? ' • ' + pan.sfx : ''}</strong>
+                  <span>${pan.text}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      if (viewMode === 'single') {
+        containerEl.innerHTML += `
+          <div style="display:flex; justify-content:space-between; gap:1rem; margin-top:1rem;">
+            <button class="btn" ${currentPage <= 1 ? 'disabled style="opacity:0.4"' : ''} onclick="jumpToPage(${currentPage - 1})">← Previous Page</button>
+            <span style="color:var(--text-muted); align-self:center;">Page ${currentPage} of ${data.pages.length}</span>
+            <button class="btn" ${currentPage >= data.pages.length ? 'disabled style="opacity:0.4"' : ''} onclick="jumpToPage(${currentPage + 1})">Next Page →</button>
+          </div>
+        `;
+      }
+      renderPills();
+    }
+
+    function setMode(mode) {
+      viewMode = mode;
+      document.getElementById('modeScrollBtn').classList.toggle('active', mode === 'scroll');
+      document.getElementById('modeSingleBtn').classList.toggle('active', mode === 'single');
+      renderPages();
+    }
+
+    function jumpToPage(pageNum) {
+      if (pageNum < 1 || pageNum > data.pages.length) return;
+      currentPage = pageNum;
+      if (viewMode === 'single') {
+        renderPages();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById('page-' + pageNum);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function toggleScripts() {
+      showScripts = !showScripts;
+      const btn = document.getElementById('toggleScriptBtn');
+      btn.textContent = 'Story & Subtitles: ' + (showScripts ? 'ON' : 'OFF');
+      btn.classList.toggle('active', showScripts);
+      renderPages();
+    }
+
+    renderPages();
+  </script>
+</body>
+</html>
