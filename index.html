@@ -818,6 +818,10 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
+          <select id="narratorVoiceSelect" aria-label="Select Narrator Voice" class="bg-obsidian-950 border border-gold-500/40 text-gold-300 text-xs font-bold rounded-xl px-3 py-2.5 outline-none max-w-[200px]">
+            <option value="">🎙️ Auto Male Voice</option>
+          </select>
+
           <button type="button" id="toggleAmbientAudioBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-gold-400 border border-gold-500/40 text-xs font-bold uppercase tracking-wider transition-all">
             <span id="ambientBtnIcon">🎵</span>
             <span id="ambientBtnLabel">Start Ambient & SFX</span>
@@ -1981,34 +1985,96 @@
 
       document.getElementById('triggerSfxBtn').addEventListener('click', playSpiritualSurgeSfx);
 
-      // Select Deep, Authoritative Masculine Voice
+      // Known male vs female voice identifiers across iOS, Android, macOS, Windows & Chrome
+      const MALE_VOICE_HINTS = [
+        'daniel', 'arthur', 'gordon', 'rishi', 'oliver', 'tom', 'lee', 'fred',
+        'alex', 'aaron', 'albert', 'bruce', 'ralph', 'junior', 'reed', 'eddy',
+        'rocko', 'grandpa', 'guy', 'christopher', 'david', 'mark', 'george',
+        'ryan', 'william', 'liam', 'james', 'male', 'iom', 'iol', 'tpd', 'tpf', 'rjs'
+      ];
+
+      const FEMALE_VOICE_HINTS = [
+        'samantha', 'victoria', 'karen', 'moira', 'tessa', 'fiona', 'veena',
+        'ava', 'allison', 'susan', 'nicky', 'kate', 'serena', 'stephanie',
+        'zira', 'hazel', 'aria', 'jenny', 'michelle', 'monica', 'paulina',
+        'flo', 'shelley', 'sandy', 'grandma', 'kathy', 'princess', 'female',
+        'iob', 'sfg', 'tpc', 'tpe'
+      ];
+
+      function isLikelyMaleVoice(voice) {
+        const name = voice.name.toLowerCase();
+        if (FEMALE_VOICE_HINTS.some(f => name.includes(f))) return false;
+        return MALE_VOICE_HINTS.some(m => name.includes(m));
+      }
+
+      function populateVoiceDropdown() {
+        if (!('speechSynthesis' in window)) return;
+        const select = document.getElementById('narratorVoiceSelect');
+        if (!select) return;
+
+        const voices = window.speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
+        if (!voices.length) return;
+
+        const savedVoiceURI = localStorage.getItem('3dev_narrator_voice') || '';
+        const maleVoices = voices.filter(isLikelyMaleVoice);
+        const otherVoices = voices.filter(v => !isLikelyMaleVoice(v));
+
+        select.innerHTML = '';
+
+        // Put detected male voices at the very top
+        maleVoices.forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v.voiceURI;
+          opt.textContent = `🎙️ ${v.name.replace(/Microsoft |Google |Apple /g, '')}`;
+          if (v.voiceURI === savedVoiceURI) opt.selected = true;
+          select.appendChild(opt);
+        });
+
+        // Fallback if device hides gender labels completely
+        if (!maleVoices.length) {
+          otherVoices.forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v.voiceURI;
+            opt.textContent = `🎙️ ${v.name.replace(/Microsoft |Google |Apple /g, '')}`;
+            if (v.voiceURI === savedVoiceURI) opt.selected = true;
+            select.appendChild(opt);
+          });
+        }
+      }
+
       function getMasculineNarratorVoice() {
         if (!('speechSynthesis' in window)) return null;
         const voices = window.speechSynthesis.getVoices();
         if (!voices.length) return null;
 
-        const preferredNames = [
-          'Daniel',
-          'Arthur',
-          'Google UK English Male',
-          'Microsoft Guy',
-          'Microsoft Christopher',
-          'Alex',
-          'Aaron',
-          'David'
-        ];
-
-        for (const name of preferredNames) {
-          const match = voices.find(v => v.lang.startsWith('en') && v.name.includes(name));
-          if (match) return match;
+        const select = document.getElementById('narratorVoiceSelect');
+        if (select && select.value) {
+          const chosen = voices.find(v => v.voiceURI === select.value);
+          if (chosen) return chosen;
         }
 
-        const maleFallback = voices.find(v => v.lang.startsWith('en') && /male/i.test(v.name));
-        return maleFallback || voices.find(v => v.lang.startsWith('en')) || voices[0];
+        const enVoices = voices.filter(v => v.lang.startsWith('en'));
+        const maleMatch = enVoices.find(isLikelyMaleVoice);
+        if (maleMatch) return maleMatch;
+
+        // Avoid Samantha/Zira default female voice if another English voice exists
+        const nonFemale = enVoices.find(v => !FEMALE_VOICE_HINTS.some(f => v.name.toLowerCase().includes(f)));
+        return nonFemale || enVoices[0] || voices[0];
       }
 
       if ('speechSynthesis' in window) {
-        window.speechSynthesis.onvoiceschanged = () => getMasculineNarratorVoice();
+        populateVoiceDropdown();
+        window.speechSynthesis.onvoiceschanged = populateVoiceDropdown;
+      }
+
+      const narratorSelectEl = document.getElementById('narratorVoiceSelect');
+      if (narratorSelectEl) {
+        narratorSelectEl.addEventListener('change', () => {
+          localStorage.setItem('3dev_narrator_voice', narratorSelectEl.value);
+          if (isNarrating) {
+            speakSpreadNarration(mangaSpreads[currentSpreadIndex]);
+          }
+        });
       }
 
       function stopNarration() {
@@ -2035,7 +2101,7 @@
         if (selectedVoice) utterance.voice = selectedVoice;
 
         utterance.rate = 0.89;
-        utterance.pitch = 0.80;
+        utterance.pitch = 0.72;
         utterance.volume = 1.0;
 
         utterance.onend = () => {
