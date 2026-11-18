@@ -49,7 +49,6 @@
   </script>
 
   <style>
-    /* Custom Championship Court Line & Glow Accents */
     body {
       background-color: #06070A;
       color: #F8FAFC;
@@ -86,7 +85,6 @@
       pointer-events: none;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -101,7 +99,6 @@
       background: #D4AF37;
     }
 
-    /* QR Code container centering */
     #qrcode img, #qrcode canvas {
       margin: 0 auto;
       border-radius: 0.5rem;
@@ -127,7 +124,6 @@
   <!-- Sticky Navigation Header -->
   <header class="sticky top-0 z-40 bg-obsidian-950/85 backdrop-blur-md border-b border-gold-500/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <!-- Brand Logo -->
       <a href="#" class="flex items-center gap-3 group">
         <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-topaz-500 p-[2px] shadow-lg shadow-gold-500/15">
           <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center">
@@ -144,25 +140,16 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-        <a href="#methodology" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">3Fold System</a>
-        <a href="#drills" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">Drill Library</a>
-        <a href="#rankings" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">3-Star Rankings</a>
-        <a href="#highlights" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">Highlights</a>
-        <a href="#testimonials" data-nav-target="coaching" class="nav-coaching-link hover:text-gold-400 transition-colors">Testimonials</a>
-        <a href="#qr-tracker" data-nav-target="coaching" class="nav-coaching-link hover:text-topaz-400 transition-colors">QR & Source</a>
-        <button type="button" id="navMangaBtnDesktop" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-gold-500/45 text-gold-300 font-display font-bold uppercase tracking-wider text-xs transition-all shadow-md shadow-gold-500/10">
-          <span>⚔️ 3Dev Manga</span>
-          <span class="px-1.5 py-0.2 rounded bg-topaz-500/20 text-topaz-300 text-[10px]">Ch.1–2</span>
-        </button>
+        <a href="#methodology" class="hover:text-gold-400 transition-colors">3Fold System</a>
+        <a href="#drills" class="hover:text-gold-400 transition-colors">Drill Library</a>
+        <a href="#rankings" class="hover:text-gold-400 transition-colors">3-Star Rankings</a>
+        <a href="#highlights" class="hover:text-gold-400 transition-colors">Highlights</a>
+        <a href="#testimonials" class="hover:text-gold-400 transition-colors">Testimonials</a>
+        <a href="#qr-tracker" class="hover:text-topaz-400 transition-colors">QR & Source</a>
       </nav>
 
-      <!-- CTA & Mobile Manga Switcher -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <button type="button" id="navMangaBtnMobile" class="md:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-obsidian-850 border border-gold-500/45 text-gold-300 font-display font-bold uppercase tracking-wider text-xs">
-          <span>⚔️ 3Dev Manga</span>
-        </button>
         <a href="#contact-coach" id="headerContactCta" class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
           <span class="hidden sm:inline">Message Coach Dev</span>
           <span class="sm:hidden">Message</span>
@@ -170,30 +157,12 @@
         </a>
       </div>
     </div>
-
-    <!-- Mobile Quick-Switch Strip -->
-    <div class="md:hidden bg-obsidian-900/95 border-t border-slate-800/80 px-4 py-2 flex items-center justify-between gap-2 overflow-x-auto text-[11px] font-semibold">
-      <button type="button" id="mobileSwitchCoaching" class="px-3 py-1 rounded-lg bg-gold-500 text-obsidian-950 font-bold shrink-0">
-        🏀 3Fold System
-      </button>
-      <button type="button" id="mobileSwitchManga" class="px-3 py-1 rounded-lg bg-obsidian-850 text-topaz-300 border border-topaz-500/40 shrink-0">
-        ⚔️ 3Dev Manga (Ch. 1 & 2)
-      </button>
-      <a href="#drills" class="nav-coaching-link text-slate-300 hover:text-gold-400 shrink-0">Drills</a>
-      <a href="#rankings" class="nav-coaching-link text-slate-300 hover:text-gold-400 shrink-0">Rankings</a>
-      <a href="#qr-tracker" class="nav-coaching-link text-slate-300 hover:text-topaz-400 shrink-0">QR Code</a>
-    </div>
   </header>
 
-  <!-- ===================================================================== -->
-  <!-- VIEW 1: MAIN 3FOLD PRACTICE SYSTEM COACHING LANDING PAGE              -->
-  <!-- ===================================================================== -->
   <main id="coachingView">
-
   <!-- Hero Section -->
   <section class="relative pt-12 pb-20 sm:pt-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     <div class="grid lg:grid-cols-12 gap-10 items-center">
-      <!-- Left Column: Headline & Bio Credentials -->
       <div class="lg:col-span-7 space-y-6">
         <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-obsidian-850 border border-gold-500/35 text-xs font-semibold text-gold-300">
           <span>★</span>
@@ -210,7 +179,6 @@
           Built on 20+ years of NCAA Division I, international pro, and Harlem exhibition mastery, the <strong class="text-white">3DEV 3Fold Practice System</strong> transforms youth and varsity athletes through structured rep accountability, elite footwork, and 3-Star Gold ranking benchmarks.
         </p>
 
-        <!-- Credential Pills -->
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
           <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3">
             <div class="text-gold-400 font-display font-bold text-sm uppercase">NCAA Division I</div>
@@ -226,7 +194,6 @@
           </div>
         </div>
 
-        <!-- Safety & Action Buttons -->
         <div class="flex flex-wrap items-center gap-3.5 pt-2">
           <a href="#contact-coach" class="bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all text-sm sm:text-base">
             Submit Question or Inquiry
@@ -247,7 +214,6 @@
         </div>
       </div>
 
-      <!-- Right Column: Interactive Championship Scorecard Preview -->
       <div class="lg:col-span-5">
         <div class="bg-obsidian-900/95 topaz-gold-border rounded-2xl p-6 sm:p-7 shadow-2xl">
           <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
@@ -261,7 +227,6 @@
           </div>
 
           <div class="space-y-4">
-            <!-- Pillar 1 -->
             <div class="bg-obsidian-850 border border-gold-500/25 rounded-xl p-4">
               <div class="flex items-center justify-between">
                 <span class="font-display font-bold text-gold-400 uppercase tracking-wide">01. Physical Execution</span>
@@ -272,7 +237,6 @@
               </p>
             </div>
 
-            <!-- Pillar 2 -->
             <div class="bg-obsidian-850 border border-topaz-500/30 rounded-xl p-4">
               <div class="flex items-center justify-between">
                 <span class="font-display font-bold text-topaz-400 uppercase tracking-wide">02. Mental Discipline</span>
@@ -283,7 +247,6 @@
               </p>
             </div>
 
-            <!-- Pillar 3 -->
             <div class="bg-obsidian-850 border border-amber-500/25 rounded-xl p-4">
               <div class="flex items-center justify-between">
                 <span class="font-display font-bold text-amber-400 uppercase tracking-wide">03. Tactical Application</span>
@@ -295,10 +258,9 @@
             </div>
           </div>
 
-          <!-- Career Highlight Strip -->
           <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
             <span>Career High (Sweden Pro): <strong class="text-white">32 PTS / 24 REB</strong></span>
-            <button type="button" onclick="switchView('manga')" class="text-gold-400 hover:underline font-bold">Read 3Dev Manga (Ch. 1-2) ⚔️ →</button>
+            <span class="text-gold-400 font-bold">3Fold Certified System</span>
           </div>
         </div>
       </div>
@@ -318,7 +280,6 @@
         </p>
       </div>
 
-      <!-- Filter Buttons -->
       <div class="flex flex-wrap gap-2" id="drillFilters">
         <button data-filter="all" class="drill-filter-btn active px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-obsidian-950 transition-all">
           All Signature Drills (9)
@@ -338,12 +299,8 @@
       </div>
     </div>
 
-    <!-- Drill Cards Grid -->
-    <div id="drillGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <!-- Populated via JavaScript -->
-    </div>
+    <div id="drillGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
 
-    <!-- Team KJ Project Swish Levels 0-6 Interactive Bar -->
     <div id="methodology" class="mt-12 bg-obsidian-900/90 topaz-gold-border rounded-2xl p-6 sm:p-8">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
@@ -353,9 +310,7 @@
         <span class="text-xs text-slate-400 bg-obsidian-850 px-3 py-1.5 rounded-lg border border-slate-800">Click any level to inspect mastery criteria</span>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5" id="levelSelector">
-        <!-- Populated by JS -->
-      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5" id="levelSelector"></div>
 
       <div id="levelDetailBox" class="mt-5 bg-obsidian-850/90 border border-topaz-500/30 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -369,7 +324,7 @@
     </div>
   </section>
 
-  <!-- 3-Star Gold Rankings Preview & Spreadsheet Bridge -->
+  <!-- 3-Star Gold Rankings Preview -->
   <section id="rankings" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Athlete Accountability & Recognition</span>
@@ -382,7 +337,6 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <!-- 1-Star Tier -->
       <div class="bg-obsidian-900 border border-amber-700/40 rounded-2xl p-6 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -404,7 +358,6 @@
         </div>
       </div>
 
-      <!-- 2-Star Tier -->
       <div class="bg-obsidian-900 border border-topaz-500/50 rounded-2xl p-6 flex flex-col justify-between shadow-lg shadow-topaz-500/5">
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -426,7 +379,6 @@
         </div>
       </div>
 
-      <!-- 3-Star Gold Tier -->
       <div class="bg-gradient-to-b from-obsidian-850 to-obsidian-950 topaz-gold-border rounded-2xl p-6 flex flex-col justify-between shadow-xl shadow-gold-500/10">
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -451,7 +403,7 @@
     </div>
   </section>
 
-  <!-- Watch Coach Dev in Action: Highlight Reels & Social Media Showcase -->
+  <!-- Watch Coach Dev in Action -->
   <section id="highlights" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
       <div>
@@ -464,7 +416,6 @@
         </p>
       </div>
 
-      <!-- Direct Social Media Pills -->
       <div class="flex flex-wrap items-center gap-2.5">
         <a href="https://www.instagram.com/coach.dev.thompson/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-pink-500/20 hover:from-amber-500/30 hover:to-pink-500/30 border border-gold-500/40 text-xs font-bold text-gold-300 transition-all">
           <span>📸 Instagram (@coach.dev.thompson)</span>
@@ -478,9 +429,7 @@
       </div>
     </div>
 
-    <!-- 4 Verified Highlight Reel Cards -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <!-- Reel 1 -->
       <a href="https://www.youtube.com/watch?v=H4HyGm3WLtc" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-gold-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
         <div>
           <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
@@ -504,7 +453,6 @@
         </div>
       </a>
 
-      <!-- Reel 2 -->
       <a href="https://www.youtube.com/watch?v=DDHtrD4AiLo" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-topaz-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
         <div>
           <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
@@ -528,7 +476,6 @@
         </div>
       </a>
 
-      <!-- Reel 3 -->
       <a href="https://www.youtube.com/watch?v=btZNs0g_AQU" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-gold-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
         <div>
           <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
@@ -552,7 +499,6 @@
         </div>
       </a>
 
-      <!-- Reel 4 -->
       <a href="https://www.youtube.com/watch?v=XAVD8YX10SE" target="_blank" rel="noopener noreferrer" class="group bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-topaz-500/50 rounded-2xl overflow-hidden transition-all flex flex-col justify-between">
         <div>
           <div class="relative aspect-video bg-obsidian-950 overflow-hidden">
@@ -578,7 +524,7 @@
     </div>
   </section>
 
-  <!-- Verified Parent & Partner Testimonials Showcase -->
+  <!-- Verified Testimonials -->
   <section id="testimonials" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
       <div>
@@ -597,17 +543,12 @@
       </div>
     </div>
 
-    <!-- Testimonials Grid / Carousel -->
-    <div id="testimonialCards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Populated via JS -->
-    </div>
+    <div id="testimonialCards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
-  <!-- Interactive QR Code Generator & Direct Parent Contact Section -->
+  <!-- QR Code Generator & Direct Contact Section -->
   <section id="qr-tracker" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
     <div class="grid lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- Left 5 Cols: Live QR Code Generator & Visitor Source Bridge -->
       <div class="lg:col-span-5 bg-obsidian-900 topaz-gold-border rounded-2xl p-6 sm:p-7 space-y-6">
         <div>
           <span class="text-xs font-bold uppercase tracking-widest text-topaz-400">Print • Scan • Track Source</span>
@@ -619,7 +560,6 @@
           </p>
         </div>
 
-        <!-- Campaign Source Selector -->
         <div class="space-y-2">
           <label for="qrCampaignSelect" class="block text-xs font-bold uppercase tracking-wider text-slate-300">
             Select Campaign / Placement Source
@@ -634,7 +574,6 @@
           </select>
         </div>
 
-        <!-- QR Visual Box -->
         <div class="bg-white p-5 rounded-2xl text-center shadow-inner">
           <div id="qrcode" class="flex justify-center items-center min-h-[180px]"></div>
           <div class="mt-3 pt-2 border-t border-slate-200">
@@ -643,7 +582,6 @@
           </div>
         </div>
 
-        <!-- QR Action Buttons -->
         <div class="grid grid-cols-2 gap-3">
           <button id="downloadQrBtn" type="button" class="flex items-center justify-center gap-2 bg-topaz-500 hover:bg-topaz-400 text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all shadow-lg shadow-topaz-500/20">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -655,7 +593,6 @@
           </button>
         </div>
 
-        <!-- Visitor Source Spreadsheet Bridge Note -->
         <div class="bg-obsidian-850/90 border border-slate-800 rounded-xl p-3.5 text-xs text-slate-300 space-y-1.5">
           <div class="font-bold text-gold-400 flex items-center gap-1.5">
             <span>📊</span>
@@ -667,7 +604,6 @@
         </div>
       </div>
 
-      <!-- Right 7 Cols: Direct Parent Comments, Questions & Concerns Form -->
       <div id="contact-coach" class="lg:col-span-7 bg-obsidian-900 topaz-gold-border rounded-2xl p-6 sm:p-8 shadow-2xl">
         <div class="border-b border-slate-800 pb-5 mb-6">
           <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Direct Line To Coach Devin "Mr. Biz" Thompson</span>
@@ -702,7 +638,6 @@
               </select>
             </div>
 
-            <!-- Optional 1-3 Gold Star Rating -->
             <div>
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Optional 3-Star Gold Rating</label>
               <div class="flex items-center gap-2 bg-obsidian-850 border border-slate-700 rounded-xl px-3 py-2" id="starRatingGroup">
@@ -719,13 +654,11 @@
             <textarea id="visitorMessage" rows="4" required placeholder="Write your question, athlete goals, feedback, or concern here..." class="w-full bg-obsidian-850 border border-slate-700 focus:border-gold-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none resize-y"></textarea>
           </div>
 
-          <!-- Hidden Auto-Detected Source Field -->
           <div class="flex items-center justify-between text-xs bg-obsidian-850/70 px-3.5 py-2.5 rounded-xl border border-slate-800">
             <span class="text-slate-400">Auto-Attached Visitor Source Tag:</span>
             <span id="formSourceTag" class="font-mono font-bold text-topaz-400">Direct / Organic</span>
           </div>
 
-          <!-- Submit & Fallback Copy Buttons -->
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <button type="submit" id="submitInquiryBtn" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-sm py-3.5 px-6 rounded-xl shadow-lg shadow-gold-500/20 transition-all">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -738,7 +671,6 @@
           </div>
         </form>
 
-        <!-- Collapsible Coach Settings: Auto-Log Leads to Google Sheet / Formspree -->
         <div class="mt-5 pt-4 border-t border-slate-800/80">
           <button type="button" id="toggleWebhookSettingsBtn" class="text-xs text-slate-400 hover:text-topaz-400 flex items-center gap-1.5 font-medium transition-colors">
             <span>⚙️ Coach Settings: Enable 1-Click In-Browser Auto-Logging (Google Sheets / Formspree)</span>
@@ -757,216 +689,13 @@
           </div>
         </div>
 
-        <!-- Custom Notification Toast / Message Box (Replaces alert) -->
         <div id="feedbackToast" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/90 border border-emerald-500/40 text-xs sm:text-sm text-emerald-200"></div>
       </div>
     </div>
   </section>
-
   </main>
-  <!-- ===================================================================== -->
-  <!-- END VIEW 1: COACHING LANDING PAGE                                     -->
-  <!-- ===================================================================== -->
 
-  <!-- ===================================================================== -->
-  <!-- VIEW 2: 3DEV MANGA — CHAPTERS 1 & 2 INTERACTIVE READER (PAGES 1–28)     -->
-  <!-- ===================================================================== -->
-  <section id="mangaView" class="hidden py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <!-- Manga Top Bar & Back Navigation -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 mb-8 border-b border-gold-500/25">
-      <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-850 border border-topaz-500/40 text-[11px] font-bold uppercase tracking-widest text-topaz-300 mb-2">
-          <span>⚔️ 3DEV UNIVERSE • CHAPTERS 1 & 2</span>
-          <span>•</span>
-          <span>PAGES 1–28 COMPLETE</span>
-        </div>
-        <h1 class="font-display font-bold text-3xl sm:text-5xl text-white uppercase tracking-tight">
-          3Dev Manga: <span class="gold-gradient-text">Awakening & The Merged Harmony</span>
-        </h1>
-        <p class="text-xs sm:text-sm text-slate-400 mt-1.5 max-w-3xl">
-          Follow Coach Devin "Mr. Biz" Thompson through Chapter 1's origin awakening and Chapter 2's <strong class="text-gold-400">Merged Harmony & Domain of Clarity</strong>.
-        </p>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-        <button type="button" id="backToCoachingBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-slate-200 border border-slate-700 hover:border-gold-500/50 text-xs font-bold uppercase tracking-wider transition-all">
-          <span>← Back to 3Fold Training</span>
-        </button>
-        <label for="localMangaUpload" class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-topaz-500/20 hover:bg-topaz-500/30 text-topaz-300 border border-topaz-500/40 text-xs font-bold uppercase tracking-wider transition-all" title="Select your manga spread JPG/PNG files in order to preview locally">
-          <span>📂 Load Local Manga Pages</span>
-          <input type="file" id="localMangaUpload" accept="image/*" multiple class="hidden" />
-        </label>
-      </div>
-    </div>
-
-    <!-- Synchronized Audio, SFX & Voice Narration Control Deck -->
-    <div class="bg-obsidian-900/95 topaz-gold-border rounded-2xl p-4 sm:p-5 mb-8 shadow-xl">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div class="flex items-center gap-3.5">
-          <div id="audioPulseOrb" class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-500 to-topaz-500 flex items-center justify-center text-obsidian-950 font-bold text-lg shadow-lg">
-            🔊
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-display font-bold text-base sm:text-lg text-white uppercase tracking-wide">3Dev Manga Audio & Narration Engine</span>
-              <span id="audioStatusBadge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-obsidian-800 text-slate-400 border border-slate-700">Standby</span>
-            </div>
-            <p class="text-xs text-slate-400">
-              Deep Ō-daiko war drum & D2 Hirajoshi bass pulse, page-turn whoosh & dragon/angel SFX, plus studio MP3 / shōnen voice narration.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2.5">
-          <select id="narratorVoiceSelect" aria-label="Select Fallback Narrator Voice" class="bg-obsidian-950 border border-gold-500/40 text-gold-300 text-xs font-bold rounded-xl px-3 py-2.5 outline-none max-w-[200px]">
-            <option value="">🎙️ Auto Male Voice</option>
-          </select>
-
-          <button type="button" id="toggleAmbientAudioBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-gold-400 border border-gold-500/40 text-xs font-bold uppercase tracking-wider transition-all">
-            <span id="ambientBtnIcon">🎵</span>
-            <span id="ambientBtnLabel">Start Ambient & SFX</span>
-          </button>
-
-          <button type="button" id="narrateSpreadBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-gold-500/20 transition-all">
-            <span id="narrateBtnIcon">🗣️</span>
-            <span id="narrateBtnLabel">Narrate Current Spread</span>
-          </button>
-
-          <button type="button" id="triggerSfxBtn" class="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-topaz-500/15 hover:bg-topaz-500/25 text-topaz-300 border border-topaz-500/40 text-xs font-bold uppercase tracking-wider transition-all" title="Trigger Dragon & Angel Spiritual Surge Sound Effect">
-            <span>⚡ Spiritual Surge SFX</span>
-          </button>
-
-          <!-- Reader Layout Toggle -->
-          <div class="inline-flex rounded-xl bg-obsidian-950 p-1 border border-slate-800">
-            <button type="button" id="modeSpreadBtn" class="px-3 py-1.5 rounded-lg bg-gold-500 text-obsidian-950 font-bold text-xs uppercase transition-all">
-              Spread Reader
-            </button>
-            <button type="button" id="modeAllPagesBtn" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-bold text-xs uppercase transition-all">
-              All 28 Pages
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODE A: INTERACTIVE SINGLE-SPREAD READER -->
-    <div id="mangaSpreadReaderContainer" class="space-y-6">
-      <!-- Spread Selector Pills (Chapters 1 & 2 Spreads 1–12) -->
-      <div class="flex flex-wrap items-center justify-between gap-3 bg-obsidian-900/80 border border-slate-800 rounded-2xl p-3">
-        <button type="button" id="prevSpreadBtn" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-white border border-slate-700 text-xs font-bold uppercase tracking-wider transition-all">
-          <span>← Prev Spread</span>
-        </button>
-
-        <div id="spreadPagePills" class="flex flex-wrap items-center justify-center gap-1.5">
-          <!-- Populated dynamically via JS for Chapters 1 & 2 -->
-        </div>
-
-        <button type="button" id="nextSpreadBtn" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-obsidian-950 text-xs font-bold uppercase tracking-wider transition-all">
-          <span>Next Spread →</span>
-        </button>
-      </div>
-
-      <!-- Main Spread Artwork & Script Grid -->
-      <div class="grid lg:grid-cols-12 gap-6 items-start">
-        <!-- Left 8 Cols: High-Contrast Manga Spread Frame -->
-        <div class="lg:col-span-8 bg-obsidian-900 topaz-gold-border rounded-2xl p-3 sm:p-5 shadow-2xl">
-          <div class="flex items-center justify-between mb-3 px-1">
-            <span id="spreadPageBadge" class="px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/35 font-display font-bold text-xs uppercase tracking-widest">
-              Pages 1–2 • Spread 1 of 12
-            </span>
-            <span id="spreadFileBadge" class="text-[11px] font-mono text-slate-400">assets/images/chapter2-page-03-04.jpg</span>
-          </div>
-
-          <!-- Artwork Display Frame with Automatic Illustrated Fallback -->
-          <div id="mangaArtworkWrapper" class="relative w-full rounded-xl overflow-hidden bg-obsidian-950 border border-slate-800 min-h-[280px] sm:min-h-[420px] flex items-center justify-center">
-            <img id="mangaSpreadImg" src="assets/images/chapter2-page-03-04.jpg" alt="3Dev Manga Spread" class="w-full h-auto object-contain block" />
-            <div id="mangaFallbackCanvas" class="hidden w-full p-6 sm:p-8"></div>
-          </div>
-
-          <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 px-1">
-            <span>Tip: Use Left/Right arrow keys or click Next Spread to advance with SFX.</span>
-            <span class="text-topaz-400 font-semibold">3Dev Manga • Chapters 1 & 2 Complete Edition</span>
-          </div>
-        </div>
-
-        <!-- Right 4 Cols: Storyboard Dialogue, Audio Cue & 3Fold Dimension Lore -->
-        <div class="lg:col-span-4 space-y-5">
-          <div class="bg-obsidian-900 topaz-gold-border rounded-2xl p-5 sm:p-6 space-y-4">
-            <div>
-              <span class="text-[11px] font-bold uppercase tracking-widest text-topaz-400" id="spreadArcTag">Origin Arc • Pages 1–2</span>
-              <h2 class="font-display font-bold text-2xl text-white uppercase mt-1" id="spreadTitle">
-                Iron Forged in the Crucible
-              </h2>
-            </div>
-
-            <div class="bg-obsidian-850 border border-slate-800 rounded-xl p-4 space-y-2.5">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-gold-400">Scene Narration & Dialogue</span>
-                <button type="button" onclick="document.getElementById('narrateSpreadBtn').click()" class="text-[11px] text-topaz-400 hover:underline font-semibold">
-                  🔊 Read Aloud
-                </button>
-              </div>
-              <p id="spreadNarrationText" class="text-xs sm:text-sm text-slate-200 leading-relaxed"></p>
-            </div>
-
-            <!-- Panel-by-Panel English Dialogue Breakdown -->
-            <div class="space-y-2">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Panel Dialogue & Sound Effects</div>
-              <div id="spreadPanelsList" class="space-y-2 text-xs"></div>
-            </div>
-
-            <!-- 3Fold Dimension Connection Card -->
-            <div class="bg-gradient-to-br from-obsidian-850 to-obsidian-950 border border-gold-500/30 rounded-xl p-4">
-              <div class="text-[11px] font-bold uppercase tracking-wider text-gold-400 mb-1" id="spreadDimensionHeader">
-                3Fold Dimension Link
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed" id="spreadDimensionNote"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODE B: FULL-SCROLL ALL 28 PAGES GALLERY -->
-    <div id="mangaAllPagesContainer" class="hidden space-y-8">
-      <!-- Populated dynamically via JS -->
-    </div>
-
-    <!-- Dimension Power Scaling Footer Banner -->
-    <div class="mt-12 bg-obsidian-900 topaz-gold-border rounded-2xl p-6 sm:p-8">
-      <div class="text-center max-w-2xl mx-auto mb-6">
-        <span class="text-xs font-bold uppercase tracking-widest text-gold-400">The 3Dev Dimension System</span>
-        <h3 class="font-display font-bold text-2xl sm:text-3xl text-white uppercase mt-1">
-          Three Dimensions of <span class="gold-gradient-text">3Fold Mastery</span>
-        </h3>
-      </div>
-      <div class="grid md:grid-cols-3 gap-4 text-xs">
-        <div class="bg-obsidian-850 border border-gold-500/30 rounded-xl p-4">
-          <div class="font-display font-bold text-gold-400 uppercase text-base">Dimension 1: Physical (Shinigami / Dragon-Angel Armor)</div>
-          <p class="text-slate-300 mt-1.5 leading-relaxed">
-            Forged through 16 months of rehabilitation and indomitable willpower. The Dragon fuses with the skeleton and left arm while the Angel wraps the spine and shoulders as spiritual armor.
-          </p>
-        </div>
-        <div class="bg-obsidian-850 border border-topaz-500/30 rounded-xl p-4">
-          <div class="font-display font-bold text-topaz-400 uppercase text-base">Dimension 2: Mental (Cursed / Spiritual Flow Control)</div>
-          <p class="text-slate-300 mt-1.5 leading-relaxed">
-            Internal energy discipline, emotional composure under ambush, and reading the unseen side of the court before defenders react.
-          </p>
-        </div>
-        <div class="bg-obsidian-850 border border-amber-500/30 rounded-xl p-4">
-          <div class="font-display font-bold text-amber-400 uppercase text-base">Dimension 3: Tactical (Symbiotic Adaptation)</div>
-          <p class="text-slate-300 mt-1.5 leading-relaxed">
-            Choosing the exact counter-form in real time—blending brutal conditioning with spiritual poise to master D1, D2, and D3.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ===================================================================== -->
-  <!-- END VIEW 2: 3DEV MANGA                                                -->
-  <!-- ===================================================================== -->
-
-  <!-- Public Curriculum & Privacy-Safe Workbook Modal -->
+  <!-- Public Curriculum Modal -->
   <div id="curriculumModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-obsidian-900 topaz-gold-border rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
       <div class="flex items-start justify-between gap-4 border-b border-slate-800 pb-4">
@@ -1023,11 +752,7 @@
         </p>
       </div>
 
-      <!-- Social & Official Resource Links -->
       <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-semibold">
-        <button type="button" onclick="switchView('manga')" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-gold-300 border border-gold-500/40 transition-colors">
-          ⚔️ 3Dev Manga (Ch. 1–2)
-        </button>
         <button type="button" onclick="document.getElementById('openCurriculumModalBtn').click()" class="px-3.5 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 text-gold-400 border border-gold-500/30 transition-colors">
           Public 3DEV Curriculum
         </button>
@@ -1047,10 +772,8 @@
     </div>
   </footer>
 
-  <!-- Interactive Application Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 0. Public Curriculum Privacy Modal Controls
       const curriculumModal = document.getElementById('curriculumModal');
       document.getElementById('openCurriculumModalBtn').addEventListener('click', () => {
         curriculumModal.classList.remove('hidden');
@@ -1062,7 +785,6 @@
         if (e.target === curriculumModal) curriculumModal.classList.add('hidden');
       });
 
-      // 1. Visitor Source / UTM Tracking
       const urlParams = new URLSearchParams(window.location.search);
       const rawSource = urlParams.get('source') || urlParams.get('utm_source') || urlParams.get('ref');
       const activeSource = rawSource ? rawSource.replace(/[_-]+/g, ' ').toUpperCase() : 'Direct / Organic';
@@ -1070,7 +792,6 @@
       document.getElementById('detectedSourceBadge').textContent = activeSource;
       document.getElementById('formSourceTag').textContent = activeSource;
 
-      // Pre-select matching QR dropdown option if source matches
       if (rawSource) {
         const selectEl = document.getElementById('qrCampaignSelect');
         const normalized = rawSource.toLowerCase();
@@ -1082,71 +803,16 @@
         }
       }
 
-      // 2. Signature Drills Data (Synced with 3DEV Master Drill Library)
       const signatureDrills = [
-        {
-          name: 'Make 50 Volume Challenge',
-          pillar: 'Mental',
-          tagColor: 'topaz',
-          reps: '50 Made Shots',
-          desc: 'High-accountability shooting endurance test building mental poise, repeatable release, and focus under fatigue.'
-        },
-        {
-          name: 'Brunson 4-Phase Series',
-          pillar: 'Tactical',
-          tagColor: 'amber',
-          reps: '4 Counter Phases',
-          desc: 'Pro-level pace manipulation, paint-touch pivot footwork, bump-create space, and mid-range/floater reads.'
-        },
-        {
-          name: 'Kobe Basics & Footwork',
-          pillar: 'Pro Series',
-          tagColor: 'gold',
-          reps: 'Triple-Threat & Pivots',
-          desc: 'Drop-step balance, jab-series discipline, fadeaway body control, and laser-sharp pivot angles.'
-        },
-        {
-          name: 'Kyrie Weak-Hand & Back-to-Basket',
-          pillar: 'Pro Series',
-          tagColor: 'gold',
-          reps: 'Off-Hand Finishing',
-          desc: 'Ambidextrous ball control, tight handle counters, and high-glass weak-hand finishes against contact.'
-        },
-        {
-          name: 'Shai Gil Deceleration',
-          pillar: 'Pro Series',
-          tagColor: 'amber',
-          reps: 'Change-of-Pace',
-          desc: 'Sudden braking strides, long gather steps, and defender-freezing hesitation angles.'
-        },
-        {
-          name: '12-Spot Shooting Circuit',
-          pillar: 'Physical',
-          tagColor: 'gold',
-          reps: '12 Court Spots',
-          desc: 'Structured perimeter and mid-range catch-and-shoot progression tracking arc, foot alignment, and consistency.'
-        },
-        {
-          name: 'Kinetic Chain Activation (Ankle-to-Neck)',
-          pillar: 'Physical',
-          tagColor: 'gold',
-          reps: '9-Joint Sequence',
-          desc: 'Full-body biomechanical primer linking ankles, calves, quads, lats, hips, glutes, arms, shoulders & neck to 1-foot/2-foot jumps.'
-        },
-        {
-          name: 'Super 21 Footwork Breakdown',
-          pillar: 'Mental',
-          tagColor: 'topaz',
-          reps: 'Competitive Scoring',
-          desc: 'Live competitive point-accumulation game combining free throws, footwork reads, and clutch decision-making.'
-        },
-        {
-          name: '1v1 Challenge Shooter Drill',
-          pillar: 'Tactical',
-          tagColor: 'amber',
-          reps: 'Live Contest & Attack',
-          desc: 'Closeout contest discipline transitioning immediately into live 1v1 offensive attack off the bounce.'
-        }
+        { name: 'Make 50 Volume Challenge', pillar: 'Mental', reps: '50 Made Shots', desc: 'High-accountability shooting endurance test building mental poise, repeatable release, and focus under fatigue.' },
+        { name: 'Brunson 4-Phase Series', pillar: 'Tactical', reps: '4 Counter Phases', desc: 'Pro-level pace manipulation, paint-touch pivot footwork, bump-create space, and mid-range/floater reads.' },
+        { name: 'Kobe Basics & Footwork', pillar: 'Pro Series', reps: 'Triple-Threat & Pivots', desc: 'Drop-step balance, jab-series discipline, fadeaway body control, and laser-sharp pivot angles.' },
+        { name: 'Kyrie Weak-Hand & Back-to-Basket', pillar: 'Pro Series', reps: 'Off-Hand Finishing', desc: 'Ambidextrous ball control, tight handle counters, and high-glass weak-hand finishes against contact.' },
+        { name: 'Shai Gil Deceleration', pillar: 'Pro Series', reps: 'Change-of-Pace', desc: 'Sudden braking strides, long gather steps, and defender-freezing hesitation angles.' },
+        { name: '12-Spot Shooting Circuit', pillar: 'Physical', reps: '12 Court Spots', desc: 'Structured perimeter and mid-range catch-and-shoot progression tracking arc, foot alignment, and consistency.' },
+        { name: 'Kinetic Chain Activation (Ankle-to-Neck)', pillar: 'Physical', reps: '9-Joint Sequence', desc: 'Full-body biomechanical primer linking ankles, calves, quads, lats, hips, glutes, arms, shoulders & neck to 1-foot/2-foot jumps.' },
+        { name: 'Super 21 Footwork Breakdown', pillar: 'Mental', reps: 'Competitive Scoring', desc: 'Live competitive point-accumulation game combining free throws, footwork reads, and clutch decision-making.' },
+        { name: '1v1 Challenge Shooter Drill', pillar: 'Tactical', reps: 'Live Contest & Attack', desc: 'Closeout contest discipline transitioning immediately into live 1v1 offensive attack off the bounce.' }
       ];
 
       const drillGrid = document.getElementById('drillGrid');
@@ -1162,20 +828,7 @@
 
           const card = document.createElement('div');
           card.className = 'bg-obsidian-900 hover:bg-obsidian-850 border border-slate-800 hover:border-gold-500/40 rounded-2xl p-5 transition-all flex flex-col justify-between';
-          card.innerHTML = `
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase border ${badgeClasses}">${drill.pillar}</span>
-                <span class="text-[11px] font-mono text-slate-400">${drill.reps}</span>
-              </div>
-              <h3 class="font-display font-bold text-lg text-white uppercase tracking-wide">${drill.name}</h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">${drill.desc}</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-[11px] text-slate-500">
-              <span>3DEV Master Library</span>
-              <span class="text-gold-400 font-semibold">3Fold Verified</span>
-            </div>
-          `;
+          card.innerHTML = `<div><div class="flex items-center justify-between gap-2 mb-3"><span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase border ${badgeClasses}">${drill.pillar}</span><span class="text-[11px] font-mono text-slate-400">${drill.reps}</span></div><h3 class="font-display font-bold text-lg text-white uppercase tracking-wide">${drill.name}</h3><p class="text-xs text-slate-400 mt-2 leading-relaxed">${drill.desc}</p></div><div class="mt-4 pt-3 border-t border-slate-800/70 flex items-center justify-between text-[11px] text-slate-500"><span>3DEV Master Library</span><span class="text-gold-400 font-semibold">3Fold Verified</span></div>`;
           drillGrid.appendChild(card);
         });
       }
@@ -1193,7 +846,6 @@
         });
       });
 
-      // 3. Team KJ Project Swish Levels 0-6 Interactive Selector
       const levelsData = [
         { lvl: 0, title: 'Level 0: Athletic Foundation & Ball Familiarity', desc: 'Two-hand stationary control, head/waist/legs ball wraps, basic ladder footwork, and balanced set-shot form on mini/adjustable rims.', badge: 'Foundation Tier' },
         { lvl: 1, title: 'Level 1: Stationary Dribble & Footwork Balance', desc: 'Pound dribbles (strong & weak hand), jump-stop stability, basic pivoting without traveling, and layup footwork on Spots 1, 3, 5.', badge: '1-Star Benchmark' },
@@ -1222,38 +874,12 @@
         levelSelector.appendChild(btn);
       });
 
-      // 4. Verified Testimonials Showcase
       const testimonials = [
-        {
-          author: 'Youth Athlete Parent',
-          role: 'Verified Parent SMS',
-          pillar: 'Mental & Character Mentorship',
-          quote: 'I can see by the relationships you have with the other kids that you guys are more than just coaches to these kids. We appreciate everything and trust you with our daughter.'
-        },
-        {
-          author: "Anthony's Parent",
-          role: 'Verified Parent SMS',
-          pillar: 'Physical, Mental & Tactical Trifecta',
-          quote: 'Btw: Anthony made his school team. I think he’s on varsity this year 🎉🎊'
-        },
-        {
-          author: "Nolan's Parent",
-          role: 'Verified Parent SMS',
-          pillar: 'Physical Mechanics & Confidence',
-          quote: 'Nolan shot for ages on this crazy ~7 basket hoop. And started pulling out passing the ball through his legs'
-        },
-        {
-          author: 'Youth Athlete Parent',
-          role: 'Verified Parent SMS',
-          pillar: 'Physical & Tactical Execution',
-          quote: 'She’s gotten so good thanks to you'
-        },
-        {
-          author: 'Jack Bryant, President/Owner',
-          role: 'The Harlem MagicMasters Int’l (NYCDOE Vendor #HAR008326)',
-          pillar: 'Institutional & Youth Leadership',
-          quote: 'Official endorsement recognizing Coach Devin Thompson’s elite basketball skill, crowd-engaging showmanship, and positive youth assembly mentorship.'
-        }
+        { author: 'Youth Athlete Parent', role: 'Verified Parent SMS', pillar: 'Mental & Character Mentorship', quote: 'I can see by the relationships you have with the other kids that you guys are more than just coaches to these kids. We appreciate everything and trust you with our daughter.' },
+        { author: "Anthony's Parent", role: 'Verified Parent SMS', pillar: 'Physical, Mental & Tactical Trifecta', quote: 'Btw: Anthony made his school team. I think he’s on varsity this year 🎉🎊' },
+        { author: "Nolan's Parent", role: 'Verified Parent SMS', pillar: 'Physical Mechanics & Confidence', quote: 'Nolan shot for ages on this crazy ~7 basket hoop. And started pulling out passing the ball through his legs' },
+        { author: 'Youth Athlete Parent', role: 'Verified Parent SMS', pillar: 'Physical & Tactical Execution', quote: 'She’s gotten so good thanks to you' },
+        { author: 'Jack Bryant, President/Owner', role: 'The Harlem MagicMasters Int’l (NYCDOE Vendor #HAR008326)', pillar: 'Institutional & Youth Leadership', quote: 'Official endorsement recognizing Coach Devin Thompson’s elite basketball skill, crowd-engaging showmanship, and positive youth assembly mentorship.' }
       ];
 
       let startIndex = 0;
@@ -1265,19 +891,7 @@
           const item = testimonials[(startIndex + i) % testimonials.length];
           const card = document.createElement('div');
           card.className = 'bg-obsidian-900 border border-slate-800 hover:border-topaz-500/40 rounded-2xl p-6 flex flex-col justify-between transition-all';
-          card.innerHTML = `
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="text-gold-400 text-sm tracking-widest">★★★</div>
-                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-topaz-500/15 text-topaz-300 border border-topaz-500/30">${item.pillar}</span>
-              </div>
-              <p class="text-sm text-slate-200 italic leading-relaxed">"${item.quote}"</p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-800/80">
-              <div class="font-display font-bold text-white uppercase text-sm tracking-wide">${item.author}</div>
-              <div class="text-xs text-slate-400 mt-0.5">${item.role}</div>
-            </div>
-          `;
+          card.innerHTML = `<div><div class="flex items-center justify-between mb-4"><div class="text-gold-400 text-sm tracking-widest">★★★</div><span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-topaz-500/15 text-topaz-300 border border-topaz-500/30">${item.pillar}</span></div><p class="text-sm text-slate-200 italic leading-relaxed">"${item.quote}"</p></div><div class="mt-6 pt-4 border-t border-slate-800/80"><div class="font-display font-bold text-white uppercase text-sm tracking-wide">${item.author}</div><div class="text-xs text-slate-400 mt-0.5">${item.role}</div></div>`;
           testimonialContainer.appendChild(card);
         }
       }
@@ -1292,7 +906,6 @@
         renderTestimonials();
       });
 
-      // 5. Live QR Code Generator & Download
       const qrContainer = document.getElementById('qrcode');
       const qrSelect = document.getElementById('qrCampaignSelect');
       const qrUrlLabel = document.getElementById('qrUrlLabel');
@@ -1319,7 +932,6 @@
       generateQR();
       qrSelect.addEventListener('change', generateQR);
 
-      // Download QR PNG
       document.getElementById('downloadQrBtn').addEventListener('click', () => {
         const canvas = qrContainer.querySelector('canvas');
         const img = qrContainer.querySelector('img');
@@ -1340,7 +952,6 @@
         }
       });
 
-      // Copy Tracked URL Fallback
       function copyTextToClipboard(text) {
         const tempInput = document.createElement('textarea');
         tempInput.value = text;
@@ -1356,7 +967,6 @@
         showToast(`Tracked campaign link copied: ${url}`);
       });
 
-      // 6. Interactive 1-3 Gold Star Selector & Mailto Form
       const starBtns = document.querySelectorAll('.star-btn');
       const selectedStarsInput = document.getElementById('selectedStars');
 
@@ -1399,7 +1009,6 @@
         toast.classList.remove('hidden');
       }
 
-      // Optional In-Browser Webhook Endpoint (Formspree or Google Apps Script)
       const webhookInput = document.getElementById('webhookEndpointInput');
       const webhookStatusText = document.getElementById('webhookStatusText');
       const savedWebhook = localStorage.getItem('3dev_webhook_url') || '';
@@ -1445,15 +1054,7 @@
             const response = await fetch(endpoint, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: JSON.stringify({
-                name,
-                athleteGrade: grade,
-                topic,
-                starRating: stars,
-                visitorSource: activeSource,
-                message: msg,
-                submittedAt: new Date().toISOString()
-              })
+              body: JSON.stringify({ name, athleteGrade: grade, topic, starRating: stars, visitorSource: activeSource, message: msg, submittedAt: new Date().toISOString() })
             });
             if (response.ok) {
               showToast(`Thank you, ${name}! Your message (Source: ${activeSource}) has been logged directly for Coach Dev.`);
@@ -1485,753 +1086,6 @@
         copyTextToClipboard(fullText);
         showToast('Complete message & 3DEV Spreadsheet Log Row copied to clipboard! Paste into any email or text to DevinMrBizThompson@gmail.com.');
       });
-
-      // =====================================================================
-      // 7. 3DEV MANGA VIEW SWITCHER, CHAPTERS 1 & 2 SPREADS & AUDIO ENGINE
-      // =====================================================================
-      const mangaSpreads = [
-        // CHAPTER 1 (Spreads 1–8)
-        {
-          id: 1,
-          pagesLabel: 'Ch.1 • Pages 1–2',
-          fileName: 'assets/images/manga-page-01-02.jpg',
-          audioFile: 'assets/audio/spread-01.mp3',
-          arc: 'Origin Arc • Pages 1–2',
-          title: 'Iron Forged in the Crucible',
-          dimensionHeader: 'Dimension 1 Seed: Rehabilitation & Grit',
-          dimensionNote: 'Every championship transformation begins in adversity. Sixteen months of resistance-band rehab forged the mental toughness behind the 3Fold Physical pillar.',
-          narration: 'Steel is not born in comfort... it is beaten into shape. At a crowded Bronx intersection, a violent collision shatters Dev’s left shoulder. Six months in a sling. Sixteen months of solitary, agonizing rehabilitation—pulling against resistance, refusing to yield. When the bone finally mends, the ink on his skin answers his resolve. Black smoke erupts... and from the basketball mark, a skeletal dragon awakens.',
-          panels: [
-            { speaker: 'SFX / Impact', text: 'CRASH!! — "GAAH! My shoulder... it’s out of the socket!"' },
-            { speaker: 'Six Months Later', text: '"Still bound..." — One arm locked in a sling, endurance tested in silence.' },
-            { speaker: 'Sixteen Months Later', text: '"One more rep. Hold the line!" — Resistance bands snap taut: "The strength has returned."' },
-            { speaker: 'The Awakening', text: 'RUMBLE... "What is this dark mist!? The ink... it’s breathing!"' }
-          ]
-        },
-        {
-          id: 2,
-          pagesLabel: 'Ch.1 • Pages 3–4',
-          fileName: 'assets/images/manga-page-03-04.jpg',
-          audioFile: 'assets/audio/spread-02.mp3',
-          arc: 'Origin Arc • Pages 3–4',
-          title: 'The Seal Upon His Back',
-          dimensionHeader: 'Dual Guardians: Dragon & Angel',
-          dimensionNote: 'Power without discipline is chaos. When the Dragon enters his back tattoo, it defeats the encroaching shadow demon and liberates the Guardian Angel.',
-          narration: 'Raw fury without restraint consumes its host. Surging with violet lightning, the shadow dragon dives into the ancient cloud-and-dragon seal across Dev’s back. Within the inner realm, a fierce war rages between darkness and light. With one devastating strike, the Dragon shatters the shadow demon—and sets the winged Guardian Angel free.',
-          panels: [
-            { speaker: 'Dev & Witness', text: '"It’s diving straight into the back tattoo! Into my spine—stop!"' },
-            { speaker: 'Lightning Surge', text: 'CRACKLE-ZOOOM! — "The seal swallowed it whole!"' },
-            { speaker: 'Inner Realm Clash', text: 'SCREECH!! — "Between shadow and light, the Dragon enters the fray!"' },
-            { speaker: 'Liberation', text: 'DO-GOON!! — "The demon falls... the Angel is unbound. Silence returns."' }
-          ]
-        },
-        {
-          id: 3,
-          pagesLabel: 'Ch.1 • Pages 5–6',
-          fileName: 'assets/images/manga-page-05-06.jpg',
-          audioFile: 'assets/audio/spread-03.mp3',
-          arc: 'Dimension 1 Awakening • Pages 5–6',
-          title: 'Dimension 1: Skeletal & Spiritual Fusion',
-          dimensionHeader: 'Dimension 1: Physical Mastery Unlocked',
-          dimensionNote: 'The Dragon fuses with his left arm and skeleton while the Angel wraps his spine and shoulders as spiritual armor—unleashing superhuman speed, strength, and spiritual pressure.',
-          narration: 'Dimension One: Physical. Born from sixteen months of unbroken will, two guardian spirits claim their vessel. The Dragon hardens into his very bones and left arm; the Angel wraps his spine and shoulders in radiant armor. Flesh meets spirit—unleashing speed, power, and crushing spiritual pressure beyond mortal limits.',
-          panels: [
-            { speaker: 'Narrator', text: 'DIMENSION 1 (PHYSICAL): ORIGIN & TRANSFORMATION — "Two spirits tempered by sixteen months of trial!"' },
-            { speaker: 'Twin Guardians', text: 'THE DRAGON OF UNYIELDING WILL & THE ANGEL OF DISCIPLINE' },
-            { speaker: 'Anatomical Fusion', text: '"Dragon in the bone. Angel on the spine — SKELETAL & SPIRITUAL FUSION!!"' },
-            { speaker: 'Full Release', text: 'BA-OOOOM!! — "Mortal limits shatter! Overwhelming strength and speed ignite!"' }
-          ]
-        },
-        {
-          id: 4,
-          pagesLabel: 'Ch.1 • Pages 7–8',
-          fileName: 'assets/images/manga-page-07-08.jpg',
-          audioFile: 'assets/audio/spread-04.mp3',
-          arc: 'Reality Shift • Pages 7–8',
-          title: 'Stillness Before the Storm',
-          dimensionHeader: '3Fold Anchor: Grounded Daily Discipline',
-          dimensionNote: 'Whether in the spiritual realm or coaching youth on the hardwood, greatness comes from mastering everyday fundamentals: "Drop your hips lower on defense!"',
-          narration: 'Dawn breaks, and Dev wakes drenched in sweat—dismissing the dragons, angels, and hidden dimensions as a fever dream. On the KJ Pro hardwood, his whistle cuts the air: "Drop your hips! Lock in on defense!" Yet on the late-night train home, the hum beneath his skin refuses to fade. Something lurks beneath the ordinary world.',
-          panels: [
-            { speaker: 'Dawn Awakening', text: '"Just a dream... wild dimensions and phantom ink. Nothing more."' },
-            { speaker: 'KJ Pro Court', text: 'TWEET! — "Drop your hips lower! Guard your yard!" — The discipline of the Way continues.' },
-            { speaker: 'Night Train', text: 'CLACK-CLACK... — "Why does my left arm still burn like iron?"' },
-            { speaker: 'Narrator', text: '"Beneath the rhythm of everyday life, the unseen world waits..."' }
-          ]
-        },
-        {
-          id: 5,
-          pagesLabel: 'Ch.1 • Pages 9–10',
-          fileName: 'assets/images/manga-page-09-10.jpg',
-          audioFile: 'assets/audio/spread-05.mp3',
-          arc: 'Turning Point • Pages 9–10',
-          title: 'Return to the Crossroads',
-          dimensionHeader: 'Awareness & Court Vision',
-          dimensionNote: 'Recognizing danger before it strikes is the essence of Tactical Vision. Stepping out of the subway onto the exact intersection reignites his spiritual marks.',
-          narration: 'Stepping out of the subway into the night air, Dev stops dead in his tracks. He stands at the exact crossroads where his shoulder was broken. Instantly, black flames erupt across his left arm and back. Beside him on the asphalt, the skeletal Dragon and radiant Angel manifest in full form. It was never a dream.',
-          panels: [
-            { speaker: 'The Crossroads', text: 'GASP! — "This intersection... it’s the exact place where I fell!"' },
-            { speaker: 'Spiritual Ignition', text: 'THUMP-WHOOSH!! — "My arm... my back—the seal is igniting!"' },
-            { speaker: 'Manifestation', text: 'ROAR / WING-FLAP — Dragon and Angel stand beside him in the physical world.' },
-            { speaker: 'Coach Dev', text: '"It wasn’t... an illusion...!"' }
-          ]
-        },
-        {
-          id: 6,
-          pagesLabel: 'Ch.1 • Pages 11–12',
-          fileName: 'assets/images/manga-page-11-12.jpg',
-          audioFile: 'assets/audio/spread-06.mp3',
-          arc: 'The Truth Revealed • Pages 11–12',
-          title: 'The Unseen Ambush',
-          dimensionHeader: 'Tactical Intelligence: Reading the Unseen',
-          dimensionNote: 'What looked like an ordinary street accident was actually an orchestrated ambush by dark forces—proving why athletes must train both seen and unseen angles.',
-          narration: 'Time turns backward, peeling away the veil of the physical world. Dev witnesses the truth of that fateful day: a shadow demon had lunged from the blind spot to strike him down. It was no random crash—it was an assassination attempt before his awakening could begin.',
-          panels: [
-            { speaker: 'Vision of the Past', text: '"Time is reversing... I’m seeing the hidden side of this world!"' },
-            { speaker: 'The Blind-Spot Strike', text: 'SCREECH!! — A shadow demon ambushes his path in the intersection!' },
-            { speaker: 'Guardian Angel', text: '"They struck before you could awaken. That crash was no accident—you were marked!!"' },
-            { speaker: 'Coach Dev', text: '"Those shadow forces... they’ve been hunting from the dark!"' }
-          ]
-        },
-        {
-          id: 7,
-          pagesLabel: 'Ch.1 • Page 13',
-          fileName: 'assets/images/manga-page-13.jpg',
-          audioFile: 'assets/audio/spread-07.mp3',
-          arc: 'The Sacrifice & Choice • Page 13',
-          title: 'Sixteen Months of Silent Protection',
-          dimensionHeader: 'All 3 Dimensions: Physical • Mental • Tactical',
-          dimensionNote: 'His guardians sealed themselves for 16 months to save his life. Now, with enemy traces still lingering, Dev must choose between Dimension 1 (Physical), Dimension 2 (Mental), and Dimension 3 (Tactical).',
-          narration: 'To save his life, the Dragon and Angel intercepted the lethal strike—sealing their own power for sixteen months while his body healed. Snapping back to the present, Dev clenches his fists as three paths of mastery blaze before him: Dimension One, Physical. Dimension Two, Mental. Dimension Three, Tactical.',
-          panels: [
-            { speaker: 'The Sacrifice', text: 'CLANG!! — "If we block this strike, we will be sealed... for sixteen months..."' },
-            { speaker: 'Coach Dev', text: '"They took the blow for me... all this time, they were guarding my life!"' },
-            { speaker: 'Twin Guardians', text: '"The enemy’s scent still lingers. Choose your 3Dev Dimension—and stand your ground!"' },
-            { speaker: 'The Three Paths', text: '"DIMENSION 1: PHYSICAL • DIMENSION 2: MENTAL • DIMENSION 3: TACTICAL"' }
-          ]
-        },
-        {
-          id: 8,
-          pagesLabel: 'Ch.1 • Page 14',
-          fileName: 'assets/images/manga-page-14.jpg',
-          audioFile: 'assets/audio/spread-08.mp3',
-          arc: 'Chapter 1 Climax • Page 14',
-          title: 'Two Paths to Mastery',
-          dimensionHeader: 'Chapter 1 Finale: The Choice of Champions',
-          dimensionNote: 'To master Dimension 1 Physical, will Coach Dev take the Dragon’s path of brutal combat conditioning, or the Angel’s path of spiritual discipline and internal balance?',
-          narration: 'High above the city lights, two philosophies collide. The Dragon roars: "Walk the path of brutal combat conditioning—push the body until limits break!" Beside him, the Angel answers: "Walk the path of spiritual discipline—master stillness, breath, and internal flow." Beneath the night sky, Dev clenches his fist. To master Dimension One... which path will he claim?',
-          panels: [
-            { speaker: 'Skeletal Dragon', text: 'GIII-SHAAAH!! — "Forge yourself through brutal combat conditioning! Break every physical limit!"' },
-            { speaker: 'Guardian Angel', text: 'SHIMMER... — "Seek spiritual discipline and internal balance. Control the flow within."' },
-            { speaker: 'Coach Dev (KJ Pro)', text: 'FIST CLENCHES — "To master Dimension One... which path do I choose?" (End of Chapter 1)' }
-          ]
-        },
-
-        // CHAPTER 2 (Spreads 9–12 / Pages 15–28)
-        {
-          id: 9,
-          pagesLabel: 'Ch.2 • Pages 1–2',
-          fileName: 'assets/images/chapter2-page-01-02.jpg',
-          audioFile: 'assets/audio/ch2-spread-01.mp3',
-          arc: 'Chapter 2 • The Rebirth & Merged Harmony',
-          title: 'The Rebirth & Merged Harmony',
-          dimensionHeader: 'Chapter 2 Arc 1: Symbiotic Resonance',
-          dimensionNote: 'The transition from dual guardianship to total internal fusion. Mind, body, and tactic lock into absolute harmony.',
-          narration: 'Chapter Two. The Rebirth. As the shadows close in, Dev locks eyes with his inner reflections. The Dragon and Angel dissolve into pure golden light, fusing directly into his heartbeat. A new threshold of power awakens—the merged harmony of all three 3Fold dimensions.',
-          panels: [
-            { speaker: 'Inner Realm', text: 'FLASH!! — "The barriers between soul and vessel are dissolving!"' },
-            { speaker: 'Coach Dev', text: '"I feel... every heartbeat echoing across all three dimensions!"' },
-            { speaker: 'Merged Harmony', text: 'GOLDEN AURA — "Physical strength, mental clarity, and tactical instinct as one unified force!"' },
-            { speaker: 'SFX', text: 'ZOOOM-BOOM! — "The rebirth is complete!"' }
-          ]
-        },
-        {
-          id: 10,
-          pagesLabel: 'Ch.2 • Pages 3–4',
-          fileName: 'assets/images/chapter2-page-03-04.jpg',
-          audioFile: 'assets/audio/ch2-spread-02.mp3',
-          arc: 'Chapter 2 • The Shadow Returns & Rematch',
-          title: 'The Shadow Returns & The Rematch Begins',
-          dimensionHeader: 'Chapter 2 Arc 2: Confronting the Darkness',
-          dimensionNote: 'Testing the new harmony against higher-tier spiritual opposition on the midnight streets of New York.',
-          narration: 'The shadow returns. Emerging from the subway tunnels, elite shadow enforcers block the street, seeking to crush the newly awakened vessel before it reaches full maturity. Without flinching, Dev steps forward. The rematch begins now.',
-          panels: [
-            { speaker: 'Subway Exit', text: 'SCREEECH! — "They tracked my spiritual signature right back to the station!"' },
-            { speaker: 'Shadow Enforcers', text: '"The vessel is unstable... obliterate him before the seal stabilizes!"' },
-            { speaker: 'Coach Dev', text: 'EYES GLOWING — "You picked the wrong coach... and the wrong court."' },
-            { speaker: 'SFX', text: 'CLASH!! — "The rematch begins with a thunderous impact!"' }
-          ]
-        },
-        {
-          id: 11,
-          pagesLabel: 'Ch.2 • Pages 5–6',
-          fileName: 'assets/images/chapter2-page-05-06.jpg',
-          audioFile: 'assets/audio/ch2-spread-03.mp3',
-          arc: 'Chapter 2 • The Severing Strike & Silence',
-          title: 'The Severing Strike & Silence After the Storm',
-          dimensionHeader: 'Chapter 2 Arc 3: Precision Execution',
-          dimensionNote: 'Applying pro-level deceleration and decisive tactical reads to cut through enemy pressure instantly.',
-          narration: 'One clean, decisive motion. Utilizing Shai Gil deceleration combined with Shinigami spatial awareness, Dev unleashes the severing strike—slicing through the enemy formation in a single heartbeat. Complete silence follows as the storm clears over the skyline.',
-          panels: [
-            { speaker: 'Action', text: 'SWISH-SLASH! — "Instant deceleration into a zero-angle pivot!"' },
-            { speaker: 'The Severing Strike', text: 'DO-GONN!! — "A peerless strike cutting straight through shadow energy!"' },
-            { speaker: 'Silence', text: 'WIND BLOWING... — "Absolute silence after the storm settles over the asphalt."' },
-            { speaker: 'Coach Dev', text: '"First wave cleared. But the main court awaits..."' }
-          ]
-        },
-        {
-          id: 12,
-          pagesLabel: 'Ch.2 • Pages 7–8',
-          fileName: 'assets/images/chapter2-page-07-08.jpg',
-          audioFile: 'assets/audio/ch2-spread-04.mp3',
-          arc: 'Chapter 2 • Domain of Clarity & Tactical Edge',
-          title: 'The Domain of Clarity & The Tactical Edge',
-          dimensionHeader: 'Chapter 2 Climax: Varsity Mastery',
-          dimensionNote: 'Entering the Domain of Clarity where every movement is premeditated, every read is absolute, and the 3Fold Practice System reaches peak evolution.',
-          narration: 'Chapter Two Climax. Entering the Domain of Clarity. Time slows to a crawl. Every defender’s footwork, every tactical angle, and every spiritual pulse lies bare before his eyes. With the tactical edge locked in, Coach Dev steps forward into the next trial of the 3Dev universe.',
-          panels: [
-            { speaker: 'Domain of Clarity', text: 'SHING! — "Perception expands. Every opponent moves in slow motion."' },
-            { speaker: 'Tactical Edge', text: '"I see the entire floor. Offense, defense, spirit, and reality."' },
-            { speaker: 'Coach Dev', text: '"This is the true power of the 3Fold System...!" (To be continued in Chapter 3)' }
-          ]
-        }
-      ];
-
-      let currentSpreadIndex = 0;
-      let localCustomImages = {}; // Maps spread index 0..11 to ObjectURL if user loads local files
-      let activeView = 'coaching';
-
-      // View Switching Logic (Coaching Landing Page <-> 3Dev Manga)
-      const coachingView = document.getElementById('coachingView');
-      const mangaView = document.getElementById('mangaView');
-      const navMangaBtnDesktop = document.getElementById('navMangaBtnDesktop');
-      const navMangaBtnMobile = document.getElementById('navMangaBtnMobile');
-      const mobileSwitchCoaching = document.getElementById('mobileSwitchCoaching');
-      const mobileSwitchManga = document.getElementById('mobileSwitchManga');
-
-      window.switchView = function(target) {
-        activeView = target;
-        if (target === 'manga') {
-          coachingView.classList.add('hidden');
-          mangaView.classList.remove('hidden');
-          navMangaBtnDesktop.classList.add('bg-gold-500', 'text-obsidian-950');
-          navMangaBtnDesktop.classList.remove('bg-obsidian-850', 'text-gold-300');
-          if (mobileSwitchManga && mobileSwitchCoaching) {
-            mobileSwitchManga.className = 'px-3 py-1 rounded-lg bg-gold-500 text-obsidian-950 font-bold shrink-0';
-            mobileSwitchCoaching.className = 'px-3 py-1 rounded-lg bg-obsidian-850 text-slate-300 border border-slate-700 shrink-0';
-          }
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          renderCurrentSpread(false);
-        } else {
-          stopNarration();
-          mangaView.classList.add('hidden');
-          coachingView.classList.remove('hidden');
-          navMangaBtnDesktop.classList.remove('bg-gold-500', 'text-obsidian-950');
-          navMangaBtnDesktop.classList.add('bg-obsidian-850', 'text-gold-300');
-          if (mobileSwitchManga && mobileSwitchCoaching) {
-            mobileSwitchCoaching.className = 'px-3 py-1 rounded-lg bg-gold-500 text-obsidian-950 font-bold shrink-0';
-            mobileSwitchManga.className = 'px-3 py-1 rounded-lg bg-obsidian-850 text-topaz-300 border border-topaz-500/40 shrink-0';
-          }
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      };
-
-      navMangaBtnDesktop.addEventListener('click', () => switchView(activeView === 'manga' ? 'coaching' : 'manga'));
-      navMangaBtnMobile.addEventListener('click', () => switchView(activeView === 'manga' ? 'coaching' : 'manga'));
-      mobileSwitchCoaching.addEventListener('click', () => switchView('coaching'));
-      mobileSwitchManga.addEventListener('click', () => switchView('manga'));
-      document.getElementById('backToCoachingBtn').addEventListener('click', () => switchView('coaching'));
-
-      // Ensure clicking any coaching section link switches back to coaching view first
-      document.querySelectorAll('.nav-coaching-link').forEach(link => {
-        link.addEventListener('click', () => {
-          if (activeView !== 'coaching') {
-            switchView('coaching');
-          }
-        });
-      });
-
-      // Local Manga Image Picker (Lets Coach Dev preview all JPGs immediately)
-      document.getElementById('localMangaUpload').addEventListener('change', (e) => {
-        const files = Array.from(e.target.files || []);
-        if (!files.length) return;
-        files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-
-        files.forEach((file, fallbackIdx) => {
-          const objectUrl = URL.createObjectURL(file);
-          const matchedIdx = mangaSpreads.findIndex((s) => {
-            const baseName = s.fileName.split('/').pop().replace(/\.[^/.]+$/, '').toLowerCase();
-            return file.name.toLowerCase().includes(baseName);
-          });
-
-          if (matchedIdx !== -1) {
-            localCustomImages[matchedIdx] = objectUrl;
-          } else if (fallbackIdx < mangaSpreads.length) {
-            localCustomImages[fallbackIdx] = objectUrl;
-          }
-        });
-
-        renderCurrentSpread(false);
-        renderAllPagesGallery();
-      });
-
-      // Illustrated SVG Storyboard Fallback Renderer
-      function buildIllustratedMangaFallback(spread) {
-        const panelCardsHtml = spread.panels.map((p, i) => `
-          <div class="bg-obsidian-900/95 border border-slate-700/80 rounded-xl p-3.5 text-left relative overflow-hidden">
-            <div class="flex items-center justify-between mb-1.5">
-              <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 font-display font-bold text-[10px] uppercase">Panel ${i + 1} • ${p.speaker}</span>
-              <span class="text-[10px] font-mono text-slate-500">${spread.pagesLabel}</span>
-            </div>
-            <p class="text-xs sm:text-sm text-white font-medium leading-snug">${p.text}</p>
-          </div>
-        `).join('');
-
-        return `
-          <div class="space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-800">
-              <div class="flex items-center gap-2">
-                <span class="text-xl">🐉</span>
-                <span class="font-display font-bold text-sm sm:text-base text-gold-400 uppercase tracking-wide">3Dev Manga Storyboard Panel — ${spread.pagesLabel}</span>
-                <span class="text-xl">👼</span>
-              </div>
-              <span class="text-[11px] text-topaz-400 font-mono">Expected path: "${spread.fileName}" (or use Load Local Manga Pages)</span>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-3">
-              ${panelCardsHtml}
-            </div>
-          </div>
-        `;
-      }
-
-      // Render Page Selector Pills (Chapters 1 & 2 Spreads)
-      const spreadPagePills = document.getElementById('spreadPagePills');
-      function renderSpreadPills() {
-        spreadPagePills.innerHTML = '';
-        mangaSpreads.forEach((sp, idx) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          const isActive = idx === currentSpreadIndex;
-          btn.className = isActive
-            ? 'px-3 py-1.5 rounded-lg bg-gold-500 text-obsidian-950 font-display font-bold text-xs uppercase tracking-wider shadow'
-            : 'px-3 py-1.5 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-slate-300 border border-slate-700 font-display font-bold text-xs uppercase tracking-wider transition-colors';
-          btn.textContent = sp.pagesLabel;
-          btn.addEventListener('click', () => {
-            currentSpreadIndex = idx;
-            renderCurrentSpread(true);
-          });
-          spreadPagePills.appendChild(btn);
-        });
-      }
-
-      // Render Active Spread
-      function renderCurrentSpread(playSfx = false) {
-        const sp = mangaSpreads[currentSpreadIndex];
-        renderSpreadPills();
-
-        document.getElementById('spreadPageBadge').textContent = `${sp.pagesLabel} • Spread ${sp.id} of ${mangaSpreads.length}`;
-        document.getElementById('spreadFileBadge').textContent = sp.fileName;
-        document.getElementById('spreadArcTag').textContent = sp.arc;
-        document.getElementById('spreadTitle').textContent = sp.title;
-        document.getElementById('spreadNarrationText').textContent = sp.narration;
-        document.getElementById('spreadDimensionHeader').textContent = sp.dimensionHeader;
-        document.getElementById('spreadDimensionNote').textContent = sp.dimensionNote;
-
-        const panelsList = document.getElementById('spreadPanelsList');
-        panelsList.innerHTML = sp.panels.map(p => `
-          <div class="bg-obsidian-850/90 border border-slate-800 rounded-lg p-2.5">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-topaz-400">${p.speaker}</div>
-            <div class="text-slate-200 mt-0.5 leading-snug">${p.text}</div>
-          </div>
-        `).join('');
-
-        const imgEl = document.getElementById('mangaSpreadImg');
-        const fallbackEl = document.getElementById('mangaFallbackCanvas');
-        const imgSrc = localCustomImages[currentSpreadIndex] || sp.fileName;
-
-        imgEl.classList.remove('hidden');
-        fallbackEl.classList.add('hidden');
-        imgEl.onerror = () => {
-          imgEl.classList.add('hidden');
-          fallbackEl.innerHTML = buildIllustratedMangaFallback(sp);
-          fallbackEl.classList.remove('hidden');
-        };
-        imgEl.src = imgSrc;
-        imgEl.alt = `3Dev Manga ${sp.pagesLabel} - ${sp.title}`;
-
-        if (playSfx && ambientAudioActive) {
-          playPageTurnSfx();
-        }
-        if (isNarrating) {
-          speakSpreadNarration(sp);
-        }
-      }
-
-      // Render Full-Scroll All 28 Pages Gallery
-      function renderAllPagesGallery() {
-        const container = document.getElementById('mangaAllPagesContainer');
-        container.innerHTML = mangaSpreads.map((sp, idx) => {
-          const imgSrc = localCustomImages[idx] || sp.fileName;
-          return `
-            <div class="bg-obsidian-900 topaz-gold-border rounded-2xl p-4 sm:p-6 space-y-4">
-              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-                <div>
-                  <span class="px-2.5 py-0.5 rounded bg-gold-500 text-obsidian-950 font-display font-bold text-xs uppercase mr-2">${sp.pagesLabel}</span>
-                  <span class="font-display font-bold text-lg sm:text-xl text-white uppercase">${sp.title}</span>
-                </div>
-                <button type="button" onclick="narrateSpecificSpread(${idx})" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-topaz-500/20 hover:bg-topaz-500/30 text-topaz-300 border border-topaz-500/40 text-xs font-bold uppercase">
-                  <span>🔊 Narrate ${sp.pagesLabel}</span>
-                </button>
-              </div>
-              <div class="rounded-xl overflow-hidden bg-obsidian-950 border border-slate-800">
-                <img src="${imgSrc}" alt="3Dev Manga ${sp.pagesLabel}" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" class="w-full h-auto object-contain block" />
-                <div class="hidden p-5">${buildIllustratedMangaFallback(sp)}</div>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${sp.narration}</p>
-            </div>
-          `;
-        }).join('');
-      }
-
-      window.narrateSpecificSpread = function(idx) {
-        currentSpreadIndex = idx;
-        speakSpreadNarration(mangaSpreads[idx]);
-      };
-
-      document.getElementById('prevSpreadBtn').addEventListener('click', () => {
-        currentSpreadIndex = (currentSpreadIndex - 1 + mangaSpreads.length) % mangaSpreads.length;
-        renderCurrentSpread(true);
-      });
-
-      document.getElementById('nextSpreadBtn').addEventListener('click', () => {
-        currentSpreadIndex = (currentSpreadIndex + 1) % mangaSpreads.length;
-        renderCurrentSpread(true);
-      });
-
-      // Reader Mode Toggle (Single Spread vs All 28 Pages)
-      const modeSpreadBtn = document.getElementById('modeSpreadBtn');
-      const modeAllPagesBtn = document.getElementById('modeAllPagesBtn');
-      const spreadReaderContainer = document.getElementById('mangaSpreadReaderContainer');
-      const allPagesContainer = document.getElementById('mangaAllPagesContainer');
-
-      modeSpreadBtn.addEventListener('click', () => {
-        modeSpreadBtn.className = 'px-3 py-1.5 rounded-lg bg-gold-500 text-obsidian-950 font-bold text-xs uppercase transition-all';
-        modeAllPagesBtn.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-bold text-xs uppercase transition-all';
-        spreadReaderContainer.classList.remove('hidden');
-        allPagesContainer.classList.add('hidden');
-      });
-
-      modeAllPagesBtn.addEventListener('click', () => {
-        modeAllPagesBtn.className = 'px-3 py-1.5 rounded-lg bg-gold-500 text-obsidian-950 font-bold text-xs uppercase transition-all';
-        modeSpreadBtn.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-bold text-xs uppercase transition-all';
-        spreadReaderContainer.classList.add('hidden');
-        renderAllPagesGallery();
-        allPagesContainer.classList.remove('hidden');
-      });
-
-      // Keyboard Arrow Navigation when on Manga View
-      document.addEventListener('keydown', (e) => {
-        if (activeView !== 'manga') return;
-        if (e.key === 'ArrowRight') {
-          currentSpreadIndex = (currentSpreadIndex + 1) % mangaSpreads.length;
-          renderCurrentSpread(true);
-        } else if (e.key === 'ArrowLeft') {
-          currentSpreadIndex = (currentSpreadIndex - 1 + mangaSpreads.length) % mangaSpreads.length;
-          renderCurrentSpread(true);
-        }
-      });
-
-      // =====================================================================
-      // WEB AUDIO API SOUNDTRACK + SFX & HYBRID MP3 / SHŌNEN NARRATION ENGINE
-      // =====================================================================
-      let audioCtx = null;
-      let ambientAudioActive = false;
-      let ambientLoopTimer = null;
-      let isNarrating = false;
-      let currentNarrationAudio = null;
-
-      function ensureAudioContext() {
-        if (!audioCtx) {
-          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-          audioCtx = new AudioContextClass();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-      }
-
-      // Deep D2 Hirajoshi Shamisen Bass + Ō-daiko War Drum Sub-Pulse Loop
-      function playAmbientPhrase() {
-        if (!ambientAudioActive || !audioCtx) return;
-        const now = audioCtx.currentTime;
-        const scale = [73.42, 82.41, 87.31, 110.00, 116.54, 146.83];
-        const note = scale[Math.floor(Math.random() * scale.length)];
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(note, now);
-        gain.gain.setValueAtTime(0.001, now);
-        gain.gain.exponentialRampToValueAtTime(0.055, now + 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.0008, now + 1.4);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 1.45);
-
-        const drumOsc = audioCtx.createOscillator();
-        const drumGain = audioCtx.createGain();
-        drumOsc.type = 'sine';
-        drumOsc.frequency.setValueAtTime(75, now);
-        drumOsc.frequency.exponentialRampToValueAtTime(32, now + 0.38);
-        drumGain.gain.setValueAtTime(0.085, now);
-        drumGain.gain.exponentialRampToValueAtTime(0.001, now + 0.44);
-        drumOsc.connect(drumGain);
-        drumGain.connect(audioCtx.destination);
-        drumOsc.start(now);
-        drumOsc.stop(now + 0.46);
-      }
-
-      function playPageTurnSfx() {
-        ensureAudioContext();
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(260, now);
-        osc.frequency.exponentialRampToValueAtTime(620, now + 0.14);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 0.17);
-      }
-
-      function playSpiritualSurgeSfx() {
-        ensureAudioContext();
-        const now = audioCtx.currentTime;
-        const growl = audioCtx.createOscillator();
-        const growlGain = audioCtx.createGain();
-        growl.type = 'sawtooth';
-        growl.frequency.setValueAtTime(110, now);
-        growl.frequency.exponentialRampToValueAtTime(55, now + 0.7);
-        growlGain.gain.setValueAtTime(0.06, now);
-        growlGain.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
-        growl.connect(growlGain);
-        growlGain.connect(audioCtx.destination);
-        growl.start(now);
-        growl.stop(now + 0.78);
-
-        [587.33, 880.00, 1174.66].forEach((freq, i) => {
-          const chime = audioCtx.createOscillator();
-          const cGain = audioCtx.createGain();
-          chime.type = 'sine';
-          chime.frequency.setValueAtTime(freq, now + 0.12 + i * 0.08);
-          cGain.gain.setValueAtTime(0.04, now + 0.12 + i * 0.08);
-          cGain.gain.exponentialRampToValueAtTime(0.0008, now + 1.1 + i * 0.08);
-          chime.connect(cGain);
-          cGain.connect(audioCtx.destination);
-          chime.start(now + 0.12 + i * 0.08);
-          chime.stop(now + 1.15 + i * 0.08);
-        });
-      }
-
-      document.getElementById('toggleAmbientAudioBtn').addEventListener('click', () => {
-        ensureAudioContext();
-        ambientAudioActive = !ambientAudioActive;
-        const label = document.getElementById('ambientBtnLabel');
-        const badge = document.getElementById('audioStatusBadge');
-        if (ambientAudioActive) {
-          label.textContent = 'Mute Ambient & SFX';
-          badge.textContent = 'Audio Live';
-          badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
-          playAmbientPhrase();
-          ambientLoopTimer = setInterval(playAmbientPhrase, 1650);
-        } else {
-          label.textContent = 'Start Ambient & SFX';
-          badge.textContent = isNarrating ? 'Narrating' : 'Standby';
-          badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-obsidian-800 text-slate-400 border border-slate-700';
-          clearInterval(ambientLoopTimer);
-        }
-      });
-
-      document.getElementById('triggerSfxBtn').addEventListener('click', playSpiritualSurgeSfx);
-
-      // Known male vs female voice identifiers for SpeechSynthesis fallback
-      const MALE_VOICE_HINTS = [
-        'daniel', 'arthur', 'gordon', 'rishi', 'oliver', 'tom', 'lee', 'fred',
-        'alex', 'aaron', 'albert', 'bruce', 'ralph', 'junior', 'reed', 'eddy',
-        'rocko', 'grandpa', 'guy', 'christopher', 'david', 'mark', 'george',
-        'ryan', 'william', 'liam', 'james', 'male', 'iom', 'iol', 'tpd', 'tpf', 'rjs'
-      ];
-
-      const FEMALE_VOICE_HINTS = [
-        'samantha', 'victoria', 'karen', 'moira', 'tessa', 'fiona', 'veena',
-        'ava', 'allison', 'susan', 'nicky', 'kate', 'serena', 'stephanie',
-        'zira', 'hazel', 'aria', 'jenny', 'michelle', 'monica', 'paulina',
-        'flo', 'shelley', 'sandy', 'grandma', 'kathy', 'princess', 'female',
-        'iob', 'sfg', 'tpc', 'tpe'
-      ];
-
-      function isLikelyMaleVoice(voice) {
-        const name = voice.name.toLowerCase();
-        if (FEMALE_VOICE_HINTS.some(f => name.includes(f))) return false;
-        return MALE_VOICE_HINTS.some(m => name.includes(m));
-      }
-
-      function populateVoiceDropdown() {
-        if (!('speechSynthesis' in window)) return;
-        const select = document.getElementById('narratorVoiceSelect');
-        if (!select) return;
-
-        const voices = window.speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
-        if (!voices.length) return;
-
-        const savedVoiceURI = localStorage.getItem('3dev_narrator_voice') || '';
-        const maleVoices = voices.filter(isLikelyMaleVoice);
-        const otherVoices = voices.filter(v => !isLikelyMaleVoice(v));
-
-        select.innerHTML = '';
-
-        maleVoices.forEach(v => {
-          const opt = document.createElement('option');
-          opt.value = v.voiceURI;
-          opt.textContent = `🎙️ ${v.name.replace(/Microsoft |Google |Apple /g, '')}`;
-          if (v.voiceURI === savedVoiceURI) opt.selected = true;
-          select.appendChild(opt);
-        });
-
-        if (!maleVoices.length) {
-          otherVoices.forEach(v => {
-            const opt = document.createElement('option');
-            opt.value = v.voiceURI;
-            opt.textContent = `🎙️ ${v.name.replace(/Microsoft |Google |Apple /g, '')}`;
-            if (v.voiceURI === savedVoiceURI) opt.selected = true;
-            select.appendChild(opt);
-          });
-        }
-      }
-
-      function getMasculineNarratorVoice() {
-        if (!('speechSynthesis' in window)) return null;
-        const voices = window.speechSynthesis.getVoices();
-        if (!voices.length) return null;
-
-        const select = document.getElementById('narratorVoiceSelect');
-        if (select && select.value) {
-          const chosen = voices.find(v => v.voiceURI === select.value);
-          if (chosen) return chosen;
-        }
-
-        const enVoices = voices.filter(v => v.lang.startsWith('en'));
-        const maleMatch = enVoices.find(isLikelyMaleVoice);
-        if (maleMatch) return maleMatch;
-
-        const nonFemale = enVoices.find(v => !FEMALE_VOICE_HINTS.some(f => v.name.toLowerCase().includes(f)));
-        return nonFemale || enVoices[0] || voices[0];
-      }
-
-      if ('speechSynthesis' in window) {
-        populateVoiceDropdown();
-        window.speechSynthesis.onvoiceschanged = populateVoiceDropdown;
-      }
-
-      const narratorSelectEl = document.getElementById('narratorVoiceSelect');
-      if (narratorSelectEl) {
-        narratorSelectEl.addEventListener('change', () => {
-          localStorage.setItem('3dev_narrator_voice', narratorSelectEl.value);
-          if (isNarrating) {
-            speakSpreadNarration(mangaSpreads[currentSpreadIndex]);
-          }
-        });
-      }
-
-      function resetNarrationUi() {
-        isNarrating = false;
-        const narrateLabel = document.getElementById('narrateBtnLabel');
-        if (narrateLabel) narrateLabel.textContent = 'Narrate Current Spread';
-        const badge = document.getElementById('audioStatusBadge');
-        if (badge) {
-          badge.textContent = ambientAudioActive ? 'Audio Live' : 'Standby';
-          badge.className = ambientAudioActive
-            ? 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-            : 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-obsidian-800 text-slate-400 border border-slate-700';
-        }
-      }
-
-      function stopNarration() {
-        if (currentNarrationAudio) {
-          currentNarrationAudio.pause();
-          currentNarrationAudio.currentTime = 0;
-          currentNarrationAudio = null;
-        }
-        if ('speechSynthesis' in window) {
-          window.speechSynthesis.cancel();
-        }
-        resetNarrationUi();
-      }
-
-      function runBrowserSpeechFallback(spread) {
-        if (!('speechSynthesis' in window)) {
-          resetNarrationUi();
-          return;
-        }
-        window.speechSynthesis.cancel();
-        const cleanNarration = spread.narration.replace(/^Pages?\s+\d+(\s+and\s+\d+)?(\s*—\s*Chapter\s+\d+\s+Climax)?\.\s*/i, '');
-        const utterance = new SpeechSynthesisUtterance(`${spread.title}... ${cleanNarration}`);
-
-        const selectedVoice = getMasculineNarratorVoice();
-        if (selectedVoice) utterance.voice = selectedVoice;
-
-        utterance.rate = 0.89;
-        utterance.pitch = 0.72;
-        utterance.volume = 1.0;
-
-        utterance.onend = resetNarrationUi;
-        utterance.onerror = resetNarrationUi;
-        window.speechSynthesis.speak(utterance);
-      }
-
-      // Hybrid Narrator: Plays studio MP3 first, falls back to browser speech if missing
-      function speakSpreadNarration(spread) {
-        stopNarration();
-        isNarrating = true;
-        document.getElementById('narrateBtnLabel').textContent = 'Stop Narration';
-        document.getElementById('audioStatusBadge').textContent = 'Narrating';
-        document.getElementById('audioStatusBadge').className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-gold-500/20 text-gold-300 border border-gold-500/40';
-
-        if (spread.audioFile) {
-          const audio = new Audio(spread.audioFile);
-          currentNarrationAudio = audio;
-          audio.onended = () => {
-            currentNarrationAudio = null;
-            resetNarrationUi();
-          };
-          audio.onerror = () => {
-            currentNarrationAudio = null;
-            runBrowserSpeechFallback(spread);
-          };
-          audio.play().catch(() => {
-            currentNarrationAudio = null;
-            runBrowserSpeechFallback(spread);
-          });
-        } else {
-          runBrowserSpeechFallback(spread);
-        }
-      }
-
-      document.getElementById('narrateSpreadBtn').addEventListener('click', () => {
-        if (isNarrating) {
-          stopNarration();
-          return;
-        }
-        playSpiritualSurgeSfx();
-        speakSpreadNarration(mangaSpreads[currentSpreadIndex]);
-      });
-
-      // Initialize Manga Spread UI
-      renderCurrentSpread(false);
     });
   </script>
 </body>
