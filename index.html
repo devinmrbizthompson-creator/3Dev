@@ -112,7 +112,7 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 text-slate-300">
         <span class="inline-block w-2 h-2 rounded-full bg-topaz-400 animate-pulse"></span>
-        <span>3DEV Ecosystem: <strong class="text-gold-400">3DEV Development</strong> • <strong class="text-topaz-400">KJ Pro</strong> • <strong class="text-slate-200">Team KJ Project Swish</strong> • <strong class="text-slate-200">KJP4kids</strong></span>
+        <span>3DEV Ecosystem: <strong class="text-gold-400">3DEV Development</strong> • <strong class="text-topaz-400">KJ Pro Calendar</strong> • <strong class="text-slate-200">Team KJ Project Swish</strong></span>
       </div>
       <div class="flex items-center gap-2 bg-obsidian-800 px-3 py-1 rounded-full border border-topaz-500/30">
         <span class="text-slate-400">Active Visitor Source:</span>
@@ -123,8 +123,8 @@
 
   <!-- Sticky Navigation Header -->
   <header class="sticky top-0 z-40 bg-obsidian-950/85 backdrop-blur-md border-b border-gold-500/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-3 group shrink-0">
         <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-topaz-500 p-[2px] shadow-lg shadow-gold-500/15">
           <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center">
             <span class="font-display font-bold text-xl tracking-tight gold-gradient-text">3DEV</span>
@@ -140,7 +140,7 @@
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
         <a href="#methodology" class="hover:text-gold-400 transition-colors">3Fold System</a>
         <a href="#drills" class="hover:text-gold-400 transition-colors">Drill Library</a>
         <a href="#rankings" class="hover:text-gold-400 transition-colors">3-Star Rankings</a>
@@ -149,15 +149,56 @@
         <a href="#qr-tracker" class="hover:text-topaz-400 transition-colors">QR & Source</a>
       </nav>
 
-      <div class="flex items-center gap-2 sm:gap-3">
-        <a href="#contact-coach" id="headerContactCta" class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+      <!-- Right Corner Top: Inconspicuous KJ Pro Calendar Button & Quick Message CTA -->
+      <div class="flex items-center gap-3">
+        <!-- KJ Pro Calendar Trigger Button -->
+        <div class="relative">
+          <button type="button" id="openCalendarWidgetBtn" class="inline-flex items-center gap-2 bg-obsidian-850 hover:bg-obsidian-800 text-gold-400 border border-gold-500/40 font-semibold text-xs sm:text-sm px-3.5 py-2.5 rounded-xl transition-all shadow-md shadow-gold-500/10" title="Check KJ Pro Training Schedule">
+            <svg class="w-4 h-4 text-topaz-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="hidden sm:inline">KJ Pro Calendar</span>
+            <span class="sm:hidden">Calendar</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </button>
+        </div>
+
+        <a href="#contact-coach" id="headerContactCta" class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-obsidian-950 font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 rounded-xl shadow-lg shadow-gold-500/20 transition-all">
           <span class="hidden sm:inline">Message Coach Dev</span>
           <span class="sm:hidden">Message</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
     </div>
   </header>
+
+  <!-- KJ Pro Calendar Expanded Modal Overlay -->
+  <div id="calendarModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+    <div class="bg-obsidian-900 topaz-gold-border rounded-2xl max-w-4xl w-full p-5 sm:p-7 shadow-2xl space-y-4 max-h-[92vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gold-500/15 border border-gold-500/30 flex items-center justify-center text-gold-400">
+            📅
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-white uppercase">KJ Pro Training Schedule</h3>
+            <p class="text-xs text-slate-400">Live synchronized calendar for parents, athletes, and session time slots.</p>
+          </div>
+        </div>
+        <button type="button" id="closeCalendarModalBtn" class="p-2.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-slate-400 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="relative w-full flex-1 min-h-[480px] sm:min-h-[550px] bg-white rounded-xl overflow-hidden border border-slate-800">
+        <iframe src="https://calendar.google.com/calendar/embed?src=594a50b345fc26942d138f74d85e06e0072709c06b8dd80d0b31b92b9f69b6f6%40group.calendar.google.com&ctz=America%2FEl_Salvador" style="border: 0" class="w-full h-full" frameborder="0" scrolling="no"></iframe>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 text-xs text-slate-400 border-t border-slate-800">
+        <span>Times automatically adjust to your local time zone.</span>
+        <button type="button" id="closeCalendarModalBottomBtn" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-obsidian-950 font-bold transition-colors">
+          Close Calendar View
+        </button>
+      </div>
+    </div>
+  </div>
 
   <main id="coachingView">
   <!-- Hero Section -->
@@ -774,6 +815,25 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Calendar Modal Toggle Handlers
+      const calendarModal = document.getElementById('calendarModal');
+      const openCalBtn = document.getElementById('openCalendarWidgetBtn');
+      const closeCalBtn = document.getElementById('closeCalendarModalBtn');
+      const closeCalBottomBtn = document.getElementById('closeCalendarModalBottomBtn');
+
+      openCalBtn.addEventListener('click', () => {
+        calendarModal.classList.remove('hidden');
+      });
+      closeCalBtn.addEventListener('click', () => {
+        calendarModal.classList.add('hidden');
+      });
+      closeCalBottomBtn.addEventListener('click', () => {
+        calendarModal.classList.add('hidden');
+      });
+      calendarModal.addEventListener('click', (e) => {
+        if (e.target === calendarModal) calendarModal.classList.add('hidden');
+      });
+
       const curriculumModal = document.getElementById('curriculumModal');
       document.getElementById('openCurriculumModalBtn').addEventListener('click', () => {
         curriculumModal.classList.remove('hidden');
